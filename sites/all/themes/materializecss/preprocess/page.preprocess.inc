@@ -9,11 +9,6 @@
  * Implements hook_preprocess_page().
  */
 function materialize_preprocess_page(&$variables) {
-  if(current_path() == 'node/2') {
-    drupal_add_js(path_to_theme().'/js/chooser.js');
-    drupal_add_css(path_to_theme().'/css/chooser.css');
-  }
-  
   if (!empty($variables['page']['sidebar_first'])) {
     $left = $variables['page']['sidebar_first'];
   }
