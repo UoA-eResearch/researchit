@@ -11,7 +11,8 @@
 
 
 footer.page-footer {
-	background-color: #01457C !important;
+  background-color: #01457C;
+  height: 200px;
 }
 
 /* line 6, ../sass/style.scss */
