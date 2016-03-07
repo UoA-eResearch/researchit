@@ -43,8 +43,9 @@
       ?></p>
     </div>
     <div class="card-action">
-      <span style="float:left"><i class="material-icons">insert_chart</i><?php echo str_replace($fields['name']->raw, 'More info', $fields['name']->content) ?></span>
-      <span style="float:right"><?php echo $fields['field_chooser']->content  ?></span>
+      <span style="float:left"><?php echo str_replace($fields['name']->raw, '<i class="small material-icons">info_outline</i> More info', $fields['name']->content) ?></span>
+      <span style="float:right"><a href="<?php echo $fields['field_chooser']->content ?>"><i class="small material-icons">view_module</i> Help Me Choose</a></span>
+      
     </div>
   </div>
 </div>
