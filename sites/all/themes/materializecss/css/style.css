@@ -2,6 +2,16 @@
 /* line 2, ../sass/style.scss */
 .brand-logo {
   margin-top: 7px;
+  max-height: 50px;
+}
+
+.brand-logo img {
+	max-height: 50px;
+}
+
+
+footer.page-footer {
+	background-color: #01457C !important;
 }
 
 /* line 6, ../sass/style.scss */
@@ -49,4 +59,20 @@
   position: inherit;
   display: block;
   margin-bottom: 20px;
+}
+
+.card-content {
+  max-height: 100% !important;
+}
+
+.card .card-image .card-title  a{
+	color:white;
+}
+/*
+a {
+	color:white !important;
+}
+*/
+.main-nav {
+	background-color:#01457C ;
 }

@@ -26,9 +26,12 @@
 ?>
 
 <div class="col s4">
-  <div class="card blue-grey darken-1">
-    <div class="card-content white-text">
-      <span class="card-title"><?php echo $fields['name']->content ?></span>
+  <div class="card hoverable medium">
+  	<div class="card-image white-text" style="max-height:80px">
+    	<?php echo $fields['field_card_image']->content ?>
+        <span class="card-title"><?php echo $fields['name']->content ?></span>
+    </div>
+    <div class="card-content">
       <p><?php echo $fields['description']->content . '<br><ul class="nodes">';
           foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
             if ($i > 2) break;
@@ -40,8 +43,8 @@
       ?></p>
     </div>
     <div class="card-action">
-      <?php echo str_replace($fields['name']->raw, 'More info', $fields['name']->content) ?>
-      <?php echo $fields['field_chooser']->content  ?>
+      <span style="float:left"><i class="material-icons">insert_chart</i><?php echo str_replace($fields['name']->raw, 'More info', $fields['name']->content) ?></span>
+      <span style="float:right"><?php echo $fields['field_chooser']->content  ?></span>
     </div>
   </div>
 </div>

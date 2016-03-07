@@ -74,7 +74,7 @@
  */
 ?>
 <div id="page">
-  <nav class="blue darken-3" id="nav" role="navigation">
+  <nav class="main-nav" id="nav" role="navigation">
     <div class="nav-wrapper container">
       <?php if ($logo): ?>
         <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
