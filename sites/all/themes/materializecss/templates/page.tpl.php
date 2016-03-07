@@ -74,7 +74,7 @@
  */
 ?>
 <div id="page">
-  <nav class="teal lighten-1" id="nav" role="navigation">
+  <nav class="blue darken-3" id="nav" role="navigation">
     <div class="nav-wrapper container">
       <?php if ($logo): ?>
         <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -95,14 +95,14 @@
     </div>
   <?php endif; ?><!-- /.header  -->
 
-  <div class="row page grid">
+  <div class="row page grid container">
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside class="<?php print $sidebar_left; ?> sidebar-first" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
 
-    <section class="<?php print $main_grid; ?> main container" role="main">
+    <section class="<?php if (!empty($main_grid)) print $main_grid; ?> main container" role="main">
       <?php if (!empty($page['highlighted'])): ?>
         <div class="highlighted"><?php print render($page['highlight']); ?></div>
       <?php endif; ?>
