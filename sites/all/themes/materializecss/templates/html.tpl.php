@@ -46,7 +46,11 @@
 ?><!DOCTYPE html>
 <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>" class="no-js" <?php print $rdf_namespaces; ?>>
 <head profile="<?php print $grddl_profile; ?>">
-  <title><?php print $head_title; ?></title>
+  <title><?php if ($is_front) {
+                 print variable_get('site_name');
+               } else {
+                 print $head_title;
+               }?></title>
   <?php print $head; ?>
   <?php print $styles; ?>
   <!-- HTML5 element support for IE6-8 -->
