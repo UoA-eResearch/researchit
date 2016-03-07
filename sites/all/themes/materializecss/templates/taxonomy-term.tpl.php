@@ -48,16 +48,17 @@
   <div class="content">
       <div class="row">
       <?php if (!empty($content['description'])): ?>
-        <div class="col s6">
+        <div class="col s6 description">
           <div class="card hoverable small">
             <div class="card-content">
               <p><?php print render($content['description']) ?></p>
+              <a href="<?php print $term_url; ?>" class="read_more">Read more...</a>
             </div>
           </div>
         </div>
       <?php endif; ?>
       <?php if (!empty($content['field_chooser'])): ?>
-        <div class="col s6">
+        <div class="col s6 chooser">
           <div class="card hoverable small">
             <div class="card-content">
               <span class="card-title"><?php print render($content['field_chooser']) ?></span>
