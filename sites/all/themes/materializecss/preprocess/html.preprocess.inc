@@ -38,4 +38,9 @@ function materialize_preprocess_html(&$vars) {
         '@url' => url('admin/config/development/jquery_update'),
       )), 'error');
   }
+  drupal_add_css(path_to_theme().'/css/style.css', array(
+      'group' => CSS_THEME, 
+      'preprocess' => FALSE,
+      'every_page' => TRUE
+    ));
 }
