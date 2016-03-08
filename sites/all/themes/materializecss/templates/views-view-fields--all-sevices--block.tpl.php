@@ -25,13 +25,19 @@
  */
 ?>
 
-<div class="col s4">
-  <div class="card hoverable medium">
+<div class="col s3">
+  <div class="card hoverable small">
+  		<div class="card-image white-text" style="max-height:60px">
+			<?php //echo $fields['field_card_image']->content ?>
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/red-darken1.jpg" alt="" height="80" width="400">
+            <span class="card-title" style="padding-bottom:10px"><?php echo $fields['title']->content; ?></span>
+        </div>
     <div class="card-content">
-      <div class="card-title">
-        <?php echo $fields['title']->content; ?>
-      </div>
       <?php echo $fields['body']->content . '<br>Category:' . $fields['field_category']->content; ?>
+    </div>
+    <div class="card-action">
+      <?php echo str_replace($fields['title']->raw, 'More info', $fields['title']->content) ?>
+    
     </div>
   </div>
 </div>

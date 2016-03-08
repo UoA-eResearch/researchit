@@ -32,12 +32,21 @@
         <span class="card-title"><?php echo $fields['name']->content ?></span>
     </div>
     <div class="card-content">
-      <p><?php echo $fields['description']->content . '<br><ul class="nodes">';
+      <p><?php echo $fields['description']->content . '<ul class="collection">';
           foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
-            if ($i > 2) break;
-            $nodeTitle = node_load($nid)->title;
-            $link = l($nodeTitle, 'node/'.$nid);
-            echo "<li class='node'>$link</li>";
+            if ($i > 1) break;
+            $node = node_load($nid);
+            $link = l($node->title, 'node/'.$nid);
+            if (!empty($node->body)) {
+              $desc = $node->body['und'][0]['value'];
+            } else {
+              $desc = 'What should I know?';
+            }
+            echo "<li class='collection-item avatar'>
+				<i class='material-icons circle green'>insert_chart</i>
+				<span class='title'>$link</span>
+				<p>$desc</p>
+			</li>";
           }
           echo '</ul>';
       ?></p>

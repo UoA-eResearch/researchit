@@ -15,6 +15,14 @@ footer.page-footer {
   height: 200px;
 }
 
+.card .collection {
+	border: none;
+}
+
+.card .collection .collection-item.avatar {
+	min-height: 0px;
+}
+
 /* line 6, ../sass/style.scss */
 .collection-header {
   margin: 0;
