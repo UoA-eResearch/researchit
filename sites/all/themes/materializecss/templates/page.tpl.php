@@ -138,13 +138,11 @@
     <?php endif; ?>
   </div> <!-- /main  -->
 
-  <?php if (!empty($page['footer'])): ?>
-    <div class="divider"></div>
-    <footer class="page-footer">
-      <div class="container">
-        <?php print render($page['footer']); ?>
-      </div>
-    </footer>
-  <?php endif; ?>
+  <div class="divider"></div>
+  <footer class="page-footer">
+    <div class="container">
+      <?php print render($page['footer']); ?>
+    </div>
+  </footer>
 
 </div> <!-- /#page -->
