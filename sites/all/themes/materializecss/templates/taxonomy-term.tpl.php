@@ -70,7 +70,24 @@
       </div>
     <div class='row'>
       <?php foreach (taxonomy_select_nodes($term->tid) as $i => $nid) {
-              print '<div class="col s3">' . render(node_view(node_load($nid), 'teaser')) . '</div>';
+              $node = node_load($nid);
+              $desc = !empty($node->body) ? truncate_utf8($node->body['und'][0]['value'], 100, TRUE, TRUE) : 'What should I know?';
+              $link = l($node->title, 'node/'.$nid);
+              $more_info = str_replace($node->title, 'More info', $link);
+              print "<div class='col s3'>
+                      <div class='card small'>
+                        <div class='card-image white-text'>
+                            <img src='https://researchit.cer.auckland.ac.nz/sites/default/files/deep-purple-darken1.jpg' height='80' width='400'>
+                            <span class='card-title' style='padding-bottom:10px;font-size:20px'>$link</span>
+                        </div>
+                        <div class='card-content'>
+                          $desc
+                        </div>
+                        <div class='card-action'>
+                          $more_info
+                        </div>
+                      </div>
+                    </div>";
             }
       ?>
     </div>
