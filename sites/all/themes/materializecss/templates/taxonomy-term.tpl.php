@@ -74,10 +74,14 @@
               $desc = !empty($node->body) ? truncate_utf8($node->body['und'][0]['value'], 100, TRUE, TRUE) : 'What should I know?';
               $link = l($node->title, 'node/'.$nid);
               $more_info = str_replace($node->title, 'More info', $link);
+              $color = 'red-darken1';
+              if ($node->type == 'guide') {
+                $color = 'deep-purple-darken1';
+              }
               print "<div class='col s3'>
                       <div class='card small'>
                         <div class='card-image white-text'>
-                            <img src='https://researchit.cer.auckland.ac.nz/sites/default/files/deep-purple-darken1.jpg' height='80' width='400'>
+                            <img src='/sites/default/files/$color.jpg' height='80' width='400'>
                             <span class='card-title' style='padding-bottom:10px;font-size:20px'>$link</span>
                         </div>
                         <div class='card-content'>
