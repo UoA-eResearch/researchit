@@ -32,7 +32,7 @@
         <span class="card-title"><?php echo $fields['name']->content ?></span>
     </div>
     <div class="card-content">
-      <p><?php echo $fields['description']->content . '<ul class="collection">';
+      <p><?php echo truncate_utf8(strip_tags($fields['description']->raw), 175, TRUE) . '<ul class="collection">';
           foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
             if ($i > 1) break;
             $node = node_load($nid);
