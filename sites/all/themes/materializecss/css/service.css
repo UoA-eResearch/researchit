@@ -1,0 +1,17 @@
+.group-left {
+  width: 60%;
+  padding-right: 50px;
+}
+
+.group-right {
+  width: 40%;
+}
+
+.field .field-label {
+	font-weight:bold;
+}
+
+.group-left .field.field-type-text .field-items .field-item {
+	display: list-item;
+	margin-left: 1.3em;
+}
