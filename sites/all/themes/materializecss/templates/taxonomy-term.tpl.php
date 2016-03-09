@@ -45,11 +45,26 @@
 
   <h2><a href="<?php print $term_url; ?>"><?php print $term_name; ?></a></h2>
 
+  <div class="row valign-wrapper">
+    <div class="col s1">
+      <i class="large material-icons circle amber">library_books</i>
+    </div>
+    <div class="col s11">
+      <span class="black-text">
+        <?php print render($content['description']) ?>
+      </span>
+    </div>
+  </div>
+
   <div class="content">
       <div class="row">
       <?php if (!empty($content['description'])): ?>
         <div class="col s6 description">
-          <div class="card hoverable small">
+          <div class="card hoverable small" style="max-height:200px">
+          	<div class='card-image white-text' style="max-height:50px">
+                <img src='/sites/default/files/light-green-darken1.jpg' height='80' width='400'>
+                <span class='card-title' style='padding-bottom:8px;font-size:20px'>Background Information</span>
+            </div>
             <div class="card-content">
               <p><?php print render($content['description']) ?></p>
               <a href="<?php print $term_url; ?>" class="read_more">Read more...</a>
@@ -57,17 +72,36 @@
           </div>
         </div>
       <?php endif; ?>
-      <?php if (!empty($content['field_chooser'])): ?>
-        <div class="col s6 chooser">
-          <div class="card hoverable small">
-            <div class="card-content">
-              <span class="card-title"><?php print render($content['field_chooser']) ?></span>
-              <p>Which service is right for me?</p>
-            </div>
+      <div class="col s6 chooser">
+        <div class="card hoverable small" style="max-height:200px">
+              <div class='card-image white-text' style="max-height:50px">
+              <img src='/sites/default/files/amber-darken1.jpg' height='80' width='400'>
+              <span class='card-title' style='padding-bottom:8px;font-size:20px'>Help me Choose the right Data Service</span>
+          </div>
+          <div class="card-content">
+              <ul class="collection">
+                  <li class="collection-item avatar">
+                    <i class="large material-icons circle amber">thumbs_up_down</i>
+                    <span class="title"><?php 
+                    if (!empty($content['field_chooser'])) {
+                      print render($content['field_chooser']);
+                    } else {
+                      print '<a href="#">Help me choose</a>';
+                    }
+                    ?></span>
+                    <p>Which data service is right for me? <br>
+                        
+                    </p>
+                  </li>
+              </ul>
           </div>
         </div>
-      <?php endif; ?>
       </div>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <h4><?php print $term_name ?> Services</h4>
     <div class='row'>
       <?php foreach (taxonomy_select_nodes($term->tid) as $i => $nid) {
               $node = node_load($nid);
