@@ -42,8 +42,12 @@
             } else {
               $desc = 'What should I know?';
             }
+            $color = 'red';
+            if ($node->type == 'guide') {
+              $color = 'purple';
+            }
             echo "<li class='collection-item avatar'>
-				<i class='material-icons circle green'>insert_chart</i>
+				<i class='material-icons circle $color'>insert_chart</i>
 				<span class='title'>$link</span>
 				<p>$desc</p>
 			</li>";
