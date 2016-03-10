@@ -102,3 +102,22 @@ div.col > i.large.circle {
 .main-nav {
   height: 91px;
 }
+
+div.search {
+  float: right;
+  position: relative;
+  top: -30px;
+}
+
+div.search .form-item-search-block-form {
+  float: left;
+  margin-right: 50px;
+}
+
+div.search .form-item-search-block-form input {
+  border-bottom: 1px solid #9e9e9e !important;
+}
+
+#admin-menu-search .admin-menu-search {
+  height: 1rem;
+}

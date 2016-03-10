@@ -87,6 +87,9 @@
           <?php print render($primary_nav); ?>
         </div>
       <?php endif; ?>
+      <div class='search'>
+        <?php print drupal_render(drupal_get_form('search_block_form')); ?>
+      </div>
     </div>
   </nav>
   <?php if (!empty($page['header'])): ?>
