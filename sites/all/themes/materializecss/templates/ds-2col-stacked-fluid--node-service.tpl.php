@@ -35,21 +35,24 @@
       <?php
         if (!empty($node->field_request_service_form)) {
           $desc = !empty($node->field_request_service_form_descr) ? $node->field_request_service_form_descr['und'][0]['value'] : 'Signup here:';
+          $email = $node->field_contact_email['und'][0]['email'];
+          $form = "<form id='request_service_form' contact='$email' service='$title'>";
           foreach ($node->field_request_service_form['und'] as $i => $field) {
             $label = $field['value'];
-            $desc .= "<div class='row'>
+            $form .= "<div class='row'>
                         <div class='input-field col s12'>
                           <input placeholder='$label' id='$label' type='text' class='validate'>
                           <label class='active validate' for='$label'>$label</label>
                         </div>
                       </div>";
           }
-          $desc .= "<button class='btn waves-effect waves-light' type='submit'    name='action'>Submit<i class='material-icons right'>send</i></button>";
+          $form .= "<button id='request_service_form_submit' class='btn waves-effect waves-light'>Submit<i class='material-icons right'>send</i></button></form>";
           echo "<button class='waves-effect waves-light btn-large modal-trigger' data-target='request'><i class='material-icons right'>send</i>Request Service</button>
               <div id='request' class='modal'>
                 <div class='modal-content'>
                   <h4>Request Service</h4>
                   <p>$desc</p>
+                  $form
                 </div>
                 <div class='modal-footer'>
                   <a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>Dismiss</a>
