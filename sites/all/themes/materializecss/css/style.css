@@ -81,6 +81,11 @@ a {
 .main-nav {
 	background-color:#01457C ;
 }
+
+#edit-submit--2 {
+	background-color: #1F5D8D;
+}
+
 .breadcrumb {
   color: black;
 }

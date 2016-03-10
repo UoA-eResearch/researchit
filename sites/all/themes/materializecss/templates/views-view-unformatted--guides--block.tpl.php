@@ -92,7 +92,7 @@ foreach ($tree as $term) {
                     <span class="card-title" style="padding-bottom:20px">Resbaz</span>
                 </div>
                 <div class="card-content">
-                  <span class="card-title">Research Bazar was awesome!</span>
+                  <span class="card-title">Research Bazaar was awesome!</span>
                 </div>
               </div>
             </div>
