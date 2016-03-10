@@ -30,11 +30,3 @@
     	<i class="small material-icons">description</i><?php echo $fields['title']->content ?>
     </div>
 </div>
-
-<!--<div class="col s4">
-  <div class="card hoverable small">
-    <div class="card-content">
-      <span class="card-title"><?php echo $fields['title']->content ?></span>
-    </div>
-  </div>
-</div> -->
