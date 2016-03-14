@@ -25,7 +25,7 @@
  */
 ?>
 
-<div class="col s4">
+<div class="col s12 m12 l4">
 	<div class="card-panel">
     	<i class="small material-icons">description</i><?php echo $fields['title']->content ?>
     </div>

@@ -73,7 +73,7 @@ foreach ($tree as $term) {
             </div>
         <div class="card-content">
         
-            <div class="col s4">
+            <div class="col s12 m12 l4">
               <div class="card hoverable">
               	<div class="card-image white-text" style="max-height:80px">
                     <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
@@ -85,7 +85,7 @@ foreach ($tree as $term) {
               </div>
             </div>
             
-            <div class="col s4">
+            <div class="col s12 m12 l4">
               <div class="card hoverable">
               	<div class="card-image white-text" style="max-height:80px">
                     <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
@@ -97,7 +97,7 @@ foreach ($tree as $term) {
               </div>
             </div>
             
-            <div class="col s4">
+            <div class="col s12 m12 l4">
               <div class="card hoverable">
               	<div class="card-image white-text" style="max-height:80px">
                     <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
