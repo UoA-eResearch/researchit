@@ -33,6 +33,19 @@
       
       
       <?php
+        $url = $node->field_link['und'][0]['url'];
+        $headers = @get_headers($url);
+        $status = substr($headers[0], 9, 3);
+        $valid_statuses = array(200, 301, 302);
+        if (in_array($status, $valid_statuses)) {
+          $color = 'green';
+          $text = 'Online';
+        } else {
+          $color = 'red';
+          $text = 'Offline';
+        }
+        print "Current status: <div class='status chip $color'>$text</div><br><br>";
+      
         if (!empty($node->field_request_service_form)) {
           $desc = !empty($node->field_request_service_form_descr) ? $node->field_request_service_form_descr['und'][0]['value'] : 'Signup here:';
           $email = $node->field_contact_email['und'][0]['email'];
