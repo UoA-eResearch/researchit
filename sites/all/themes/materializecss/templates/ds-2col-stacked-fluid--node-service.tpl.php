@@ -21,14 +21,14 @@
   </<?php print $header_wrapper ?>>
 
   <?php if ($left): ?>
-    <<?php print $left_wrapper ?> class="group-left<?php print $left_classes; ?>">
+    <<?php print $left_wrapper ?> class="group-left flow-text<?php print $left_classes; ?>">
 
       <?php print $left; ?>
     </<?php print $left_wrapper ?>>
   <?php endif; ?>
 
 <?php if ($right): ?>
-    <<?php print $right_wrapper ?> class="group-right<?php print $right_classes; ?>">
+    <<?php print $right_wrapper ?> class="group-right flow-text<?php print $right_classes; ?>">
 
       
       
@@ -64,9 +64,9 @@
         }
       ?>
       
-      <div class='card large'>
+      <div class='card'>
         <div class='card-image white-text' style="max-height:50px">
-            <img src='/sites/default/files/amber-darken1.jpg' height='80' width='400'>
+            <img src='/sites/default/files/amber-darken1.jpg' height='50' width='400'>
             <span class='card-title' style='padding-bottom:8px;font-size:20px'>Important Details</span>
         </div>
         <div class='card-content'>
