@@ -25,8 +25,19 @@
  */
 ?>
 
-<div class="col s12 m12 l4">
-	<div class="card-panel">
-    	<i class="small material-icons">description</i><?php echo $fields['title']->content ?>
+<div class="col s12 m12 l4" >
+  <div class="card hoverable">
+    <div class="card-image white-text" style="max-height:10px">
+        <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/deep-purple-darken1.jpg" alt="" height="10" width="400">
     </div>
+    <div class="card-content" style="padding-top:0px; padding-bottom:0px">
+      <ul class="collection" style="margin: 0px;">
+        <li class='collection-item avatar'>
+            <i class='material-icons circle purple'>description</i>
+            <span class='title'><?php echo $fields['title']->content ?></span>
+            <p>Might be useful?</p>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
