@@ -7,8 +7,9 @@
  * @ingroup views_templates
  */
 ?>
+<br />
 <div class="row">
-    <div class="col12" style="text-align:center">
+    <div class="col s7" style="text-align:center">
     	<img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/lifecycle.jpg" alt="" usemap="#lifecyclemap" >
     	<map name="lifecyclemap">
           <area shape="rect" coords="0,0,130,130" href='#Re-use' class='modal-trigger'>
@@ -18,6 +19,12 @@
           <area shape="rect" coords="220,130,430,269" href='#Discovery-Impact' class='modal-trigger'>
           <area shape="rect" coords="430,130,639,269" href='#Publishing' class='modal-trigger'>
         </map>
+    </div>
+    <div class="col s5">
+    	<h2>Explore Services</h2>
+        <h6>Find the services that best matches your research needs</h6>
+        <br />
+        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Explore</a>
     </div>
 </div>
 
@@ -62,70 +69,128 @@ foreach ($tree as $term) {
         </div>";
 }
 ?>
-
-<div class="row">
+<br />
+<div class="row" style="margin-bottom:0px">
 	<div class="col s12">
-    	<div class="card small">
+    	<div class="card">
             <div class="card-image white-text" style="max-height:60px">
                 <?php //echo $fields['field_card_image']->content ?>
-                <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
+                <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="60" width="400">
                 <span class="card-title" style="padding-bottom:10px">Education, Training and Events</span>
             </div>
-        <div class="card-content">
-        
-            <div class="col s12 m12 l4">
-              <div class="card hoverable">
-              	<div class="card-image white-text" style="max-height:80px">
-                    <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
-                    <span class="card-title" style="padding-bottom:20px">Python Workshops</span>
-                </div>
-                <div class="card-content">
-                  <span class="card-title">Python is cool</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col s12 m12 l4">
-              <div class="card hoverable">
-              	<div class="card-image white-text" style="max-height:80px">
-                    <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
-                    <span class="card-title" style="padding-bottom:20px">Resbaz</span>
-                </div>
-                <div class="card-content">
-                  <span class="card-title">Research Bazaar was awesome!</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col s12 m12 l4">
-              <div class="card hoverable">
-              	<div class="card-image white-text" style="max-height:80px">
-                    <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="80" width="400">
-                    <span class="card-title" style="padding-bottom:20px">Hackyhour</span>
-                </div>
-                <div class="card-content">
-                  <span class="card-title">Hackyhour is great</span>
-                </div>
-              </div>
-            </div>
-        </div>
+		</div>
     </div>
 </div>
 
 <div class="row">
+
+            
+    <div class="col s12 m12 l4" >
+      <div class="card hoverable">
+        <div class="card-image white-text" style="max-height:10px">
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
+        </div>
+		<div class="card-content" style="padding-top:0px; padding-bottom:0px">
+          <ul class="collection" style="margin: 0px;">
+          	<li class='collection-item avatar'>
+                <i class='material-icons circle green'>insert_chart</i>
+                <span class='title'>Python Workshops</span>
+                <p>Python is cool</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col s12 m12 l4">
+      <div class="card hoverable">
+        <div class="card-image white-text" style="max-height:10px">
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
+        </div>
+        <div class="card-content" style="padding-top:0px; padding-bottom:0px">
+          <ul class="collection" style="margin: 0px;">
+          	<li class='collection-item avatar'>
+                <i class='material-icons circle green'>insert_chart</i>
+                <span class='title'>Research Bazar</span>
+                <p>Resbaz was awesome</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col s12 m12 l4" >
+      <div class="card hoverable">
+        <div class="card-image white-text" style="max-height:10px">
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
+        </div>
+        <div class="card-content" style="padding-top:0px; padding-bottom:0px">
+          <ul class="collection" style="margin: 0px;">
+          	<li class='collection-item avatar'>
+                <i class='material-icons circle green'>insert_chart</i>
+                <span class='title'>Hackyhour</span>
+                <p>Hackyhour is great</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="col s12 m12 l4" >
+      <div class="card hoverable">
+        <div class="card-image white-text" style="max-height:10px">
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
+        </div>
+		<div class="card-content" style="padding-top:0px; padding-bottom:0px">
+          <ul class="collection" style="margin: 0px;">
+          	<li class='collection-item avatar'>
+                <i class='material-icons circle green'>insert_chart</i>
+                <span class='title'>CLEAR workshops</span>
+                <p>Do check them out!</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="col s12 m12 l4" >
+      <div class="card hoverable">
+        <div class="card-image white-text" style="max-height:10px">
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
+        </div>
+		<div class="card-content" style="padding-top:0px; padding-bottom:0px">
+          <ul class="collection" style="margin: 0px;">
+          	<li class='collection-item avatar'>
+                <i class='material-icons circle green'>insert_chart</i>
+                <span class='title'>Doctoral Skills</span>
+                <p>Can't be missed!</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+            
+
+</div>
+<br />
+<div class="row">
 	<div class="col s12">
-    	<div class="card small">
+    	<div class="card">
             <div class="card-image white-text" style="max-height:60px">
                 <?php //echo $fields['field_card_image']->content ?>
-                <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/deep-purple-darken1.jpg" alt="" height="80" width="400">
+                <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/deep-purple-darken1.jpg" alt="" height="60px" width="400">
                 <span class="card-title" style="padding-bottom:10px">Guides</span>
             </div>
-        <div class="card-content">
-            <?php foreach ($rows as $id => $row): ?>
-             <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
-                <?php print $row; ?>
-             </div>
-            <?php endforeach; ?>
-        </div>
+    	</div>
     </div>
+</div>
+
+<div class="row">
+	<?php foreach ($rows as $id => $row): ?>
+     <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
+        <?php print $row; ?>
+     </div>
+    <?php endforeach; ?>
 </div>
