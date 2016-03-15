@@ -86,9 +86,6 @@ a {
 	background-color: #1F5D8D;
 }
 
-.breadcrumb {
-  color: black;
-}
 
 div.col > i.large.circle {
   font-size: 4em;
@@ -96,8 +93,9 @@ div.col > i.large.circle {
 }
 
 .breadcrumb {
+  color: black;
   font-size: 14px;
-  height: 0px;
+  top: -30px;
 }
 
 .breadcrumb:before {
@@ -112,6 +110,7 @@ div.search {
   float: right;
   position: relative;
   top: -30px;
+  margin-bottom: -30px;
 }
 
 div.search .form-item-search-block-form {
