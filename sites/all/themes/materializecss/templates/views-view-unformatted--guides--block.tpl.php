@@ -24,7 +24,7 @@
     	<h2>Explore Services</h2>
         <h6>Find the services that best matches your research needs</h6>
         <br />
-        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Explore</a>
+        <a class="waves-effect waves-light btn-large" href='/research-lifecycle'><i class="material-icons right">cloud</i>Explore</a>
     </div>
 </div>
 
@@ -174,8 +174,9 @@ foreach ($tree as $term) {
             
 
 </div>
+
 <br />
-<div class="row">
+<div class="row" style="margin-bottom:0px">
 	<div class="col s12">
     	<div class="card">
             <div class="card-image white-text" style="max-height:60px">
