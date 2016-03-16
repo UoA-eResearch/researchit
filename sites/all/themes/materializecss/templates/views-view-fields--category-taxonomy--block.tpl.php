@@ -34,11 +34,11 @@
     <div class="card-content">
       <p><?php echo $fields['field_summary']->content . '<ul class="collection">';
           foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
-            if ($i > 1) break;
+            if ($i > 0) break;
             $node = node_load($nid);
             $link = l($node->title, 'node/'.$nid);
             if (!empty($node->body)) {
-              $desc = $node->body['und'][0]['value'];
+              $desc = truncate_utf8(strip_tags($node->body['und'][0]['value']), 175, TRUE);
             } else {
               $desc = 'What should I know?';
             }
