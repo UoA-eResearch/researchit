@@ -33,18 +33,7 @@
       
       
       <?php
-        $url = $node->field_link['und'][0]['url'];
-        $headers = @get_headers($url);
-        $status = substr($headers[0], 9, 3);
-        $valid_statuses = array(200, 301, 302);
-        if (in_array($status, $valid_statuses)) {
-          $color = 'green';
-          $text = 'Online';
-        } else {
-          $color = 'red';
-          $text = 'Offline';
-        }
-        print "Current status: <div class='status chip $color'>$text</div><br><br>";
+
       
         if (!empty($node->field_request_service_form)) {
           $desc = !empty($node->field_request_service_form_descr) ? $node->field_request_service_form_descr['und'][0]['value'] : 'Signup here:';
@@ -92,7 +81,49 @@
           
           
         </div>
+        
+        <?php
+        $url = $node->field_link['und'][0]['url'];
+        $headers = @get_headers($url);
+        $status = substr($headers[0], 9, 3);
+        $valid_statuses = array(200, 301, 302);
+        if (in_array($status, $valid_statuses)) {
+          $color = 'green';
+          $text = 'Online';
+        } else {
+          $color = 'red';
+          $text = 'Offline';
+        }
+        print "Current status: <div class='status chip $color'>$text</div><br><br>";
+		?>
+        
+        <ul class="collection">
+            <li class='collection-item avatar'>
+                <i class='material-icons circle grey'>chat_bubble_outline</i>
+                <span class='title'>Help & FAQs</span>
+                <p><a href="#">Figshare users guide</a></p>
+                <p><a href="#">Figshare FAQs</a></p>
+            </li>
+            
+            <li class='collection-item avatar'>
+                <i class='material-icons circle grey'>info_outline</i>
+                <span class='title'>See Also</span>
+                <p><a href="#">Writing a Data Management Plan</a></p>
+            </li>
+            
+            <li class='collection-item avatar'>
+                <i class='material-icons circle grey'>play_circle_outline</i>
+                <span class='title'>Related Services</span>
+                <p><a href="#">Dropbox</a></p>
+                <p><a href="#">Seafile</a></p>
+                <p><a href="#">Hosted Databases</a></p>
+            </li>
+          </ul>
+        
+        
       </div>
+      
+
     
   <?php endif; ?>
 
