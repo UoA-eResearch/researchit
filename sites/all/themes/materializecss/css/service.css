@@ -46,7 +46,7 @@
         font-size:1.32rem
     }
 }
-
+/*
 @media only screen and (min-width: 540px) {
     .flow-text {
         font-size:1.344rem
@@ -70,7 +70,7 @@
         font-size:1.416rem
     }
 }
-/*
+
 
 @media only screen and (min-width: 660px) {
     .flow-text {
@@ -149,7 +149,24 @@
 	font-weight:bold;
 }
 
-.group-left .field.field-type-text .field-items .field-item {
+.field.field-type-text .field-items .field-item {
 	display: list-item;
 	margin-left: 2em;
+}
+
+.collection {
+	border: none;
+}
+
+.collection .collection-item {
+	border: none;
+}
+
+.collection .collection-item.avatar {
+	min-height: 0px;
+	padding-bottom: 20px;
+}
+
+.collection .collection-item.avatar i {
+	margin-top: 10px;
 }
