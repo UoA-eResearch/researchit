@@ -37,4 +37,30 @@
     $('#request').closeModal();
     return false;
   });
+  /*
+  var offset = 220;
+  var lastP = 0;
+  $(window).scroll(function(){
+    var p = $(window).scrollTop();
+    $(".research_lifecycle_stage.name").each(function() {
+      var t = $(this).offset().top - offset;
+      if (t > lastP && t < p || t < lastP && t > p) {
+        var d = $(this).next();
+        $('.research_lifecycle_stage.services').not(d).fadeOut();
+        d.fadeIn();
+      }
+    });
+    lastP = p;
+  });
+  */
+  $(".research_lifecycle_stage.name").mouseover(function() {
+    var d = $(this).next();
+    $('.research_lifecycle_stage.services').not(d).fadeOut();
+    d.fadeIn();
+  });
+  $(".research_lifecycle_stage.name").click(function() {
+    var d = $(this).next();
+    $('.research_lifecycle_stage.services').not(d).fadeOut();
+    d.fadeIn();
+  });
 })(jQuery);
