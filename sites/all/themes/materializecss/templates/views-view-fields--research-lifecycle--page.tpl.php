@@ -27,22 +27,48 @@
  $machine_name = str_replace(' ', '_', $machine_name);
 ?>
 
-
+<!--
 <div class="col s12 m6 research_lifecycle_stage name <?php echo $machine_name ?>">
   <div class="card blue-grey darken-1">
     <div class="card-content white-text">
       <span class="card-title"><?php echo $fields['name']->raw ?></span>
+      
       <p><?php echo $fields['description']->raw ?></p>
     </div>
   </div>
 </div>
+-->
+<div class="col s12 m6 research_lifecycle_stage name <?php echo $machine_name ?>">
+    <div class="card hoverable">
+        <div class="card-image waves-effect waves-block waves-light" style="max-height:150px">
+          <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/office.jpg">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?><i class="material-icons right">more_vert</i></span>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><?php echo $fields['name']->raw ?><i class="material-icons right">close</i></span>
+          <p><?php echo $fields['description']->raw ?></p>
+        </div>
+    </div>
+</div>
+  
+  
 
+<div class="col s12 m6 research_lifecycle_stage services" style='display:none;position:fixed; left:55%; top:25%; width:40%'>
 
-<div class="col s12 m6 research_lifecycle_stage services" style='display:none;position:fixed; left:55%; top:21.5%; width:40%'>
-  <div class="card blue-grey darken-1">
-    <div class="card-content white-text">
-      <span class="card-title">Services in this phase</span>
+  <div class="card">
+  
+  	<div class="card-image waves-effect waves-block waves-light" style="max-height:50px">
+      <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/office.jpg">
+      <span class="card-title" style="padding-bottom:10px">Research Services which might help</span>
+    </div>
+    
+    <div class="card-content">
+      
+      
       <ul class='collection'>
+      
         <?php
           $categorySorted = array();
           foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
@@ -61,7 +87,10 @@
             $term_title = taxonomy_term_title($term);
             $link = taxonomy_term_uri($term);
             $link = drupal_get_path_alias($link['path']);
+			
+			// Prints out the service category title
             print "<a href='$link'><h4>$term_title</h4></a>";
+			
             foreach ($t['nodes'] as $node) {
               $link = l($node->title, 'node/'.$nid);
               if (!empty($node->body)) {
@@ -73,6 +102,8 @@
               if ($node->type == 'guide') {
                 $color = 'purple';
               }
+			  
+			  // Prints out the actual service
               echo "<li class='collection-item avatar'>
                       <i class='material-icons circle $color'>insert_chart</i>
                       <span class='title'>$link</span>
@@ -81,7 +112,10 @@
             }
           }
         ?>
+        
       </ul>
+      
     </div>
   </div>
+  
 </div>

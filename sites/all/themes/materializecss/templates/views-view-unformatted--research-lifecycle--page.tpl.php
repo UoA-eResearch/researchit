@@ -8,6 +8,9 @@
  */
 ?>
 <h3>Research Lifecycle</h3>
+
+<p>Find the help you need by exploring the research IT services suited for the various stages in the research lifecycle</p>
+
 <div class='rows' style='padding-bottom: 200px;'>
   <?php foreach ($rows as $id => $row): ?>
     <div class='row' style=''>
