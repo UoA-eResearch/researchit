@@ -40,13 +40,13 @@
         font-size:1.296rem
     }
 }
-
+/*
 @media only screen and (min-width: 510px) {
     .flow-text {
         font-size:1.32rem
     }
 }
-/*
+
 @media only screen and (min-width: 540px) {
     .flow-text {
         font-size:1.344rem
@@ -152,6 +152,10 @@
 .field.field-type-text .field-items .field-item {
 	display: list-item;
 	margin-left: 2em;
+}
+
+.field.field-label-above {
+	padding-bottom: 15px;
 }
 
 .collection {
