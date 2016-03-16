@@ -95,7 +95,6 @@ div.col > i.large.circle {
 .breadcrumb {
   color: black;
   font-size: 14px;
-  top: -30px;
 }
 
 .breadcrumb:before {
