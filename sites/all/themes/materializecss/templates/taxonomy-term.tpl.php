@@ -66,8 +66,8 @@
                 <span class='card-title' style='padding-bottom:8px;font-size:20px'>Background Information</span>
             </div>
             <div class="card-content">
-              <p><?php print render($content['description']) ?></p>
-              <a href="<?php print $term_url; ?>" class="read_more">Read more...</a>
+              <p><?php print render($content['field_background_information']) ?></p>
+              <!-- <a href="<?php print $term_url; ?>" class="read_more">Read more...</a> -->
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
         <div class="card hoverable small" style="max-height:200px">
               <div class='card-image white-text' style="max-height:50px">
               <img src='/sites/default/files/amber-darken1.jpg' height='80' width='400'>
-              <span class='card-title' style='padding-bottom:8px;font-size:20px'>Help me Choose the right Data Service</span>
+              <span class='card-title' style='padding-bottom:8px;font-size:20px'>Help me Choose the right <?php print $term_name ?> Service</span>
           </div>
           <div class="card-content">
               <ul class="collection">
@@ -89,7 +89,7 @@
                       print '<a href="#">Help me choose</a>';
                     }
                     ?></span>
-                    <p>Which data service is right for me? <br>
+                    <p>Which <?php print $term_name ?> service is right for me? <br>
                         
                     </p>
                   </li>
