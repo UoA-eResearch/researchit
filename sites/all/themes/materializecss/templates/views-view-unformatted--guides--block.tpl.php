@@ -9,8 +9,9 @@
 ?>
 <br />
 <div class="row">
-    <div class="col s7" style="text-align:center">
-    	<img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/lifecycle.jpg" alt="" usemap="#lifecyclemap" >
+    <div class="col s12 m7" style="text-align:center">
+    	<img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/lifecycle.jpg" alt="" usemap="#lifecyclemap" style="height:100%; width:100%" >
+    	<!--
     	<map name="lifecyclemap">
           <area shape="rect" coords="0,0,130,130" href='#Re-use' class='modal-trigger'>
           <area shape="rect" coords="130,0,350,130" href='#Planning' class='modal-trigger'>
@@ -19,8 +20,9 @@
           <area shape="rect" coords="220,130,430,269" href='#Discovery-Impact' class='modal-trigger'>
           <area shape="rect" coords="430,130,639,269" href='#Publishing' class='modal-trigger'>
         </map>
+        -->
     </div>
-    <div class="col s5">
+    <div class="col s12 m5">
     	<h2>Explore Services</h2>
         <h6>Find the services that best matches your research needs</h6>
         <br />
