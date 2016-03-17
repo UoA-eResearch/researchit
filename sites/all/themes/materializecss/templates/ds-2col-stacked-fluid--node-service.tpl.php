@@ -95,36 +95,36 @@
           $text = 'Offline';
         }
         print "Current status: <div class='status chip $color'>$text</div><br><br>";
-		?>
         
-        <ul class="collection">
-            <li class='collection-item avatar'>
-                <i class='material-icons circle grey'>chat_bubble_outline</i>
-                <span class='title'>Help & FAQs</span>
-                <p><a href="#">Figshare users guide</a></p>
-                <p><a href="#">Figshare FAQs</a></p>
-            </li>
-            
-            <li class='collection-item avatar'>
-                <i class='material-icons circle grey'>info_outline</i>
-                <span class='title'>See Also</span>
-                <p><a href="#">Writing a Data Management Plan</a></p>
-            </li>
-            
-            <li class='collection-item avatar'>
-                <i class='material-icons circle grey'>play_circle_outline</i>
-                <span class='title'>Related Services</span>
-                <p><a href="#">Dropbox</a></p>
-                <p><a href="#">Seafile</a></p>
-                <p><a href="#">Hosted Databases</a></p>
-            </li>
-          </ul>
+        $other = array('field_help_faqs' => 'chat_bubble_outline', 'field_see_also' => 'info_outline', 'field_related_services' => 'play_circle_outline');
         
+        echo "<ul class='collection'>";
+        foreach ($other as $o => $i) {
+          $d = $node->$o;
+          $name = field_info_instance('node', $o, 'service');
+          $name = $name['label'];
+          echo "
+            <li class='collection-item avatar'>
+                <i class='material-icons circle grey'>$i</i>
+                <span class='title'>$name</span>";
+          foreach ($d['und'] as $e) {
+            if (!empty($e['url'])) {
+              $url = $e['url'];
+              $t = $e['title'];
+              print "<p><a href='$url'>$t</a></p>";
+            } else if (!empty($e['target_id'])) {
+              $nid = $e['target_id'];
+              $node = node_load($nid);
+              $link = l($node->title, 'node/'.$nid);
+              print "<p>$link</p>";
+            }
+          }
+          echo '</li>';
+        }
+        echo "</ul>";
         
-      </div>
-      
-
-    
+        ?>
+    </<?php print $left_wrapper ?>>
   <?php endif; ?>
 
   <<?php print $footer_wrapper ?> class="group-footer<?php print $footer_classes; ?>">
