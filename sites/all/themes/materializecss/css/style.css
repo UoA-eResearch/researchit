@@ -115,6 +115,7 @@ div.col > i.large.circle {
 nav .brand-logo {
   float: left;
 }
+
 .brand-logo img {
   margin-top: 7px;
   max-height: 77px;
@@ -125,11 +126,25 @@ nav .brand-logo {
   height: 100px;
 }
 
+nav div.right {
+  height: 100px;
+  margin-left: 250px;
+}
+
+nav .hide-on-med-and-down ul li, nav .hide-on-med-and-down ul li a, nav .hide-on-med-and-down ul li a i.mdi-navigation-arrow-drop-down {
+  height: 50px;
+  line-height: 50px;
+}
+
+.side-nav a {
+  font-size: 12px;
+}
+
 div.search {
   float: right;
   position: relative;
-  top: -30px;
-  margin-bottom: -30px;
+  top: -60px;
+  margin-bottom: -60px;
 }
 
 div.search .form-item-search-block-form {

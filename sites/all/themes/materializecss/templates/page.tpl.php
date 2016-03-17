@@ -86,6 +86,9 @@
         <div class="right hide-on-med-and-down">
           <?php print render($primary_nav); ?>
         </div>
+        <ul class="side-nav" id="mobile-demo">
+          <?php print render($primary_nav); ?>
+        </ul>
       <?php endif; ?>
       <div class='search'>
         <?php print drupal_render(drupal_get_form('search_block_form')); ?>
