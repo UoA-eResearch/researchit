@@ -37,8 +37,8 @@
             if ($i > 0) break;
             $node = node_load($nid);
             $link = l($node->title, 'node/'.$nid);
-            if (!empty($node->body)) {
-              $desc = truncate_utf8(strip_tags($node->body['und'][0]['value']), 175, TRUE);
+            if (!empty($node->field_summary)) {
+              $desc = $node->field_summary['und'][0]['value'];
             } else {
               $desc = 'What should I know?';
             }
