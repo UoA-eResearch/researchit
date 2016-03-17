@@ -105,7 +105,7 @@
     <div class='row'>
       <?php foreach (taxonomy_select_nodes($term->tid) as $i => $nid) {
               $node = node_load($nid);
-              $desc = !empty($node->body) ? truncate_utf8($node->body['und'][0]['value'], 100, TRUE, TRUE) : 'What should I know?';
+              $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
               $link = l($node->title, 'node/'.$nid);
               $more_info = str_replace($node->title, 'More info', $link);
               $color = 'red-darken1';
