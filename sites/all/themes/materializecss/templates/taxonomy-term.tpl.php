@@ -46,10 +46,10 @@
   <h2><a href="<?php print $term_url; ?>"><?php print $term_name; ?></a></h2>
 
   <div class="row valign-wrapper">
-    <div class="col s1">
+    <div class="col m2 l1">
       <i class="large material-icons circle amber">library_books</i>
     </div>
-    <div class="col s11">
+    <div class="col m10 l11">
       <span class="black-text">
         <?php print render($content['description']) ?>
       </span>
@@ -63,7 +63,7 @@
           <div class="card hoverable small" style="max-height:200px">
           	<div class='card-image white-text' style="max-height:50px">
                 <img src='/sites/default/files/light-green-darken1.jpg' height='80' width='400'>
-                <span class='card-title' style='padding-bottom:8px;font-size:20px'>Background Information</span>
+                <span class='card-title' style='padding-bottom:8px;'>Background Information</span>
             </div>
             <div class="card-content">
               <p><?php print render($content['field_background_information']) ?></p>
@@ -76,7 +76,7 @@
         <div class="card hoverable small" style="max-height:200px">
               <div class='card-image white-text' style="max-height:50px">
               <img src='/sites/default/files/amber-darken1.jpg' height='80' width='400'>
-              <span class='card-title' style='padding-bottom:8px;font-size:20px'>Help me Choose the right <?php print $term_name ?> Service</span>
+              <span class='card-title' style='padding-bottom:8px;'>Help me choose the right <?php print $term_name ?> service</span>
           </div>
           <div class="card-content">
               <ul class="collection">
@@ -116,7 +116,7 @@
                       <div class='card small'>
                         <div class='card-image white-text'>
                             <img src='/sites/default/files/$color.jpg' height='80' width='400'>
-                            <span class='card-title' style='padding-bottom:10px;font-size:20px'>$link</span>
+                            <span class='card-title' style='padding-bottom:10px'>$link</span>
                         </div>
                         <div class='card-content'>
                           $desc

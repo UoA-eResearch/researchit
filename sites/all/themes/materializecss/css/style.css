@@ -1,9 +1,5 @@
 /*********** overide css ***********/
 /* line 2, ../sass/style.scss */
-.brand-logo img {
-  margin-top: 7px;
-  max-height: 77px;
-}
 
 
 footer.page-footer {
@@ -13,6 +9,22 @@ footer.page-footer {
 
 .card .collection {
 	border: none;
+}
+
+.chooser .card .collection {
+  margin-top: -10px;
+}
+
+@media only screen and (min-width: 1400px) {
+    .card .card-title {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .card .card-title {
+        font-size: 14px;
+    }
 }
 
 .card .collection .collection-item.avatar {
@@ -73,14 +85,13 @@ footer.page-footer {
 .card .card-image .card-title  a{
 	color:white;
 }
+
+
 /*
 a {
 	color:white !important;
 }
 */
-.main-nav {
-	background-color:#01457C ;
-}
 
 #edit-submit--2 {
 	background-color: #1F5D8D;
@@ -101,8 +112,17 @@ div.col > i.large.circle {
   display: none;
 }
 
+nav .brand-logo {
+  float: left;
+}
+.brand-logo img {
+  margin-top: 7px;
+  max-height: 77px;
+}
+
 .main-nav {
-  height: 91px;
+  background-color:#01457C;
+  height: 100px;
 }
 
 div.search {
