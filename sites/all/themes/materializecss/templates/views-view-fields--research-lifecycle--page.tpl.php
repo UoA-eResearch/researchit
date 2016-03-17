@@ -55,16 +55,16 @@
   
   
 
-<div class="col s12 m6 research_lifecycle_stage services" style='display:none;position:fixed; left:55%; top:25%; width:40%'>
+<div class="col s12 m6 research_lifecycle_stage services" style='display:none;position:fixed; left:55%; top:25%; width:40%; height: 50%;'>
 
-  <div class="card">
+  <div class="card" style='height:100%'>
   
   	<div class="card-image waves-effect waves-block waves-light" style="max-height:50px">
       <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/office.jpg">
       <span class="card-title" style="padding-bottom:10px">Research Services which might help</span>
     </div>
     
-    <div class="card-content">
+    <div class="card-content" style='height:85%;overflow: auto;'>
       
       
       <ul class='collection'>
@@ -94,7 +94,7 @@
             usort($t['nodes'], "materialize_compare_type");
 			
             foreach ($t['nodes'] as $node) {
-              $link = l($node->title, 'node/'.$nid);
+              $link = l($node->title, 'node/'.$node->nid);
               if (!empty($node->body)) {
                 $desc = $node->body['und'][0]['value'];
               } else {
