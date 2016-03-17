@@ -90,6 +90,8 @@
 			
 			// Prints out the service category title
             print "<a href='$link'><h4>$term_title</h4></a>";
+            
+            usort($t['nodes'], "materialize_compare_type");
 			
             foreach ($t['nodes'] as $node) {
               $link = l($node->title, 'node/'.$nid);

@@ -6,6 +6,10 @@
  *
  * Implements preprocess, process functions and alter hooks.
  */
+ 
+function materialize_compare_type($a, $b) {
+  return strcmp($b->type, $a->type);
+}
 
 /**
  * Implements hook_css_alter().
