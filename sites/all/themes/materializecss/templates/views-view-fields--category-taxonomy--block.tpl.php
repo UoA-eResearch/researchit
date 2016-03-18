@@ -43,11 +43,13 @@
               $desc = 'What should I know?';
             }
             $color = 'red';
+			$glyph = "dashboard";
             if ($node->type == 'guide') {
               $color = 'purple';
+			  $glyph = "insert_chart";
             }
             echo "<li class='collection-item avatar'>
-				<i class='material-icons circle $color'>insert_chart</i>
+				<i class='material-icons circle $color'>$glyph</i>
 				<span class='title'>$link</span>
 				<p>$desc</p>
 			</li>";

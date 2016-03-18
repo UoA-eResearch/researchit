@@ -4,6 +4,9 @@
   margin-left: -40px;
 }
 
+.view-research-lifecycle .row {
+	margin-bottom: 0px;	
+}
 
 .Plan_Design {
 	
@@ -32,6 +35,10 @@
   display: inline-block;
   overflow: visible;
   box-shadow: none;
+}
+
+.cards-container .card .collection {
+	overflow: visible;	
 }
 
 @media only screen and (max-width: 600px) {
@@ -66,4 +73,8 @@
 
 #block-views-guides-block .field-content {
 	padding: 0px;
+}
+
+#block-views-research-lifecycle-block-1 .card {
+	margin-top: 0px;	
 }

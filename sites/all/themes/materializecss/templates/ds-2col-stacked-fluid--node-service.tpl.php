@@ -101,6 +101,7 @@
         echo "<ul class='collection'>";
         foreach ($other as $o => $i) {
           $d = $node->$o;
+          if (empty($d['und'])) continue;
           $name = field_info_instance('node', $o, 'service');
           $name = $name['label'];
           echo "
