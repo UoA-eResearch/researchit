@@ -16,4 +16,7 @@ function materialize_preprocess_node(&$variables) {
   if ($variables['type'] == 'service') {
     drupal_add_css(path_to_theme().'/css/service.css', array("group" => CSS_THEME, "every_page" => FALSE));
   }
+  if (drupal_is_front_page()) {
+    drupal_add_css(path_to_theme().'/css/frontpage.css', array("group" => CSS_THEME, "every_page" => FALSE));
+  }
 }
