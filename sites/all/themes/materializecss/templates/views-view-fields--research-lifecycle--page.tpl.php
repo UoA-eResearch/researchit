@@ -41,7 +41,7 @@
 <div class="col s12 m6 research_lifecycle_stage name <?php echo $machine_name ?>">
     <div class="card hoverable">
         <div class="card-image waves-effect waves-block waves-light" style="max-height:150px">
-          <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/office.jpg">
+          <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/yellow-leather.jpg">
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?><i class="material-icons right">more_vert</i></span>
@@ -60,7 +60,7 @@
   <div class="card" style='height:100%'>
   
   	<div class="card-image waves-effect waves-block waves-light" style="max-height:50px">
-      <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/office.jpg">
+      <img class="activator" src="https://researchit.cer.auckland.ac.nz/sites/default/files/yellow-leather.jpg">
       <span class="card-title" style="padding-bottom:10px">Research Services which might help</span>
     </div>
     
