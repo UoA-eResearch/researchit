@@ -25,7 +25,7 @@
  */
 ?>
 
-<div class="col s12 m12 l4">
+<div class="col s12 m12 l3">
   <div class="card hoverable medium">
   	<div class="card-image white-text" style="max-height:80px">
     	<?php echo $fields['field_card_image']->content ?>

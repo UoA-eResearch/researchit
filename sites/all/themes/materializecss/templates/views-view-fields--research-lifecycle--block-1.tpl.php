@@ -31,20 +31,12 @@
    $url = '/sites/default/files/yellow-leather.jpg';
  }
 ?>
-<div class="col s12 m12 research_lifecycle_stage <?php echo $machine_name ?>" style="display:none">
-    <div class="card hoverable">
-        <div class="card-image waves-effect waves-block waves-light" style="max-height:150px">
-          <img class="activator" src="<?php echo $url ?>">
-        </div>
+<div class="col s12 m12 research_lifecycle_stage <?php echo $machine_name ?>" <?php if ($machine_name != "Plan_Design") echo 'style="display:none"' ?>>
+    <div class="card">
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?><i class="material-icons right">more_vert</i></span>
-          <!--
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><?php echo $fields['name']->raw ?><i class="material-icons right">close</i></span>
-          -->
-          <p><?php echo $fields['description']->raw ?></p>
-          <ul class='collection'>
+          <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?></span>
+
+          
             <?php
               $categorySorted = array();
               foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
@@ -58,21 +50,27 @@
                 }
                 $categorySorted[$tid]['nodes'][] = $node;
               }
+			  print "<div class='row'>";
+			  print "<div class='col s12 cards-container'>";
+              uasort($categorySorted, function($a, $b) {
+                return count($a['nodes']) < count($b['nodes']);
+              });
               foreach ($categorySorted as $tid => $t) {
                 $term = $t['term'];
                 $term_title = taxonomy_term_title($term);
                 $link = taxonomy_term_uri($term);
                 $link = drupal_get_path_alias($link['path']);
                             
-                            // Prints out the service category title
-                print "<a href='$link'><h4>$term_title</h4></a>";
-                
+                // Prints out the service category title
+				print "<div class='card featured'>";
+                print "<a href='$link'><h5>$term_title</h5></a>";
+                print "<ul class='collection'>";
                 usort($t['nodes'], "materialize_compare_type");
                             
                 foreach ($t['nodes'] as $node) {
                   $link = l($node->title, 'node/'.$node->nid);
-                  if (!empty($node->body)) {
-                    $desc = $node->body['und'][0]['value'];
+                  if (!empty($node->body['und'][0]['summary'])) {
+                    $desc = $node->body['und'][0]['summary'];
                   } else {
                     $desc = 'What should I know?';
                   }
@@ -81,17 +79,21 @@
                     $color = 'purple';
                   }
                               
-                              // Prints out the actual service
+                  // Prints out the actual service
                   echo "<li class='collection-item avatar'>
                           <i class='material-icons circle $color'>insert_chart</i>
                           <span class='title'>$link</span>
                           <p>$desc</p>
                         </li>";
                 }
+				print "</ul>";
+				print "</div>";
               }
+			  print "</div>";
+			  print "</div>";
             ?>
-            
-          </ul>
+          
+          
         </div>
     </div>
 </div>

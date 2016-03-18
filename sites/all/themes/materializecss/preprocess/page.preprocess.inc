@@ -12,6 +12,9 @@ function materialize_preprocess_page(&$variables) {
   if(current_path() == "research-lifecycle") {
 	drupal_add_css(path_to_theme().'/css/lifecycle.css', array("group" => CSS_THEME, "every_page" => FALSE)); 
   }
+  if (drupal_is_front_page()) {
+    drupal_add_css(path_to_theme().'/css/frontpage.css', array("group" => CSS_THEME, "every_page" => FALSE));
+  }
   if (!empty($variables['page']['sidebar_first'])) {
     $left = $variables['page']['sidebar_first'];
   }
