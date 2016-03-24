@@ -107,5 +107,18 @@
         $('#option_gdrive').show();
       }
     });
+    console.log(clippy);
+    window.$ = jQuery;
+    clippy.load('Clippy', function(agent) {
+        // Do anything with the loaded agent
+        agent.show();
+        agent.moveTo(1000,500);
+        setTimeout(function() {
+          agent.speak("It looks like you're trying to choose a research data service");
+          setInterval(function() {
+            agent.animate();
+          }, 5000);
+        }, 1000);
+    });
   });
 })(jQuery);
