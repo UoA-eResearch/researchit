@@ -1,0 +1,78 @@
+<?php
+
+function researchit_user_menu() {
+  $items['user-test'] = array(
+    'title' => 'User Test',
+    'page callback' => 'researchit_user_user_login',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'management',
+    );
+  return $items;
+}
+
+function rest_request($endpoint, $method = 'GET', $postdata = '') {
+  $opts = array(
+    'http'=>array(
+      'method'=> $method,
+      'ignore_errors' => true,
+      'content' => $postdata,
+      'timeout' => 15,
+      'header'=>"Accept: application/json\r\n" .
+                "Content-Type: application/json\r\n" .
+                "Authorization:Basic " . base64_encode(
+                "researchit:Fj27RP0741HS0N2") . "\r\n" .
+                "User-Agent: drupal\r\n"
+    )
+  );
+  $context = stream_context_create($opts);
+  $json = file_get_contents("https://projects.nesi.org.nz/projectdb/rest/$endpoint", false, $context);
+  $data = json_decode($json);
+  return $data;
+}
+
+function researchit_user_user_login() {
+  global $user;
+  if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
+  $token = $_SERVER['auEduPersonSharedToken'];
+  if ($token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') $token = 'VMu6uT-7WucYcdNE8ZjvkQ1TXl0'; // Nick = John Cater
+  
+  $researcher = rest_request('researchers/tuakiri', 'POST', $token);
+  if (!isset($researcher->message)) {
+    $id = $researcher->id;
+    $researcher->projects = rest_request("researchers/$id/projects");
+  }
+  
+  $cn = escapeshellarg($_SERVER['uid']);
+  $ldapInfo = `ldapsearch -H ldaps://uoa.auckland.ac.nz -D svc-uoaldap -w '$0m(4U!3i3C8' -b 'dc=uoa,dc=auckland,dc=ac,dc=nz' '(cn=$cn)'`;
+  $ldapInfo = str_replace("\n ", "", $ldapInfo);
+  $ldapInfo = explode("\n", $ldapInfo);
+  $ldapGroups = array();
+  $ldapAttributes = array();
+  
+  foreach ($ldapInfo as $line) {
+    if (strpos($line, 'memberOf: CN=') === 0) {
+      $matches = array();
+      preg_match('/^memberOf: CN=(.+?),/', $line, $matches);
+      $ldapGroups[] = $matches[1];
+    } else if (!empty($line) && $line[0] != '#') {
+      $bits = explode(': ', $line, 2);
+      $name = trim($bits[0], ':');
+      $ldapAttributes[$name] = $bits[1];
+    }
+  }
+  
+  user_save($user, array('data' => array('projectdb_info' => $researcher, 'ldap_groups' => $ldapGroups, 'ldap_attributes' => $ldapAttributes)));
+  dpm($_SERVER);
+  dpm($user);
+  print theme('status_messages');
+}
+
+function researchit_user_node_access($node, $op, $account) {
+  if (!empty($node->field_edit_groups['und'][0]['value'])) {
+    $allowedGroups = explode(',', $node->field_edit_groups['und'][0]['value']);
+    if ($op == 'update' && array_intersect($account->data['ldap_groups'], $allowedGroups)) {
+      return NODE_ACCESS_ALLOW;
+    }
+  }
+}
