@@ -72,9 +72,18 @@
  *
  * @ingroup themeable
  */
+ if (user_is_logged_in()) {
+   global $user;
+   $text = 'Logged in as ' . $user->name;
+   $href = '';
+ } else {
+   $text = 'Login';
+   $href = '/Shibboleth.sso/Login';
+ }
+ $primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title'=>$text, '#href'=>$href, '#below' => '', '#attributes' => array());
 ?>
 <div id="page">
-  <nav class="main-nav" id="nav" role="navigation">
+  <nav class="main-nav z-depth-3" id="nav" role="navigation">
     <div class="nav-wrapper container">
       <?php if ($logo): ?>
         <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -90,9 +99,9 @@
           <?php print render($primary_nav); ?>
         </ul>
       <?php endif; ?>
-      <div class='search'>
+      <!--<div class='search'>
         <?php print drupal_render(drupal_get_form('search_block_form')); ?>
-      </div>
+      </div> -->
     </div>
   </nav>
   <?php if (!empty($page['header'])): ?>
@@ -100,6 +109,14 @@
       <?php print render($page['header']); ?>
     </div>
   <?php endif; ?><!-- /.header  -->
+  
+  <div class="row" style="background: url('https://researchit.cer.auckland.ac.nz/sites/default/files/headerbox.png') repeat-x; height: 150px">
+  	<div class="row page grid container">
+    	<div class="col s12">
+    		
+        </div>
+    </div>
+  </div>
 
   <div class="row page grid container">
     <?php if (!empty($page['sidebar_first'])): ?>
@@ -133,7 +150,7 @@
       <?php print render($tabs_secondary); ?>
       <?php if(drupal_is_front_page()) {
               unset($page['content']['system_main']['default_message']);
-            } 
+            }
             print render($page['content']); ?>
     </section>
 

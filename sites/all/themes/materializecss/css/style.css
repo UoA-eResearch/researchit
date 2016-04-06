@@ -118,16 +118,16 @@ nav .brand-logo {
 
 .brand-logo img {
   margin-top: 7px;
-  max-height: 77px;
+  max-height: 55px; /* 77px; */
 }
 
 .main-nav {
   background-color:#01457C;
-  height: 100px;
+  height: 75px; /*100px;*/
 }
 
 nav div.right {
-  height: 100px;
+  height: 75px; /*100px;*/
   margin-left: 250px;
 }
 

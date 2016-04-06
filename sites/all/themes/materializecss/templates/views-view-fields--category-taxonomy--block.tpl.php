@@ -26,14 +26,14 @@
 ?>
 
 <div class="col s12 m12 l3">
-  <div class="card hoverable medium">
+  <div class="card hoverable small">
   	<div class="card-image white-text" style="max-height:80px">
     	<?php echo $fields['field_card_image']->content ?>
         <span class="card-title"><?php echo $fields['name']->content ?></span>
     </div>
     <div class="card-content">
       <p><?php echo $fields['field_summary']->content . '<ul class="collection">';
-          foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
+          /*foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
             if ($i > 0) break;
             $node = node_load($nid);
             $link = l($node->title, 'node/'.$nid);
@@ -54,13 +54,11 @@
 				<p>$desc</p>
 			</li>";
           }
-          echo '</ul>';
+          echo '</ul>'; */
       ?></p>
     </div>
     <div class="card-action">
-      <span style="float:left"><?php echo str_replace($fields['name']->raw, '<i class="small material-icons">info_outline</i> More info', $fields['name']->content) ?></span>
-      <span style="float:right"><a href="<?php echo $fields['field_chooser']->content ?>"><i class="small material-icons">view_module</i> Help Me Choose</a></span>
-      
+      <span style="float:right"><?php echo str_replace($fields['name']->raw, '<i class="small material-icons">info_outline</i> More info', $fields['name']->content) ?></span>
     </div>
   </div>
 </div>
