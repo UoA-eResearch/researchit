@@ -31,8 +31,10 @@
    $url = '/sites/default/files/yellow-leather.jpg';
  }
 ?>
+
 <div class="col s12 m12 research_lifecycle_stage <?php echo $machine_name ?>" <?php if ($machine_name != "Plan_Design") echo 'style="display:none"' ?>>
     <div class="card">
+      <div class="background" style="background-color:<?php echo $fields['field_color']->content ?>;opacity:.2;position:absolute;top:0;left:0;width:100%;height:100%;z-index: 1;pointer-events: none;"></div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?></span>
 

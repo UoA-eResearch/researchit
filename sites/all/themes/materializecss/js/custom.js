@@ -63,22 +63,14 @@
     $('.research_lifecycle_stage.services').not(d).fadeOut();
     d.fadeIn();
   });
-  var map = [
-    {'id': '#g3761', 'target': '.Plan_Design'},
-    {'id': '#g3765', 'target': '.Create_Collect_Capture'},
-    {'id': '#g3771', 'target': '.Analyze_Interpret'},
-    {'id': '#g3777', 'target': '.Write_up_Publish'},
-    {'id': '#rect3785', 'target': '.Discover_Re-use'}
-  ];
-  for (var i in map) {
-    var pair = map[i];
-    $(pair.id).attr('target', pair.target);
-    $(pair.id).mouseover(function() {
-      var target = $($(this).attr('target'));
+  var research_lifecycle = ['Plan_Design', 'Create_Collect_Capture', 'Analyze_Interpret', 'Write_up_Publish', 'Discover_Re-use'];
+  $.each(research_lifecycle, function(i,stage) {
+    $('.lifecycle_selector.' + stage).mouseover(function() {
+      var target = $('.research_lifecycle_stage.' + stage);
       $('.research_lifecycle_tip').hide();
       $('.research_lifecycle_stage').not(target).hide();
       target.show();
     });
-  }
+  });
   
 })(jQuery);
