@@ -72,5 +72,8 @@
       target.show();
     });
   });
-  
+  $('.username.logged_in').click(function(e) {
+    e.preventDefault();
+    $('.projects').slideToggle();
+  });
 })(jQuery);

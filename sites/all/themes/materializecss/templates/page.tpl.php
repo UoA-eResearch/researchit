@@ -75,12 +75,14 @@
  if (user_is_logged_in()) {
    global $user;
    $text = 'Logged in as ' . $user->name;
-   $href = '';
+   $href = '#';
+   $class = array('username', 'logged_in');
  } else {
    $text = 'Login';
    $href = '/Shibboleth.sso/Login';
+   $class = array('username', 'not_logged_in');
  }
- $primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title'=>$text, '#href'=>$href, '#below' => '', '#attributes' => array());
+ $primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title'=>$text, '#href'=>$href, '#below' => '', '#attributes' => array('class'=>$class));
 ?>
 <div id="page">
   <nav class="main-nav z-depth-3" id="nav" role="navigation">
@@ -110,11 +112,34 @@
     </div>
   <?php endif; ?><!-- /.header  -->
   
-  <div class="row" style="background: url('https://researchit.cer.auckland.ac.nz/sites/default/files/headerbox.png') repeat-x; height: 150px">
-  	<div class="row page grid container">
-    	<div class="col s12">
-    		
+  <div class="row projects" style="background: linear-gradient(#01457C, white);display:none">
+    <div class="row page grid container">
+      <div class="col s12">
+        <p style='color:white'>Your projects:</p>
+        <div class='row'>
+          <?php
+            if (!empty($user->data['projectdb_info']->projects)) {
+              foreach ($user->data['projectdb_info']->projects as $i => $p) {
+                if ($i > 3) {
+                  echo "<a href='/project/'>More..</a>";
+                  break;
+                }
+                $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
+                echo "<a href='/project/{$p->projectCode}'>
+                        <div class='col s12 m3'>
+                          <div class='card blue-grey darken-1'>
+                            <div class='card-content white-text'>
+                              <span class='card-title'>{$p->name}</span>
+                              <p>$desc</p>
+                            </div>
+                          </div>
+                        </div>
+                      </a>";
+              }
+            }
+          ?>
         </div>
+      </div>
     </div>
   </div>
 
