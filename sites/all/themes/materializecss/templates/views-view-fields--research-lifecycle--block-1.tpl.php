@@ -34,7 +34,7 @@
 
 <div class="col s12 m12 research_lifecycle_stage <?php echo $machine_name ?>"
   <?php
-  if ($machine_name != "Plan_Design") {
+  if ($machine_name != "Plan_Design"){
     echo 'style="display:none;padding:0px"';
   } else {
     echo 'style="padding:0px"';
