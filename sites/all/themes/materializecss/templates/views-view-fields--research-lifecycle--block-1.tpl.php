@@ -32,13 +32,13 @@
  }
 ?>
 
-<div class="col s12 m12 research_lifecycle_stage <?php echo $machine_name ?>" <?php if ($machine_name != "Plan_Design") echo 'style="display:none"' ?>>
+<div class="col s12 m12 research_lifecycle_stage <?php echo $machine_name ?>" <?php if ($machine_name != "Plan_Design") { echo 'style="display:none;padding:0px"'} else { echo 'style="padding:0px"'} ?>>
     <div class="card">
-      <div class="background" style="background-color:<?php echo $fields['field_color']->content ?>;opacity:.05;position:absolute;top:0;left:0;width:100%;height:100%;z-index: 1;pointer-events: none;"></div>
+      <div class="background" style="background-color:<?php echo $fields['field_color']->content ?>;opacity:.04;position:absolute;top:0;left:0;width:100%;height:100%;z-index: 1;pointer-events: none;"></div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?></span>
 
-          
+
             <?php
               $categorySorted = array();
               foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
@@ -62,13 +62,13 @@
                 $term_title = taxonomy_term_title($term);
                 $link = taxonomy_term_uri($term);
                 $link = drupal_get_path_alias($link['path']);
-                            
+
                 // Prints out the service category title
 				print "<div class='card featured'>";
                 print "<a href='$link'><h5>$term_title</h5></a>";
                 print "<ul class='collection'>";
                 usort($t['nodes'], "materialize_compare_type");
-                            
+
                 foreach ($t['nodes'] as $node) {
                   $link = l($node->title, 'node/'.$node->nid);
                   if (!empty($node->body['und'][0]['summary'])) {
@@ -82,7 +82,7 @@
                     $color = 'purple';
 					$glyph = "insert_chart";
                   }
-                              
+
                   // Prints out the actual service
                   echo "<li class='collection-item avatar'>
                           <i class='material-icons circle $color'>$glyph</i>
@@ -96,8 +96,8 @@
 			  print "</div>";
 			  print "</div>";
             ?>
-          
-          
+
+
         </div>
     </div>
 </div>
