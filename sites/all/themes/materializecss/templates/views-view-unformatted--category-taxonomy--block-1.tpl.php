@@ -7,9 +7,19 @@
  * @ingroup views_templates
  */
 ?>
-<?php if (!empty($title)): ?>
-  <h3><?php print $title; ?></h3>
-<?php endif; ?>
+
+<div class="row" style="margin-bottom:0px">
+	<div class="col s12">
+    	<div class="card">
+            <div class="card-image white-text" style="max-height:60px">
+                <?php //echo $fields['field_card_image']->content ?>
+                <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/red-darken1.jpg" alt="" height="60px" width="400">
+                <span class="card-title" style="padding-bottom:10px">Service Categories</span>
+            </div>
+    	</div>
+    </div>
+</div>
+
 <?php foreach ($rows as $id => $row): ?>
   <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
     <?php print $row; ?>
