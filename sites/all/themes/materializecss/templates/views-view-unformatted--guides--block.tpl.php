@@ -7,7 +7,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="row" style="margin-bottom:0px">
+<div class="row" style="margin-bottom:0px; padding-top:40px">
 	<div class="col s12">
     	<div class="card">
             <div class="card-image white-text" style="max-height:60px">
