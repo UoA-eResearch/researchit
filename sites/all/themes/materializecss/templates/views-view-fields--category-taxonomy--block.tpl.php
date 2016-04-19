@@ -28,7 +28,8 @@
 <div class="col s12 m12 l3">
   <div class="card hoverable small">
   	<div class="card-image white-text" style="max-height:80px">
-    	<?php echo $fields['field_card_image']->content ?>
+    	<?php //echo $fields['field_card_image']->content ?>
+      <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/red-darken1.jpg" alt="">
         <span class="card-title"><?php echo $fields['name']->content ?></span>
     </div>
     <div class="card-content">
