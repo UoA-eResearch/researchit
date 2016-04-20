@@ -10,7 +10,7 @@
  $terms = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
 ?>
 <?php if (!empty($title)): ?>
-  <!--<h3><?php print $title; ?></h3>-->
+  <h3><?php print $title; ?></h3>
 <?php endif; ?>
 
 <?php

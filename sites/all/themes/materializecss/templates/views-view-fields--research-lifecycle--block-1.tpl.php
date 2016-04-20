@@ -42,7 +42,7 @@
     <div class="card">
       <div class="background" style="background-color:<?php echo $fields['field_color']->content ?>;opacity:.03;position:absolute;top:0;left:0;width:100%;height:100%;z-index: 1;pointer-events: none;"></div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?></span>
+          <!--<span class="card-title activator grey-text text-darken-4"><?php echo $fields['name']->raw ?></span>-->
 
 
             <?php
