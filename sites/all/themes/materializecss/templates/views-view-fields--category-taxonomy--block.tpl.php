@@ -59,12 +59,12 @@
       ?></p>
       <span style="float:right"><?php echo str_replace($fields['name']->raw, '<i class="small material-icons">info_outline</i> More info', $fields['name']->content) ?></span>
     </div>
-    <div class="card-action" style="padding: 0px; width: 100%">
-      <span style="display:inline-block; float:left; text-align:center; width:20%; background-color: rgb(142,36,170)"></span>
-      <span style="display:inline-block; float:left; text-align:center; width:20%; background-color: rgb(30,136,229)"></span>
-      <span style="display:inline-block; float:left; text-align:center; width:20%; background-color: rgb(67,160,71)"></span>
-      <span style="display:inline-block; float:left; text-align:center; width:20%; background-color: rgb(255,179,0)"></span>
-      <span style="display:inline-block; float:left; text-align:center; width:20%; background-color: rgb(229,57,53)"></span>
+    <div class="card-action" style="padding: 0px; width: 100%; font-size: 0; border-top:0px">
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(142,36,170)"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(30,136,229)"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(67,160,71)"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(255,179,0)"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(229,57,53)"></span>
     </div>
   </div>
 </div>
