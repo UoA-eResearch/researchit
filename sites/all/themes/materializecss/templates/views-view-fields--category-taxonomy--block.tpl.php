@@ -57,9 +57,10 @@
           }
           echo '</ul>'; */
       ?></p>
-    </div>
-    <div class="card-action">
       <span style="float:right"><?php echo str_replace($fields['name']->raw, '<i class="small material-icons">info_outline</i> More info', $fields['name']->content) ?></span>
+    </div>
+    <div class="card-action" style="padding: 0px">
+
     </div>
   </div>
 </div>
