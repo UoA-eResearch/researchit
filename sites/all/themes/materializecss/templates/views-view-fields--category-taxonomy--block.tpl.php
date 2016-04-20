@@ -27,12 +27,12 @@
 
 <div class="col s12 m12 l3">
   <div class="card hoverable small">
-  	<div class="card-image white-text" style="max-height:80px">
+  	<div class="card-image white-text" style="max-height:10px">
     	<?php //echo $fields['field_card_image']->content ?>
-      <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/red-darken1.jpg" alt="">
-        <span class="card-title"><?php echo $fields['name']->content ?></span>
+      <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/red-darken1.jpg" alt="" height="10">
     </div>
     <div class="card-content">
+      <span class="card-title"><?php echo $fields['name']->content ?></span>
       <p><?php echo $fields['field_summary']->content . '<ul class="collection">';
           /*foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
             if ($i > 0) break;
