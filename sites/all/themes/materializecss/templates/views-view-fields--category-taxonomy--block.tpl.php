@@ -60,7 +60,11 @@
       <span style="float:right"><?php echo str_replace($fields['name']->raw, '<i class="small material-icons">info_outline</i> More info', $fields['name']->content) ?></span>
     </div>
     <div class="card-action" style="padding: 0px">
-
+      <span style="display:inline-block; text-align:center; width:20%; background-colour: rgb(142,36,170)">1</span>
+      <span style="display:inline-block; text-align:center; width:20%; background-colour: rgb(30,136,229)">2</span>
+      <span style="display:inline-block; text-align:center; width:20%; background-colour: rgb(67,160,71)">3</span>
+      <span style="display:inline-block; text-align:center; width:20%; background-colour: rgb(255,179,0)">4</span>
+      <span style="display:inline-block; text-align:center; width:20%; background-colour: rgb(229,57,53)">5</span>
     </div>
   </div>
 </div>
