@@ -64,7 +64,7 @@
       <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(30,136,229); height: 10px"></span>
       <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(67,160,71); height: 15px"></span>
       <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(255,179,0); height: 10px"></span>
-      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(229,57,53); height: 15px"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(229,57,53); height: 5px"></span>
     </div>
   </div>
 </div>
