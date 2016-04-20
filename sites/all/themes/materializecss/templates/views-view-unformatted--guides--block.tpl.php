@@ -13,7 +13,7 @@
             <div class="card-image white-text" style="max-height:60px">
                 <?php //echo $fields['field_card_image']->content ?>
                 <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/deep-purple-darken1.jpg" alt="" height="60px" width="400">
-                <span class="card-title" style="padding-bottom:10px">Guides</span>
+                <span class="card-title" style="padding: 15px 15px 15px 20px;">Guides</span>
             </div>
     	</div>
     </div>

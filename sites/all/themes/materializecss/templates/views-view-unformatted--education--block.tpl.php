@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-image white-text" style="max-height:60px">
                 <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="60" width="400">
-                <span class="card-title" style="padding-bottom:10px">Education, Training and Events</span>
+                <span class="card-title" style="padding: 15px 15px 15px 20px;">Education, Training and Events</span>
             </div>
         </div>
     </div>
