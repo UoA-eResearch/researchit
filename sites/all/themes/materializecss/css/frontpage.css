@@ -37,7 +37,7 @@ section.main.container {
 }
 
 .region-content section:nth-child(odd) {
-  background: #E0E0E0;
+  background: #f4f4f4;
 }
 
 div.col.research_lifecycle_stage.Plan_Design {
