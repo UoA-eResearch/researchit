@@ -70,6 +70,9 @@
       $('.research_lifecycle_tip').hide();
       $('.research_lifecycle_stage').not(target).hide();
       target.show();
+      target = $('.triangle-down.' + stage);
+      $('.triangle-down').not(target).css("visibility", "hidden");
+      target.css("visibility", "visible");
     });
   });
   $('.username.logged_in').click(function(e) {

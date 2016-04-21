@@ -40,6 +40,28 @@ section.main.container {
   background: #f4f4f4;
 }
 
+.triangle-down {
+    width: 20%;
+    visibility: hidden;
+    display: inline-block;
+    overflow: hidden;
+    padding-left: 10%;
+    padding-top: 50px;
+}
+.triangle-down.Plan_Design {
+  visibility: visible;
+}
+.triangle-down-inner {
+    width: 0;
+    height: 0;
+    
+    margin-left:-500px;
+    margin-top:-500px;
+    
+    border-left: 500px solid transparent;
+    border-right: 500px solid transparent;
+}
+
 div.col.research_lifecycle_stage.Plan_Design {
   display: block;
 }
