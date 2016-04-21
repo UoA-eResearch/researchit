@@ -8,6 +8,12 @@ function researchit_user_menu() {
     'type' => MENU_NORMAL_ITEM,
     'menu_name' => 'management',
     );
+  $items['projects'] = array(
+    'title' => 'Projects',
+    'page callback' => 'researchit_user_projects',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM
+    );
   return $items;
 }
 
@@ -41,6 +47,13 @@ function researchit_user_user_login() {
   if (!isset($researcher->message)) {
     $id = $researcher->id;
     $researcher->projects = rest_request("researchers/$id/projects");
+    usort($researcher->projects, function($a, $b) {
+      if ($a->statusId == $b->statusId) {
+        return $a->startDate < $b->startDate;
+      } else {
+        return $a->statusId > $b->statusId;
+      }
+    });
   }
   
   $cn = escapeshellarg($_SERVER['uid']);
@@ -75,4 +88,11 @@ function researchit_user_node_access($node, $op, $account) {
       return NODE_ACCESS_ALLOW;
     }
   }
+}
+
+function researchit_user_projects($projectCode = '') {
+  global $user;
+  dpm($user->data);
+  dpm($projectCode);
+  return 'test';
 }

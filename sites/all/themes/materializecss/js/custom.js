@@ -22,7 +22,7 @@
       });
     }
   };
-  $(".button-collapse").sideNav();
+  $(".button-collapse").sideNav({menuWidth: 500, closeOnClick: false});
   $('.modal-trigger').leanModal();
   $('#request_service_form_submit').click(function( event ) {
     var email = $('#request_service_form').attr('contact');
@@ -75,8 +75,8 @@
       target.css("visibility", "visible");
     });
   });
-  $('.username.logged_in').click(function(e) {
+  $('.search_button').click(function(e) {
     e.preventDefault();
-    $('.projects').slideToggle();
+    $('.searchBox').slideToggle();
   });
 })(jQuery);
