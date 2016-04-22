@@ -34,8 +34,33 @@ section.main.container {
 .region-content section {
   padding-left: 15%;
   padding-right: 15%;
-  padding-bottom:30px;
 }
+
+/* Styling for each section on Homepage*/
+.region-content section#block-views-research-lifecycle-block-1{
+  padding-bottom: 20px;
+}
+
+.region-content section#block-block-1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.region-content section#block-views-category-taxonomy-block-1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.region-content section#block-views-education-block {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.region-content section#block-views-guides-block {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 
 .region-content section:nth-child(odd) {
   background: #f4f4f4;
