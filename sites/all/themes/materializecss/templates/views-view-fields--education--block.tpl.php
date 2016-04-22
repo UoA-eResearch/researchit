@@ -24,19 +24,27 @@
  * @ingroup views_templates
  */
 ?>
-<div class="col s12 m12 l3" >
-  <div class="card hoverable" style="height:200px">
+<div class="col s12 m12 l2" >
+  <div class="card hoverable" style="height:200px; background-color: rgb(124, 179, 66);">
     <div class="card-image white-text" style="max-height:10px">
         <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
     </div>
     <div class="card-content" style="padding-top:0px; padding-bottom:0px">
       <ul class="collection" style="margin: 0px;">
-            <li class='collection-item avatar'>
+            <li class='collection-item avatar' style="background-color: rgb(124, 179, 66); color:white">
             <i class='material-icons circle green'>insert_chart</i>
             <span class='title'><?php echo $fields['title']->raw ?></span>
             <p><?php echo $fields['field_summary']->content ?></p>
         </li>
       </ul>
     </div>
+    <div class="card-action" style="padding: 0px; width: 100%; font-size: 0; border-top:0px">
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(142,36,170); height: 5px"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(30,136,229); height: 10px"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(67,160,71); height: 15px"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(255,179,0); height: 10px"></span>
+      <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(229,57,53); height: 5px"></span>
+    </div>
+  </div>
   </div>
 </div>
