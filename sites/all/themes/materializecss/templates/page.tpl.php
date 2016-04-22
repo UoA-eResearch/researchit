@@ -75,7 +75,7 @@
  if (user_is_logged_in()) {
    global $user;
    $text = 'Logged in as ' . $user->name;
-   $href = '#';
+   $href = '/projects';
    $class = array('username', 'logged_in');
  } else {
    $text = 'Login';

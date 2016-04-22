@@ -22,7 +22,7 @@ foreach ($terms as $t) {
 foreach ($terms as $t) {
   $machine_name = str_replace(' &', '', $t->name);
   $machine_name = str_replace(' ', '_', $machine_name);
-  echo "<div class='triangle-down $machine_name'><div class='triangle-down-inner' style='border-top: 500px solid {$t->field_color['und'][0]['rgb']}'></div></div>";
+  echo "<div class='triangle-down $machine_name'><div class='triangle-down-inner' style='border-top: 300px solid {$t->field_color['und'][0]['rgb']}'></div></div>";
 }
 ?>
 <?php foreach ($rows as $id => $row): ?>

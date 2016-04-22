@@ -9,6 +9,10 @@ footer.page-footer {
   z-index: 1000;
 }
 
+.page {
+  min-height: 800px;
+}
+
 .card .collection {
 	border: none;
 }

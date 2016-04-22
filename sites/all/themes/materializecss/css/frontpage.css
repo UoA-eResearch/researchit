@@ -46,7 +46,10 @@ section.main.container {
     display: inline-block;
     overflow: hidden;
     padding-left: 10%;
-    padding-top: 50px;
+    padding-top: 60px;
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 2;
 }
 .triangle-down.Plan_Design {
   visibility: visible;
@@ -56,7 +59,7 @@ section.main.container {
     height: 0;
     
     margin-left:-500px;
-    margin-top:-500px;
+    margin-top:-300px;
     
     border-left: 500px solid transparent;
     border-right: 500px solid transparent;
