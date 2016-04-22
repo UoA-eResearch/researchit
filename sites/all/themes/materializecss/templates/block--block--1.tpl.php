@@ -57,10 +57,16 @@
         </div>
         <div class="col s6">
           <div class="col s12">
-            <span style="float:left; height:100px">Search by lifecycle</span>
+            <div class="card-panel teal" style="float:left; height:100px">
+              <span class="white-text">Search by lifecycle
+              </span>
+            </div>
           </div>
           <div class="col s12">
-            <span style="float:right; height:100px">Search by categories</span>
+            <div class="card-panel teal" style="float:right; height:100px">
+              <span class="white-text">Search by categories
+              </span>
+            </div>
           </div>
         </div>
         <div class="col s3">
