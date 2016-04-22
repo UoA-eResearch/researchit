@@ -90,9 +90,39 @@ function researchit_user_node_access($node, $op, $account) {
   }
 }
 
+function researchit_user_theme($existing, $type, $theme, $path) {
+  $variables = array();
+  return array(
+    'researchit_user_project' => array(
+      'variables' => $variables,
+      'template' => 'researchit-user-project',
+      'path' => drupal_get_path('module', 'researchit_user') .'/templates'
+    )
+  );
+}
+
 function researchit_user_projects($projectCode = '') {
   global $user;
-  dpm($user->data);
-  dpm($projectCode);
-  return 'test';
+  if (empty($user->data['projectdb_info'])) {
+    drupal_goto('Shibboleth.sso/Login');
+    return '';
+  }
+  $found = false;
+  foreach ($user->data['projectdb_info']->projects as $p) {
+    if ($p->projectCode == $projectCode) {
+      $found = true;
+      break;
+    }
+  }
+  if (!$found) {
+    drupal_set_message("Error: you don't seem to be listed on the project $projectCode");
+    return "";
+  }
+  $project_wrapper = rest_request("projects/" . $projectCode);
+  drupal_set_title($project_wrapper->project->name);
+  $variables = array(
+    'pw' => $project_wrapper,
+  );
+  dpm($variables);
+  return theme('researchit_user_project', $variables);
 }
