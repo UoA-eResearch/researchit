@@ -25,7 +25,7 @@
  */
 ?>
 <div class="col s12 m12 l2" >
-  <div class="card hoverable" style="height:200px; background-color: rgb(124, 179, 66);">
+  <div class="card hoverable small" style="height:200px; background-color: rgb(124, 179, 66);">
     <div class="card-image white-text" style="max-height:10px">
         <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
     </div>
