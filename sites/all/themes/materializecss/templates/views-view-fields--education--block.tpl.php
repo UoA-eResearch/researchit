@@ -41,5 +41,4 @@
       <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(229,57,53); height: 5px"></span>
     </div>
   </div>
-  </div>
 </div>
