@@ -8,6 +8,12 @@ function researchit_user_menu() {
     'type' => MENU_NORMAL_ITEM,
     'menu_name' => 'management',
     );
+  $items['projects'] = array(
+    'title' => 'Projects',
+    'page callback' => 'researchit_user_projects',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM
+    );
   return $items;
 }
 
@@ -41,6 +47,13 @@ function researchit_user_user_login() {
   if (!isset($researcher->message)) {
     $id = $researcher->id;
     $researcher->projects = rest_request("researchers/$id/projects");
+    usort($researcher->projects, function($a, $b) {
+      if ($a->statusId == $b->statusId) {
+        return $a->startDate < $b->startDate;
+      } else {
+        return $a->statusId > $b->statusId;
+      }
+    });
   }
   
   $cn = escapeshellarg($_SERVER['uid']);
@@ -75,4 +88,41 @@ function researchit_user_node_access($node, $op, $account) {
       return NODE_ACCESS_ALLOW;
     }
   }
+}
+
+function researchit_user_theme($existing, $type, $theme, $path) {
+  $variables = array();
+  return array(
+    'researchit_user_project' => array(
+      'variables' => $variables,
+      'template' => 'researchit-user-project',
+      'path' => drupal_get_path('module', 'researchit_user') .'/templates'
+    )
+  );
+}
+
+function researchit_user_projects($projectCode = '') {
+  global $user;
+  if (empty($user->data['projectdb_info'])) {
+    drupal_goto('Shibboleth.sso/Login');
+    return '';
+  }
+  $found = false;
+  foreach ($user->data['projectdb_info']->projects as $p) {
+    if ($p->projectCode == $projectCode) {
+      $found = true;
+      break;
+    }
+  }
+  if (!$found) {
+    drupal_set_message("Error: you don't seem to be listed on the project $projectCode");
+    return "";
+  }
+  $project_wrapper = rest_request("projects/" . $projectCode);
+  drupal_set_title($project_wrapper->project->name);
+  $variables = array(
+    'pw' => $project_wrapper,
+  );
+  dpm($variables);
+  return theme('researchit_user_project', $variables);
 }

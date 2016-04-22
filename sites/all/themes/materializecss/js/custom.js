@@ -22,7 +22,7 @@
       });
     }
   };
-  $(".button-collapse").sideNav();
+  $(".button-collapse").sideNav({menuWidth: 500, closeOnClick: false});
   $('.modal-trigger').leanModal();
   $('#request_service_form_submit').click(function( event ) {
     var email = $('#request_service_form').attr('contact');
@@ -70,10 +70,13 @@
       $('.research_lifecycle_tip').hide();
       $('.research_lifecycle_stage').not(target).hide();
       target.show();
+      target = $('.triangle-down.' + stage);
+      $('.triangle-down').not(target).css("visibility", "hidden");
+      target.css("visibility", "visible");
     });
   });
-  $('.username.logged_in').click(function(e) {
+  $('.search_button').click(function(e) {
     e.preventDefault();
-    $('.projects').slideToggle();
+    $('.searchBox').slideToggle();
   });
 })(jQuery);

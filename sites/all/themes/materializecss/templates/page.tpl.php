@@ -83,27 +83,62 @@
    $class = array('username', 'not_logged_in');
  }
  $primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title'=>$text, '#href'=>$href, '#below' => '', '#attributes' => array('class'=>$class));
+ $primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title'=>'Search', '#href'=>'search', '#below' => '', '#attributes' => array('class' => 'search_button'));
 ?>
 <div id="page">
   <nav class="main-nav z-depth-3" id="nav" role="navigation">
+      <?php if (user_is_logged_in()): ?>
+        <a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>
+        <ul class="side-nav" id="sidebar">
+          <a href='/projects/'>Project Dashboard</a>
+          <a href='/projects/create'>Create a new project</a>
+          <a href='#'>Your projects:</a>
+          <div class='row'>
+            <?php
+              if (!empty($user->data['projectdb_info']->projects)) {
+                $lastStatus = '';
+                foreach ($user->data['projectdb_info']->projects as $i => $p) {
+                  $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
+                  if ($p->statusName != $lastStatus) {
+                    echo "<a href='#' style='display:inline-block'>Projects with status: {$p->statusName}</a>";
+                    $lastStatus = $p->statusName;
+                  }
+                  if (in_array($p->statusId, array(1,2,6))) {
+                    $color = '#43a047';
+                  } else if (in_array($p->statusId, array(4,10))) {
+                    $color = '#e53935';
+                  } else {
+                    $color = '#1e88e5';
+                  }
+                  echo "<a href='/projects/{$p->projectCode}' class='project'>
+                          <div class='col s12'>
+                            <div class='card hoverable'>
+                              <div class='header' style='height:10px;background-color:$color'>
+                              </div>
+                              <div class='card-content'>
+                                <span class='card-title'>{$p->projectCode}: {$p->name}</span>
+                                <p>$desc</p>
+                              </div>
+                            </div>
+                          </div>
+                        </a>";
+                }
+              }
+            ?>
+          </div>
+        </ul>
+      <?php endif; ?>
     <div class="nav-wrapper container">
       <?php if ($logo): ?>
         <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
         </a>
       <?php endif; ?>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <?php if (!empty($primary_nav)): ?>
-        <div class="right hide-on-med-and-down">
+        <div class="right">
           <?php print render($primary_nav); ?>
         </div>
-        <ul class="side-nav" id="mobile-demo">
-          <?php print render($primary_nav); ?>
-        </ul>
       <?php endif; ?>
-      <!--<div class='search'>
-        <?php print drupal_render(drupal_get_form('search_block_form')); ?>
-      </div> -->
     </div>
   </nav>
   <?php if (!empty($page['header'])): ?>
@@ -112,35 +147,8 @@
     </div>
   <?php endif; ?><!-- /.header  -->
   
-  <div class="row projects" style="background: linear-gradient(#01457C, white);display:none">
-    <div class="row page grid container">
-      <div class="col s12">
-        <p style='color:white'>Your projects:</p>
-        <div class='row'>
-          <?php
-            if (!empty($user->data['projectdb_info']->projects)) {
-              foreach ($user->data['projectdb_info']->projects as $i => $p) {
-                if ($i > 3) {
-                  echo "<a href='/project/'>More..</a>";
-                  break;
-                }
-                $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
-                echo "<a href='/project/{$p->projectCode}'>
-                        <div class='col s12 m3'>
-                          <div class='card blue-grey darken-1'>
-                            <div class='card-content white-text'>
-                              <span class='card-title'>{$p->name}</span>
-                              <p>$desc</p>
-                            </div>
-                          </div>
-                        </div>
-                      </a>";
-              }
-            }
-          ?>
-        </div>
-      </div>
-    </div>
+  <div class="row searchBox">
+    <?php print drupal_render(drupal_get_form('search_block_form')); ?>
   </div>
 
   <div class="row page grid container">
