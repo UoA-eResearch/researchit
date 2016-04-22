@@ -21,7 +21,7 @@
     </div>
 </div>
 -->
-<span style="float:left">Service Categories</span>
+<h5 style="float:left; margin-left:-14%; position:absolute; color:white; font-weight:400">Service Categories</h5>
 
 <?php foreach ($rows as $id => $row): ?>
   <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
