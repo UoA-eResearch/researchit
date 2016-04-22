@@ -51,13 +51,17 @@
 
     <div<?php print $content_attributes; ?>>
       <a class="element-invisible">Block content</a>
-      <div class="row">
+      <div class="row" style="height:200px">
         <div class="col s3">
           Research IT (RIT) provides research computing technologies, consulting and community for the University of Auckland. Our goal is to advance research through IT innovation.
         </div>
         <div class="col s6">
-          <div class="col s12">Search by lifecycle</div>
-          <div class="col s12">Search by categories</div>
+          <div class="col s12">
+            <span style="float:left; height:100px">Search by lifecycle</span>
+          </div>
+          <div class="col s12">
+            <span style="float:right; height:100px">Search by categories</span>
+          </div>
         </div>
         <div class="col s3">
           Projects
