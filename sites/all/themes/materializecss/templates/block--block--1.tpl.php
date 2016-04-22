@@ -57,13 +57,13 @@
         </div>
         <div class="col s6">
           <div class="col s12">
-            <div class="card-panel teal" style="float:left; height:100px">
+            <div class="card-panel amber lighten-4" style="float:left; height:100px">
               <span class="white-text">Search by lifecycle
               </span>
             </div>
           </div>
           <div class="col s12">
-            <div class="card-panel teal" style="float:right; height:100px">
+            <div class="card-panel amber lighten-4" style="float:right; height:100px">
               <span class="white-text">Search by categories
               </span>
             </div>
