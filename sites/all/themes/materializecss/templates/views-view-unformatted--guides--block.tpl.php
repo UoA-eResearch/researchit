@@ -7,6 +7,7 @@
  * @ingroup views_templates
  */
 ?>
+<!--
 <div class="row" style="margin-bottom:0px; padding-top:40px">
 	<div class="col s12">
     	<div class="card">
@@ -18,7 +19,7 @@
     	</div>
     </div>
 </div>
-
+-->
 <div class="row">
 	<?php foreach ($rows as $id => $row): ?>
      <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
