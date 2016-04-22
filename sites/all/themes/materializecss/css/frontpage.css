@@ -5,7 +5,7 @@
 }
 
 .view-research-lifecycle .row {
-	margin-bottom: 0px;	
+	margin-bottom: 0px;
 }
 
 div.col.research_lifecycle_stage {
@@ -34,6 +34,8 @@ section.main.container {
 .region-content section {
   padding-left: 15%;
   padding-right: 15%;
+  padding-top:30px;
+  padding-bottom:30px;
 }
 
 .region-content section:nth-child(odd) {
@@ -54,10 +56,10 @@ section.main.container {
 .triangle-down-inner {
     width: 0;
     height: 0;
-    
+
     margin-left:-500px;
     margin-top:-500px;
-    
+
     border-left: 500px solid transparent;
     border-right: 500px solid transparent;
 }
@@ -76,7 +78,7 @@ div.col.research_lifecycle_stage.Plan_Design {
 }
 
 .cards-container .card .collection {
-	overflow: visible;	
+	overflow: visible;
 }
 
 @media only screen and (max-width: 600px) {
@@ -114,5 +116,5 @@ body {
 }
 
 #block-views-research-lifecycle-block-1 .card {
-	margin-top: 0px;	
+	margin-top: 0px;
 }
