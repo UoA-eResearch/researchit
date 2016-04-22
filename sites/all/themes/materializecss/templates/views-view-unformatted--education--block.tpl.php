@@ -8,7 +8,7 @@
  */
 ?>
 
-<div class="row" style="margin-bottom:10px;">
+<div class="row" style="margin-bottom:15px;">
     <div class="col s12">
       <h5 style="color:rgb(124, 179, 66)">Education, Training and Events</h5>
         <!--<div class="card">
