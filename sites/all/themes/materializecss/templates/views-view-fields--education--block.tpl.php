@@ -30,7 +30,7 @@
         <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
     </div>
     <div class="card-content" style="padding-top:0px; padding-bottom:0px; color:white">
-      <span class="card-title"><?php echo $fields['title']->raw ?></span>
+      <span class="card-title" style="font-weight:400"><?php echo $fields['title']->raw ?></span>
       <p><?php echo $fields['field_summary']->content ?></p>
     </div>
     <div class="card-action" style="padding: 0px; width: 100%; font-size: 0; border-top:0px">
