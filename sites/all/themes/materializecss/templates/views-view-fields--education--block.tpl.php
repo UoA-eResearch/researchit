@@ -24,12 +24,12 @@
  * @ingroup views_templates
  */
 ?>
-<div class="col s12 m12 l4" >
-  <div class="card hoverable">
+<div class="col s12 m12 l3" >
+  <div class="card hoverable" style="height:200px">
     <div class="card-image white-text" style="max-height:10px">
         <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/light-green-darken1.jpg" alt="" height="10" width="400">
     </div>
-            <div class="card-content" style="padding-top:0px; padding-bottom:0px">
+    <div class="card-content" style="padding-top:0px; padding-bottom:0px">
       <ul class="collection" style="margin: 0px;">
             <li class='collection-item avatar'>
             <i class='material-icons circle green'>insert_chart</i>
