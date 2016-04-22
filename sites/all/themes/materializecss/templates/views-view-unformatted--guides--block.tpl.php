@@ -20,6 +20,8 @@
     </div>
 </div>
 -->
+<h5 style="float:left; margin-left:-14%; position:absolute; color:white; font-weight:400; margin-top:-20px">Guides</h5>
+
 <div class="row">
 	<?php foreach ($rows as $id => $row): ?>
      <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
