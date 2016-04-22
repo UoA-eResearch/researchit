@@ -21,6 +21,7 @@
     </div>
 </div>
 -->
+<span style="float:left">Service Categories</span>
 
 <?php foreach ($rows as $id => $row): ?>
   <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
