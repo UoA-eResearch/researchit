@@ -25,3 +25,5 @@
     <?php print $row; ?>
   </div>
 <?php endforeach; ?>
+
+<h5 style="float:right; margin-left:-14%; position:absolute; color:rgb(124, 179, 66); font-weight:400; margin-top:-20px">View All Guides</h5>
