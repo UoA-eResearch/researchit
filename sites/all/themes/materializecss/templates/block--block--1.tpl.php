@@ -54,8 +54,9 @@
       <div class="row" style="height:200px">
         <div class="col s3" style="font-size: 28px">
           <b>Discover</b>, <b>request</b> </br>
-          and <b>manage</b> services that</br>
-          support of your research
+          and <b>manage</b> services
+          that support </br>
+          your research
         </div>
         <div class="col s6">
           <div class="col s12">
