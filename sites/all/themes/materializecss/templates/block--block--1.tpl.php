@@ -53,18 +53,20 @@
       <a class="element-invisible">Block content</a>
       <div class="row" style="height:200px">
         <div class="col s3">
-          Research IT (RIT) provides research computing technologies, consulting and community for the University of Auckland. Our goal is to advance research through IT innovation.
+          Discover, request </br>
+          and manage services </br>
+          in support of your research
         </div>
         <div class="col s6">
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; height:100px; width: 70%">
-              <span class="valign"><h4>Search by lifecycle <i class="material-icons" style="font-size:1rem">info_outline</i></h4>
+              <span class="valign"><h5>Search by lifecycle <i class="material-icons" style="font-size:1rem">info_outline</i></h5>
               </span>
             </div>
           </div>
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; height:100px; width: 70%">
-              <span class="valign"><h4>Search by categories <i class="material-icons" style="font-size:1rem">info_outline</i></h4>
+              <span class="valign"><h5>Search by categories <i class="material-icons" style="font-size:1rem">info_outline</i></h5>
               </span>
             </div>
           </div>
