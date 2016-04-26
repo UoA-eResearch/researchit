@@ -19,11 +19,13 @@ foreach ($terms as $t) {
   $machine_name = str_replace(' ', '_', $machine_name);
   echo "<span class='lifecycle_selector $machine_name' style='display:inline-block;text-align:center;padding:15px;color:white;font-family:Roboto,sans-serif;font-size:20px;font-weight:normal;width:20%;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
 }
+echo "<div class='triangles'>";
 foreach ($terms as $t) {
   $machine_name = str_replace(' &', '', $t->name);
   $machine_name = str_replace(' ', '_', $machine_name);
   echo "<div class='triangle-down $machine_name'><div class='triangle-down-inner' style='border-top: 300px solid {$t->field_color['und'][0]['rgb']}'></div></div>";
 }
+echo "</div>";
 ?>
 <?php foreach ($rows as $id => $row): ?>
   <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
