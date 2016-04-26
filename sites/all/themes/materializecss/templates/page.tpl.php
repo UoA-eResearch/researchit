@@ -87,7 +87,7 @@
 ?>
 <div id="page">
   <nav class="main-nav" id="nav" role="navigation">
-    <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+    <a href="#" data-activates="slide-out" class="button-collapse show-on-large" style='margin-left:15px'><i class="mdi-navigation-menu"></i></a>
     <div class="nav-wrapper container">
       <?php if ($logo): ?>
         <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
