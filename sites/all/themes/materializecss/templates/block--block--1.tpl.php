@@ -52,16 +52,16 @@
     <div<?php print $content_attributes; ?>>
       <a class="element-invisible">Block content</a>
       <div class="row" style="height:200px">
-        <div class="col s3">
-          Discover, request </br>
-          and manage services </br>
-          in support of your research
+        <div class="col s3" style="font-size: 28px">
+          <b>Discover</b>, <b>request</b> </br>
+          and <b>manage</b> services that</br>
+          support of your research
         </div>
         <div class="col s6">
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; height:100px; width: 70%">
               <span class="valign">
-                <h5>Search by lifecycle <i class="material-icons" style="font-size:1rem">info_outline</i></h5>
+                <h5>Search by lifecycle <i class="material-icons">info_outline</i></h5>
                 <h7>Match research services against your research workflow</h7>
               </span>
             </div>
@@ -69,7 +69,7 @@
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; height:100px; width: 70%">
               <span class="valign" style="float:right">
-                <h5>Search by categories <i class="material-icons" style="font-size:1rem">info_outline</i></h5>
+                <h5>Search by categories <i class="material-icons">info_outline</i></h5>
                 <h7>Discover services by their purpose</h7>
               </span>
             </div>
