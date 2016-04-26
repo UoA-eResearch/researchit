@@ -80,8 +80,9 @@
         </div>
         <div class="col s3">
           <div class="card-panel amber lighten-3 valign-wrapper">
-            Projects
+            <h6>My Research Projects</h6>
             <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Create and Manage</a>
+            </br>
             <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Request Services</a>
           </div>
         </div>
