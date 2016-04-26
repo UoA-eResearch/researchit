@@ -51,7 +51,7 @@
 
     <div<?php print $content_attributes; ?>>
       <a class="element-invisible">Block content</a>
-      <div class="row">
+      <div class="row valign-wrapper">
         <div class="col s3 center-align" style="font-size: 28px">
           <b>Discover</b>, <b>request</b> </br>
           and <b>manage</b> services
@@ -60,16 +60,16 @@
         </div>
         <div class="col s6">
           <div class="col s12">
-            <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; width: 70%; padding-top:15px; padding-bottom:15px">
+            <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; width: 70%; padding-top:15px; padding-bottom:15px; margin-top:0px">
               <span class="valign">
                 <h5 style="margin-top:0px">Search by lifecycle <i class="material-icons">info_outline</i></h5>
                 <h7 style="font-weight:300">Match services against your research workflow</h7>
               </span>
             </div>
-            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/upArrow.png" alt="" height="100px" width="100px" style=""margin-left:10px>
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/upArrow.png" alt="" height="100px" width="100px" style=""margin-left:15px>
           </div>
           <div class="col s12">
-            <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; width: 70%; padding-top:15px; padding-bottom:15px">
+            <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; width: 70%; padding-top:15px; padding-bottom:15px; margin-bottom: 0px">
               <span class="valign right-align">
                 <h5 style="margin-top:0px">Search by categories <i class="material-icons">info_outline</i></h5>
                 <h7 style="font-weight:300">Discover services by their purpose</h7>
