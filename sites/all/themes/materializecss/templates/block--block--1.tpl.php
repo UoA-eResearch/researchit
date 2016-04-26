@@ -66,6 +66,7 @@
                 <h7 style="font-weight:300">Match services against your research workflow</h7>
               </span>
             </div>
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/upArrow.png" alt="" height="60px" width="60px">
           </div>
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; width: 70%; padding-top:15px; padding-bottom:15px">
@@ -74,6 +75,7 @@
                 <h7 style="font-weight:300">Discover services by their purpose</h7>
               </span>
             </div>
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/downArrow.png" alt="" height="60px" width="60px">
           </div>
         </div>
         <div class="col s3">
