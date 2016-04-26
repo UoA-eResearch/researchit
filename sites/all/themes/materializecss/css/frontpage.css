@@ -75,6 +75,15 @@ section.main.container {
   color:purple;
 }
 
+.region-content section#block-views-policies-block {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
 .region-content section:nth-child(odd) {
   background: #f4f4f4;
 }
