@@ -86,7 +86,8 @@
  $primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title'=>'Search', '#href'=>'search', '#below' => '', '#attributes' => array('class' => 'search_button'));
 ?>
 <div id="page">
-  <nav class="main-nav z-depth-3" id="nav" role="navigation">
+  <nav class="main-nav" id="nav" role="navigation">
+    <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
     <div class="nav-wrapper container">
       <?php if ($logo): ?>
         <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -113,7 +114,7 @@
   <div class="row page grid container">
     <?php if (user_is_logged_in()): ?>
       <!--<a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>-->
-      <aside id="sidebar">
+      <ul id='slide-out' class='side-nav'>
         <a href='/projects/'>Project Dashboard</a><br>
         <a href='/projects/create'>Create a new project</a><br>
         Your projects:<br>
@@ -150,7 +151,7 @@
             }
           ?>
         </div>
-      </aside>
+      </ul>
     <?php endif; ?>
     
     <?php if (!empty($page['sidebar_first'])): ?>

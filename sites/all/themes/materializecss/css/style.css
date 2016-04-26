@@ -132,6 +132,7 @@ nav .brand-logo {
   height: 75px; /*100px;*/
   z-index: 1000;
   position: relative;
+  box-shadow: none;
 }
 
 nav div.right {

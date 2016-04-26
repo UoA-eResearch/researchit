@@ -22,7 +22,7 @@
       });
     }
   };
-  //$(".button-collapse").sideNav({menuWidth: 500, closeOnClick: false});
+  $(".button-collapse").sideNav({menuWidth: 280, closeOnClick: false});
   $('.modal-trigger').leanModal();
   $('#request_service_form_submit').click(function( event ) {
     var email = $('#request_service_form').attr('contact');
