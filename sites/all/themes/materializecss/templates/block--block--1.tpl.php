@@ -81,7 +81,7 @@
         <div class="col s3">
           <div class="card-panel amber lighten-3">
             <h5>My Research Projects</h5>
-            <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>View</a>
+            <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>View Projects</a>
             </br> 
             <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Request Services</a>
           </div>
