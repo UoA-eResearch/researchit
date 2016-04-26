@@ -47,8 +47,8 @@ section.main.container {
 }
 
 .region-content section#block-views-category-taxonomy-block-1 {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 70px;
+  padding-bottom: 70px;
   background-color: rgba(31, 93, 141, 0.8);
 }
 
@@ -59,9 +59,10 @@ section.main.container {
 
 .region-content section#block-views-education-block {
   padding-top: 10px;
-  padding-bottom: 55px;
+  padding-bottom: 75px;
   padding-left: 10px;
   padding-right: 10px;
+  background-color: white;
 }
 
 .region-content section#block-views-guides-block {
