@@ -80,10 +80,10 @@
         </div>
         <div class="col s3">
           <div class="card-panel amber lighten-2">
-            <h5>My Research Projects</h5>
-            <a class="waves-effect waves-light btn"><i class="material-icons left">view_module</i>View Projects</a>
+            <h5 class="center-align">My Research Projects</h5>
+            <a class="waves-effect waves-light btn center-align"><i class="material-icons left">view_module</i>View Projects</a>
             <br> </br>
-            <a class="waves-effect waves-light btn"><i class="material-icons left">playlist_add</i>Request Services</a>
+            <a class="waves-effect waves-light btn center-align"><i class="material-icons left">playlist_add</i>Request Services</a>
           </div>
         </div>
       </div>
