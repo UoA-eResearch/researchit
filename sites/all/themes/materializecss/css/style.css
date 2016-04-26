@@ -130,7 +130,7 @@ nav .brand-logo {
 .main-nav {
   background-color:#01457C;
   height: 75px; /*100px;*/
-  z-index: 1000;
+  z-index: 500;
   position: relative;
   box-shadow: none;
 }
@@ -156,6 +156,10 @@ nav .hide-on-med-and-down ul li, nav .hide-on-med-and-down ul li a, nav .hide-on
   padding-top: 120px;
   overflow-x: hidden;
   z-index: 1;
+}
+
+#sidenav-overlay {
+  display: none;
 }
 
 .searchBox {
