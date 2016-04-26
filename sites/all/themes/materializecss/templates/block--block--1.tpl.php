@@ -60,18 +60,18 @@
         </div>
         <div class="col s6">
           <div class="col s12">
-            <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; height:100px; width: 70%; padding-top:0px; padding-bottom:0px">
+            <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; width: 70%; padding-top:15px; padding-bottom:15px">
               <span class="valign">
                 <h5 style="margin-top:0px">Search by lifecycle <i class="material-icons">info_outline</i></h5>
-                <h7>Match services against your research workflow</h7>
+                <h7 style="font-weight:300">Match services against your research workflow</h7>
               </span>
             </div>
           </div>
           <div class="col s12">
-            <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; height:100px; width: 70%; padding-top:0px; padding-bottom:0px">
-              <span class="valign" style="float:right">
+            <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; width: 70%; padding-top:15px; padding-bottom:15px">
+              <span class="valign right-align">
                 <h5 style="margin-top:0px">Search by categories <i class="material-icons">info_outline</i></h5>
-                <h7>Discover services by their purpose</h7>
+                <h7 style="font-weight:300">Discover services by their purpose</h7>
               </span>
             </div>
           </div>
