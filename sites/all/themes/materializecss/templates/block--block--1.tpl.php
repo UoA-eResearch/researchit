@@ -52,7 +52,7 @@
     <div<?php print $content_attributes; ?>>
       <a class="element-invisible">Block content</a>
       <div class="row" style="height:200px">
-        <div class="col s3" style="font-size: 28px">
+        <div class="col s3 center-align" style="font-size: 28px">
           <b>Discover</b>, <b>request</b> </br>
           and <b>manage</b> services
           that support </br>
