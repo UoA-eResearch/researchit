@@ -26,4 +26,4 @@
   </div>
 <?php endforeach; ?>
 
-<h5 style="float:right; margin-left:85%; position:absolute; color:rgb(124, 179, 66); font-weight:200; margin-top:250px">View All Guides <i class="small material-icons">info_outline</i></h5>
+<h6 style="float:right; margin-left:85%; position:absolute; color:rgb(124, 179, 66); font-weight:200; margin-top:250px">View All Guides <i class="small material-icons">info_outline</i></h6>
