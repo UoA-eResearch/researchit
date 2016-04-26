@@ -26,13 +26,12 @@
 ?>
 
 <div class="col s12 m12 l3" >
-  <div class="card hoverable small" style="height:250px">
-    <div class="card-image white-text" style="max-height:10px">
+  <div class="card hoverable small" style="height:150px">
+    <div class="card-image white-text" style="max-height:10px; background-color: rgb(255,179,0);">
         <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/amber-darken1.jpg" alt="" height="10" width="400">
     </div>
-    <div class="card-content" style="padding-top:0px; padding-bottom:0px">
+    <div class="card-content" style="padding-top:0px; padding-bottom:0px color:white">
       <span class="card-title" style="font-weight:400"><?php echo $fields['name']->content ?></span>
-      <p>Might be useful?</p>
     </div>
     <div class="card-action" style="padding: 0px; width: 100%; font-size: 0; border-top:0px">
       <span style="display:inline-block; vertical-align: bottom; text-align:center; width:20%; background-color: rgb(142,36,170); height: 5px"></span>
