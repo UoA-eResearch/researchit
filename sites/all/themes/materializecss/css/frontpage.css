@@ -79,13 +79,21 @@ section.main.container {
   background: #f4f4f4;
 }
 
+.triangles {
+  position: absolute;
+  left: 0;
+  padding-left: 21.4%;
+  padding-right: 21.4%;
+  z-index: 2;
+}
+
 .triangle-down {
-    width: 20%;
     visibility: hidden;
-    display: inline-block;
     overflow: hidden;
+    display: inline-block;
+    width: 20%;
     padding-left: 10%;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 .triangle-down.Plan_Design {
   visibility: visible;
@@ -93,10 +101,8 @@ section.main.container {
 .triangle-down-inner {
     width: 0;
     height: 0;
-
     margin-left:-500px;
-    margin-top:-500px;
-
+    margin-top:-300px;
     border-left: 500px solid transparent;
     border-right: 500px solid transparent;
 }

@@ -5,6 +5,12 @@
 footer.page-footer {
   background-color: #01457C;
   height: 200px;
+  position: relative;
+  z-index: 1000;
+}
+
+.page {
+  min-height: 800px;
 }
 
 .card .collection {
@@ -124,6 +130,9 @@ nav .brand-logo {
 .main-nav {
   background-color:#01457C;
   height: 75px; /*100px;*/
+  z-index: 500;
+  position: relative;
+  box-shadow: none;
 }
 
 nav div.right {
@@ -136,21 +145,21 @@ nav .hide-on-med-and-down ul li, nav .hide-on-med-and-down ul li a, nav .hide-on
   line-height: 50px;
 }
 
-.side-nav a {
-  font-size: 12px;
+#sidebar {
+  position: fixed;
+  background: white;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  width: 14%;
+  height: 100%;
+  padding-top: 120px;
+  overflow-x: hidden;
+  z-index: 1;
 }
 
-.side-nav {
-  padding-top: 50px;
-}
-
-.side-nav a.project {
-  height: 0px;
-  line-height: 1.5;
-}
-
-.side-nav a.project .card-title {
-  line-height: 1.5;
+#sidenav-overlay {
+  display: none;
 }
 
 .searchBox {

@@ -22,7 +22,13 @@
       });
     }
   };
-  $(".button-collapse").sideNav({menuWidth: 500, closeOnClick: false});
+  $(".button-collapse").sideNav({menuWidth: 280, closeOnClick: false});
+  if (window.location.pathname.indexOf('projects')>=0) {
+    $('.button-collapse').sideNav('show');
+  }
+  $('.button-collapse').click(function() {
+    $('body').css('overflow', 'auto');
+  });
   $('.modal-trigger').leanModal();
   $('#request_service_form_submit').click(function( event ) {
     var email = $('#request_service_form').attr('contact');

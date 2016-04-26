@@ -75,7 +75,7 @@
  if (user_is_logged_in()) {
    global $user;
    $text = 'Logged in as ' . $user->name;
-   $href = '#';
+   $href = '/projects';
    $class = array('username', 'logged_in');
  } else {
    $text = 'Login';
@@ -86,13 +86,38 @@
  $primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title'=>'Search', '#href'=>'search', '#below' => '', '#attributes' => array('class' => 'search_button'));
 ?>
 <div id="page">
-  <nav class="main-nav z-depth-3" id="nav" role="navigation">
-      <?php if (user_is_logged_in()): ?>
-        <a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>
-        <ul class="side-nav" id="sidebar">
-          <a href='/projects/'>Project Dashboard</a>
-          <a href='/projects/create'>Create a new project</a>
-          <a href='#'>Your projects:</a>
+  <nav class="main-nav" id="nav" role="navigation">
+    <a href="#" data-activates="slide-out" class="button-collapse show-on-large" style='margin-left:15px'><i class="mdi-navigation-menu"></i></a>
+    <div class="nav-wrapper container">
+      <?php if ($logo): ?>
+        <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+        </a>
+      <?php endif; ?>
+      <?php if (!empty($primary_nav)): ?>
+        <div class="right">
+          <?php print render($primary_nav); ?>
+        </div>
+      <?php endif; ?>
+    </div>
+  </nav>
+  <?php if (!empty($page['header'])): ?>
+    <div class="top">
+      <?php print render($page['header']); ?>
+    </div>
+  <?php endif; ?><!-- /.header  -->
+  
+  <div class="row searchBox">
+    <?php print drupal_render(drupal_get_form('search_block_form')); ?>
+  </div>
+
+  <div class="row page grid container">
+      <!--<a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>-->
+      <ul id='slide-out' class='side-nav'>
+        <?php if (user_is_logged_in()): ?>
+          <a href='/projects/'>Project Dashboard</a><br>
+          <a href='/projects/create'>Create a new project</a><br>
+          Your projects:<br>
           <div class='row'>
             <?php
               if (!empty($user->data['projectdb_info']->projects)) {
@@ -100,7 +125,7 @@
                 foreach ($user->data['projectdb_info']->projects as $i => $p) {
                   $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
                   if ($p->statusName != $lastStatus) {
-                    echo "<a href='#' style='display:inline-block'>Projects with status: {$p->statusName}</a>";
+                    echo "<div class='col s12'>Projects with status: {$p->statusName}</div>";
                     $lastStatus = $p->statusName;
                   }
                   if (in_array($p->statusId, array(1,2,6))) {
@@ -126,32 +151,11 @@
               }
             ?>
           </div>
-        </ul>
-      <?php endif; ?>
-    <div class="nav-wrapper container">
-      <?php if ($logo): ?>
-        <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
-      <?php endif; ?>
-      <?php if (!empty($primary_nav)): ?>
-        <div class="right">
-          <?php print render($primary_nav); ?>
-        </div>
-      <?php endif; ?>
-    </div>
-  </nav>
-  <?php if (!empty($page['header'])): ?>
-    <div class="top">
-      <?php print render($page['header']); ?>
-    </div>
-  <?php endif; ?><!-- /.header  -->
-  
-  <div class="row searchBox">
-    <?php print drupal_render(drupal_get_form('search_block_form')); ?>
-  </div>
-
-  <div class="row page grid container">
+        <?php else: ?>
+          You're not logged in. If you were, you'd be able to see your projects here.
+        <?php endif; ?>
+      </ul>
+    
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside class="<?php print $sidebar_left; ?> sidebar-first" role="complementary">
         <?php print render($page['sidebar_first']); ?>
