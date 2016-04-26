@@ -29,3 +29,5 @@
      </div>
     <?php endforeach; ?>
 </div>
+
+<h6 style="float:right; margin-left:85%; position:absolute; color:rgb(124, 179, 66); font-weight:300; margin-top:250px">View All Guides <i class="material-icons" style="font-size:1rem">info_outline</i></h6>
