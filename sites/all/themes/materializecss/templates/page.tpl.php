@@ -112,47 +112,49 @@
   </div>
 
   <div class="row page grid container">
-    <?php if (user_is_logged_in()): ?>
       <!--<a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>-->
       <ul id='slide-out' class='side-nav'>
-        <a href='/projects/'>Project Dashboard</a><br>
-        <a href='/projects/create'>Create a new project</a><br>
-        Your projects:<br>
-        <div class='row'>
-          <?php
-            if (!empty($user->data['projectdb_info']->projects)) {
-              $lastStatus = '';
-              foreach ($user->data['projectdb_info']->projects as $i => $p) {
-                $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
-                if ($p->statusName != $lastStatus) {
-                  echo "<div class='col s12'>Projects with status: {$p->statusName}</div>";
-                  $lastStatus = $p->statusName;
-                }
-                if (in_array($p->statusId, array(1,2,6))) {
-                  $color = '#43a047';
-                } else if (in_array($p->statusId, array(4,10))) {
-                  $color = '#e53935';
-                } else {
-                  $color = '#1e88e5';
-                }
-                echo "<a href='/projects/{$p->projectCode}' class='project'>
-                        <div class='col s12'>
-                          <div class='card hoverable'>
-                            <div class='header' style='height:10px;background-color:$color'>
-                            </div>
-                            <div class='card-content'>
-                              <span class='card-title'>{$p->projectCode}: {$p->name}</span>
-                              <p>$desc</p>
+        <?php if (user_is_logged_in()): ?>
+          <a href='/projects/'>Project Dashboard</a><br>
+          <a href='/projects/create'>Create a new project</a><br>
+          Your projects:<br>
+          <div class='row'>
+            <?php
+              if (!empty($user->data['projectdb_info']->projects)) {
+                $lastStatus = '';
+                foreach ($user->data['projectdb_info']->projects as $i => $p) {
+                  $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
+                  if ($p->statusName != $lastStatus) {
+                    echo "<div class='col s12'>Projects with status: {$p->statusName}</div>";
+                    $lastStatus = $p->statusName;
+                  }
+                  if (in_array($p->statusId, array(1,2,6))) {
+                    $color = '#43a047';
+                  } else if (in_array($p->statusId, array(4,10))) {
+                    $color = '#e53935';
+                  } else {
+                    $color = '#1e88e5';
+                  }
+                  echo "<a href='/projects/{$p->projectCode}' class='project'>
+                          <div class='col s12'>
+                            <div class='card hoverable'>
+                              <div class='header' style='height:10px;background-color:$color'>
+                              </div>
+                              <div class='card-content'>
+                                <span class='card-title'>{$p->projectCode}: {$p->name}</span>
+                                <p>$desc</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>";
+                        </a>";
+                }
               }
-            }
-          ?>
-        </div>
+            ?>
+          </div>
+        <?php else: ?>
+          You're not logged in. If you were, you'd be able to see your projects here.
+        <?php endif; ?>
       </ul>
-    <?php endif; ?>
     
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside class="<?php print $sidebar_left; ?> sidebar-first" role="complementary">
