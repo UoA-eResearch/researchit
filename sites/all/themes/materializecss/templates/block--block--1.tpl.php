@@ -79,7 +79,9 @@
           </div>
         </div>
         <div class="col s3">
-          Projects
+          <div class="card-panel amber lighten-3 valign-wrapper">
+            Projects
+          </div>
         </div>
       </div>
 
