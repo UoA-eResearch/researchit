@@ -62,7 +62,7 @@
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; height:100px; width: 70%">
               <span class="valign">
                 <h5>Search by lifecycle <i class="material-icons">info_outline</i></h5>
-                <h7>Match research services against your research workflow</h7>
+                <h7>Match services against your research workflow</h7>
               </span>
             </div>
           </div>
