@@ -58,13 +58,13 @@
         <div class="col s6">
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; height:100px; width: 70%">
-              <span class="valign">Search by lifecycle
+              <span class="valign"><h4>Search by lifecycle <i class="material-icons" style="font-size:1rem">info_outline</i></h4>
               </span>
             </div>
           </div>
           <div class="col s12">
             <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; height:100px; width: 70%">
-              <span class="valign">Search by categories
+              <span class="valign"><h4>Search by categories <i class="material-icons" style="font-size:1rem">info_outline</i></h4>
               </span>
             </div>
           </div>
