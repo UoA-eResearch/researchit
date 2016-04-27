@@ -82,7 +82,7 @@
               <ul class="collection">
                   <li class="collection-item avatar">
                     <i class="large material-icons circle amber">thumbs_up_down</i>
-                    <span class="title"><?php 
+                    <span class="title"><?php
                     if (!empty($content['field_chooser'])) {
                       print render($content['field_chooser']);
                     } else {
@@ -90,7 +90,7 @@
                     }
                     ?></span>
                     <p>Which <?php print $term_name ?> service is right for me? <br>
-                        
+
                     </p>
                   </li>
               </ul>
@@ -101,17 +101,22 @@
       <br />
       <hr />
       <br />
+
       <h4><?php print $term_name ?> Services/Guides</h4>
     <div class='row'>
       <?php
       $vocab = taxonomy_vocabulary_machine_name_load('research_life_cycle');
       $terms = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
-      echo "<div class='row'><span class='col s2' style='padding:15px'>Name</span>";
+
+      echo "<div class='row'>";
+      echo  "<span class='col s6' style='padding:15px'>Name</span>";
+      echo  "<span class='col s6'> <div class='row'>";
       foreach ($terms as $t) {
-        echo "<span class='col s2' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
+        echo "  <span class='col s2' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
       }
+      echo '  </div>';
       echo '</div>';
-      
+
       $tids = taxonomy_select_nodes($term->tid);
       $nodes = array();
       foreach ($tids as $tid) {
@@ -120,7 +125,7 @@
       usort($nodes, function($a, $b) {
         return $a->type < $b->type;
       });
-      
+
       $lastType = '';
       
       foreach ($nodes as $node) {
