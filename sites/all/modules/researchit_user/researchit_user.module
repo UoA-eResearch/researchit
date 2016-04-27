@@ -119,6 +119,7 @@ function researchit_user_projects($projectCode = '') {
     return "";
   }
   $project_wrapper = rest_request("projects/" . $projectCode);
+  $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
   drupal_set_title($project_wrapper->project->name);
   $variables = array(
     'pw' => $project_wrapper,
