@@ -33,11 +33,11 @@
 
     <ul class="collection" style="border:0px">
       <li class="collection-header"><h5>Researchers on project</h5></li>
-      <?php foreach ($pw->rpLinks as $r): ?>
+      <?php foreach ($pw->researchOutputs as $r): ?>
       <li class="collection-item avatar">
         <i class="material-icons circle blue">perm_identity</i>
-        <span class="title"><?php echo $r->researcher->fullName ?></span>
-        <p><?php echo $r->researcherRoleName ?></p>
+        <span class="title"><?php echo $r->type ?></span>
+        <p><?php echo $r->description ?></p>
         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
       </li>
       <?php endforeach; ?>
