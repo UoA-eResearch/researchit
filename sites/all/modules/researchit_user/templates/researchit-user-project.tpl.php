@@ -43,8 +43,7 @@
          }; ?>
 
         <span class="title"><?php echo $r->researcher->fullName ?></span>
-        <p><?php echo $r->researcherRoleName ?></p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        <p style="font-weight:300"><?php echo $r->researcherRoleName ?></p>
       </li>
       <?php endforeach; ?>
     </ul>
@@ -56,8 +55,7 @@
       <li class="collection-item avatar">
         <i class="material-icons circle green">thumb_up</i>
         <span class="title"><?php echo $r->type ?></span>
-        <p><?php echo $r->description ?></p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        <p style="font-weight:300; font-style: italic"><?php echo $r->description ?></p>
       </li>
 
       <?php endforeach; ?>
