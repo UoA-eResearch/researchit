@@ -41,7 +41,7 @@ function researchit_user_user_login() {
   global $user;
   if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
   $token = $_SERVER['auEduPersonSharedToken'];
-  if ($token == 'kGD3LK4S0r323WRQuiA_gKJi8zw' || $token == 'rgkEhlRdAommwY311bAyAJcaOEQ') $token = 'VMu6uT-7WucYcdNE8ZjvkQ1TXl0'; // Nick/Richard = John Cater
+  if ($token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') $token = 'VMu6uT-7WucYcdNE8ZjvkQ1TXl0'; // Nick = John Cater
   
   $researcher = rest_request('researchers/tuakiri', 'POST', $token);
   if (!isset($researcher->message)) {
