@@ -41,8 +41,8 @@ function researchit_user_user_login() {
   global $user;
   if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
   $token = $_SERVER['auEduPersonSharedToken'];
-  if ($token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') $token = 'VMu6uT-7WucYcdNE8ZjvkQ1TXl0'; // Nick = John Cater
-
+  if ($token == 'kGD3LK4S0r323WRQuiA_gKJi8zw' || $token == 'rgkEhlRdAommwY311bAyAJcaOEQ') $token = 'VMu6uT-7WucYcdNE8ZjvkQ1TXl0'; // Nick/Richard = John Cater
+  
   $researcher = rest_request('researchers/tuakiri', 'POST', $token);
   if (!isset($researcher->message)) {
     $id = $researcher->id;
@@ -55,14 +55,14 @@ function researchit_user_user_login() {
       }
     });
   }
-
+  
   $cn = escapeshellarg($_SERVER['uid']);
   $ldapInfo = `ldapsearch -H ldaps://uoa.auckland.ac.nz -D svc-uoaldap -w '$0m(4U!3i3C8' -b 'dc=uoa,dc=auckland,dc=ac,dc=nz' '(cn=$cn)'`;
   $ldapInfo = str_replace("\n ", "", $ldapInfo);
   $ldapInfo = explode("\n", $ldapInfo);
   $ldapGroups = array();
   $ldapAttributes = array();
-
+  
   foreach ($ldapInfo as $line) {
     if (strpos($line, 'memberOf: CN=') === 0) {
       $matches = array();
@@ -74,10 +74,10 @@ function researchit_user_user_login() {
       $ldapAttributes[$name] = $bits[1];
     }
   }
-
+  
   user_save($user, array('data' => array('projectdb_info' => $researcher, 'ldap_groups' => $ldapGroups, 'ldap_attributes' => $ldapAttributes)));
-  //dpm($_SERVER);
-  //dpm($user);
+  dpm($_SERVER);
+  dpm($user);
   print theme('status_messages');
 }
 
