@@ -145,10 +145,10 @@
                   } else {
                     $color = '#1e88e5';
                   }
-                  echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar'>
+                  echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar' style='min-height: 100px'>
                           <i class='material-icons circle' style='background-color: $color !important'>settings</i>
-                          <span class='title'>{$p->name}</span>
-                          <p style='font-weight:300'>{$p->projectCode} </br>
+                          <span class='title' style='color: $color'>{$p->name}</span>
+                          <p style='font-weight:300; color:black'>{$p->projectCode} </br>
                             <span style='font-style: italic;'>$desc</span>
                           </p>
                         </a>";
