@@ -136,7 +136,7 @@
                 $color = 'rgba(229, 57, 53, 0.6)';
                 $textColour = 'white';
               } else {
-                $color = 'rgba(229, 57, 53, 0)';
+                $color = 'rgba(229, 57, 53, 0.1)';
                 $textColour = 'red';
               }
               $count = $count + 1;
