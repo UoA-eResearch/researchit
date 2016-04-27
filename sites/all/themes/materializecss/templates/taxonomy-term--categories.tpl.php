@@ -127,12 +127,17 @@
       });
 
       $lastType = '';
-
+      $count = 0;
       foreach ($nodes as $node) {
               $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
               $link = url('node/'.$node->nid);
               $more_info = str_replace($node->title, 'More info', $link);
-              $color = '#e53935';
+              if (count % 2 == 0){
+                $color = 'rgba(229, 57, 53, 0.1)';
+              } else {
+                $color = 'rgba(229, 57, 53, 0)';
+              }
+
               if ($node->type == 'guide') {
                 $color = '#8e24aa';
               }
