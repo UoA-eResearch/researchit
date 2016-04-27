@@ -1,6 +1,25 @@
-<h4><?php echo $pw->project->name ?></h4>
+<div class="row">
+  <h4><?php echo $pw->project->name ?></h4>
+</div>
 
-<div class='editable' id='project_description' data-type="wysihtml5" data-pk="Project" data-name="Description" data-title="Description"><?php echo strip_tags($pw->project->description) ?></div>
+<div class="row">
+  <div class="col s8">
+    <div class='editable' id='project_description' data-type="wysihtml5" data-pk="Project" data-name="Description" data-title="Description"><?php echo strip_tags($pw->project->description) ?></div>
+  </div>
+  <div class="col s4">
+    <h5>Researchers on project</h4>
+    <ul class="collection">
+      <?php foreach ($pw->rpLinks as $r): ?>
+      <li class="collection-item avatar">
+        <i class="material-icons circle">folder</i>
+        <span class="title"><?php echo $r->researcher->fullName ?></span>
+        <p><?php echo $r->researcherRoleName ?></p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+</div>
 
 <table class="project_main">
   <tr>
@@ -20,15 +39,3 @@
     <td><?php echo $pw->project->endDate ?></td>
   </tr>
 </table>
-
-<h4>Researchers on project</h4>
-<ul class="collection">
-  <?php foreach ($pw->rpLinks as $r): ?>
-  <li class="collection-item avatar">
-    <i class="material-icons circle">folder</i>
-    <span class="title"><?php echo $r->researcher->fullName ?></span>
-    <p><?php echo $r->researcherRoleName ?></p>
-    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-  </li>
-  <?php endforeach; ?>
-</ul>
