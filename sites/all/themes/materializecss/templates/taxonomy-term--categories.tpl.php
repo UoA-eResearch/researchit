@@ -163,9 +163,9 @@
               }
               foreach ($terms as $t) {
                 if (in_array($t->tid, $stages)) {
-                  echo "<span class='col s2' style='height:74px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
+                  echo "<span class='col s2' style='border-right: 1px dotted black; height:74px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
                 } else {
-                  echo "<span class='col s2' style='height:74px; padding:15px; background-color:$color;'></span>";
+                  echo "<span class='col s2' style='border-right: 1px dotted black; height:74px; padding:15px; background-color:$color;'></span>";
                 }
               }
               print "</div>";
