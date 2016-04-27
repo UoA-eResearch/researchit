@@ -1,10 +1,8 @@
 <h4><?php echo $pw->project->name ?></h4>
 
+<div class='editable' id='project_description' data-type="wysihtml5" data-pk="Project" data-name="Description" data-title="Description"><?php echo strip_tags($pw->project->description) ?></div>
+
 <table class="project_main">
-  <tr>
-    <td>Description:</td>
-    <td><div class='editable' id='project_description' data-type="wysihtml5" data-pk="Project" data-name="Description" data-title="Description"><?php echo strip_tags($pw->project->description) ?></div></td>
-  </tr>
   <tr>
     <td>Code:</td>
     <td><?php echo $pw->project->projectCode ?></td>
