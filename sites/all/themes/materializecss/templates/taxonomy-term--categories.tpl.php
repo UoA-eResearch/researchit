@@ -133,9 +133,11 @@
               $link = url('node/'.$node->nid);
               $more_info = str_replace($node->title, 'More info', $link);
               if ($count % 2 == 0){
-                $color = 'rgba(229, 57, 53, 0.5)';
+                $color = 'rgba(229, 57, 53, 0.6)';
+                $textColour = 'white';
               } else {
                 $color = 'rgba(229, 57, 53, 0)';
+                $textColour = 'red';
               }
               $count = $count + 1;
 
@@ -148,7 +150,7 @@
               }
               print "<div class='row' style='margin-bottom: 0px;'>
                       <a href='$link'>
-                        <span class='title col s6' style='height:74px;background-color:$color;padding:15px;color:white'>
+                        <span class='title col s6' style='height:74px;background-color:$color;padding:15px;color:$textColour'>
                           {$node->title}
                         </span>
                       </a>";
@@ -163,7 +165,7 @@
                 if (in_array($t->tid, $stages)) {
                   echo "<span class='col s2' style='height:74px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
                 } else {
-                  echo "<span class='col s2' style='padding:15px; background-color:$color;'></span>";
+                  echo "<span class='col s2' style='height:74px; padding:15px; background-color:$color;'></span>";
                 }
               }
               print "</div>";
