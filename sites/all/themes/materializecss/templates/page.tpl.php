@@ -129,7 +129,7 @@
               if (!empty($user->data['projectdb_info']->projects)) {
                 $lastStatus = '';
 
-                echo "<ul class='collection'>";
+                echo "<div class='collection'>";
                 echo "<li class='collection-header'><h5>My Projects</h5></li>";
 
                 foreach ($user->data['projectdb_info']->projects as $i => $p) {
@@ -145,17 +145,16 @@
                   } else {
                     $color = '#1e88e5';
                   }
-                  echo "<li class='collection-item avatar'>
+                  echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar'>
                           <i class='material-icons circle' style='background-color: $color !important'>settings</i>
                           <span class='title'>{$p->name}</span>
                           <p style='font-weight:300'>{$p->projectCode} </br>
                             <span style='font-style: italic;'>$desc</span>
                           </p>
-                          <a href='/projects/{$p->projectCode}' class='secondary-content'><i class='material-icons'>grade</i></a>
-                        </li>";
+                        </a>";
                 }
               }
-              echo "</ul>";
+              echo "</div>";
             ?>
           </div>
 
