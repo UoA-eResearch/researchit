@@ -101,31 +101,46 @@
       <br />
       <hr />
       <br />
-      <h4><?php print $term_name ?> Services</h4>
+      <h4><?php print $term_name ?> Services/Guides</h4>
     <div class='row'>
-      <?php foreach (taxonomy_select_nodes($term->tid) as $i => $nid) {
+      <?php
+      $vocab = taxonomy_vocabulary_machine_name_load('research_life_cycle');
+      $terms = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
+      echo "<div class='row'><span class='col s2' style='padding:15px'>Name</span>";
+      foreach ($terms as $t) {
+        echo "<span class='col s2' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
+      }
+      echo '</div>';
+      
+      foreach (taxonomy_select_nodes($term->tid) as $i => $nid) {
               $node = node_load($nid);
               $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
-              $link = l($node->title, 'node/'.$nid);
+              $link = url('node/'.$nid);
               $more_info = str_replace($node->title, 'More info', $link);
-              $color = 'red-darken1';
+              $color = '#e53935';
               if ($node->type == 'guide') {
-                $color = 'deep-purple-darken1';
+                $color = '#8e24aa';
               }
-              print "<div class='col s3'>
-                      <div class='card small'>
-                        <div class='card-image white-text'>
-                            <img src='/sites/default/files/$color.jpg' height='80' width='400'>
-                            <span class='card-title' style='padding-bottom:10px'>$link</span>
-                        </div>
-                        <div class='card-content'>
-                          $desc
-                        </div>
-                        <div class='card-action'>
-                          $more_info
-                        </div>
-                      </div>
-                    </div>";
+              print "<div class='row'>
+                      <a href='$link'>
+                        <span class='title col s2' style='background-color:$color;padding:15px;color:white'>
+                          {$node->title}
+                        </span>
+                      </a>";
+              $stages = array();
+              if (!empty($node->field_research_lifecycle_stage['und'])) {
+                foreach ($node->field_research_lifecycle_stage['und'] as $tidWrapper) {
+                  $stages[] = $tidWrapper['tid'];
+                }
+              }
+              foreach ($terms as $t) {
+                if (in_array($t->tid, $stages)) {
+                  echo "<span class='col s2' style='height:52px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
+                } else {
+                  echo "<span class='col s2' style='padding:15px;'></span>";
+                }
+              }
+              print "</div>";
             }
       ?>
     </div>
