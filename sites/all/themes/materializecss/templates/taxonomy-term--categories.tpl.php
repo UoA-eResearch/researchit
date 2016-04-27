@@ -137,6 +137,7 @@
               } else {
                 $color = 'rgba(229, 57, 53, 0)';
               }
+              $count = $count + 1;
 
               if ($node->type == 'guide') {
                 $color = '#8e24aa';
