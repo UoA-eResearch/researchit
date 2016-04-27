@@ -33,7 +33,7 @@
     <th>Name</th>
     <th>Role on project</th>
   </tr>
-  <?php foreach ($pw->rpLinks as $r): dpm($r); ?>
+  <?php foreach ($pw->rpLinks as $r): ?>
   <tr>
     <td><?php echo $r->researcher->fullName ?></td>
     <td><?php echo $r->researcherRoleName ?></td>
