@@ -22,15 +22,13 @@
 </table>
 
 <h4>Researchers on project</h4>
-<table class="researchers">
-  <tr>
-    <th>Name</th>
-    <th>Role on project</th>
-  </tr>
+<ul class="collection">
   <?php foreach ($pw->rpLinks as $r): ?>
-  <tr>
-    <td><?php echo $r->researcher->fullName ?></td>
-    <td><?php echo $r->researcherRoleName ?></td>
-  </tr>
+  <li class="collection-item avatar">
+    <i class="material-icons circle">folder</i>
+    <span class="title"><?php echo $r->researcher->fullName ?></span>
+    <p><?php echo $r->researcherRoleName ?></p>
+    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+  </li>
   <?php endforeach; ?>
-</table>
+</ul>
