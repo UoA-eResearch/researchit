@@ -109,12 +109,12 @@
       $terms = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
 
       echo "<div class='row'>";
-      echo  "<span class='col s6' style='padding:15px'>Name</span>";
-      echo  "<span class='col s6'> <div class='row'>";
+      echo  "<span class='col s7' style='padding:15px'>Name</span>";
+      //echo  "<span class='col s6'> <div class='row'>";
       foreach ($terms as $t) {
-        echo "  <span class='col s2' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
+        echo "  <span class='col s1' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
       }
-      echo '  </div>';
+      //echo '  </div>';
       echo '</div>';
 
       $tids = taxonomy_select_nodes($term->tid);
@@ -127,7 +127,7 @@
       });
 
       $lastType = '';
-      
+
       foreach ($nodes as $node) {
               $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
               $link = url('node/'.$node->nid);
