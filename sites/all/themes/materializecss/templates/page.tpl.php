@@ -121,13 +121,13 @@
 
           <a href='/projects/'>Project Dashboard</a><br>
           <a href='/projects/create'>Create a new project</a><br>
-          Your projects:<br>
           <div class='row'>
             <?php
               if (!empty($user->data['projectdb_info']->projects)) {
                 $lastStatus = '';
 
                 echo "<ul class='collection'>";
+                echo "<li class='collection-header'><h6>Your projects</h6></li>"
 
                 foreach ($user->data['projectdb_info']->projects as $i => $p) {
                   $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
