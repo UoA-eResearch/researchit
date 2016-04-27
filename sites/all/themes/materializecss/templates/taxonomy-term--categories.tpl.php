@@ -109,12 +109,12 @@
       $terms = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
 
       echo "<div class='row'>";
-      echo  "<span class='col s7' style='padding:15px'>Name</span>";
-      //echo  "<span class='col s6'> <div class='row'>";
+      echo  "<span class='col s6' style='padding:15px'>Name</span>";
+      echo  "<span class='col s6'> <div class='row'>";
       foreach ($terms as $t) {
-        echo "  <span class='col s1' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
+        echo "  <span class='col s2' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
       }
-      //echo '  </div>';
+      echo '  </div>';
       echo '</div>';
 
       $tids = taxonomy_select_nodes($term->tid);
@@ -142,10 +142,11 @@
               }
               print "<div class='row'>
                       <a href='$link'>
-                        <span class='title col s2' style='height:74px;background-color:$color;padding:15px;color:white'>
+                        <span class='title col s6' style='height:74px;background-color:$color;padding:15px;color:white'>
                           {$node->title}
                         </span>
                       </a>";
+              echo  "<span class='col s6'> <div class='row'>";
               $stages = array();
               if (!empty($node->field_research_lifecycle_stage['und'])) {
                 foreach ($node->field_research_lifecycle_stage['und'] as $tidWrapper) {
@@ -159,6 +160,7 @@
                   echo "<span class='col s2' style='padding:15px;'></span>";
                 }
               }
+              print "</div>";
               print "</div>";
             }
       ?>
