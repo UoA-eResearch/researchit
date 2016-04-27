@@ -39,7 +39,7 @@
          if (!empty($r->researcher->pictureUrl)) {
                 echo "<img src='{$r->researcher->pictureUrl}' alt='' class='circle'>";
          } else {
-                echo "<i class="material-icons circle blue">perm_identity</i>";
+                echo "<i class='material-icons circle blue'>perm_identity</i>";
          }; ?>
 
         <span class="title"><?php echo $r->researcher->fullName ?></span>
