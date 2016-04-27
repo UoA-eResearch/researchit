@@ -7,6 +7,7 @@
  * @ingroup views_templates
  */
 ?>
+<!--
 <div class="row" style="margin-bottom:0px; padding-top:40px">
 	<div class="col s12">
     	<div class="card">
@@ -18,6 +19,8 @@
     	</div>
     </div>
 </div>
+-->
+<h5 style="float:left; margin-left:-14%; position:absolute; color:purple; font-weight:400; margin-top:-20px">Guides</h5>
 
 <div class="row">
 	<?php foreach ($rows as $id => $row): ?>
@@ -26,3 +29,5 @@
      </div>
     <?php endforeach; ?>
 </div>
+
+<h6 style="float:right; margin-left:72%; position:absolute; color:purple; font-weight:300;">View All Guides <i class="material-icons" style="font-size:1rem">info_outline</i></h6>

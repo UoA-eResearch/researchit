@@ -32,7 +32,7 @@
       <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/red-darken1.jpg" alt="" height="10">
     </div>
     <div class="card-content" style="padding-top:10px">
-      <span class="card-title"><?php echo $fields['name']->content ?></span>
+      <span class="card-title" style="font-weight:400"><?php echo $fields['name']->content ?></span>
       <p><?php echo $fields['field_summary']->content . '<ul class="collection">';
           /*foreach (taxonomy_select_nodes($fields['tid']->raw) as $i => $nid) {
             if ($i > 0) break;

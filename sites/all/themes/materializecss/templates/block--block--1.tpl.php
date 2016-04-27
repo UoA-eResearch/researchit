@@ -51,7 +51,43 @@
 
     <div<?php print $content_attributes; ?>>
       <a class="element-invisible">Block content</a>
-      <?php print $content; ?>
+      <div class="row valign-wrapper">
+        <div class="col s3 center-align" style="font-size: 28px">
+          <b>Discover</b>, <b>request</b> </br>
+          and <b>manage</b> services
+          that support </br>
+          your <b>research</b>
+        </div>
+        <div class="col s6">
+          <div class="col s12">
+            <div class="card-panel amber lighten-2 valign-wrapper" style="float:left; width: 70%; padding-top:15px; padding-bottom:15px; margin-top:0px">
+              <span class="valign">
+                <h5 style="margin-top:0px">Explore by Lifecycle <i class="material-icons">replay</i></h5>
+                <h7 style="font-weight:300">Match services against your research workflow</h7>
+              </span>
+            </div>
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/upArrow.png" alt="" height="100px" width="100px" style=""margin-left:15px>
+          </div>
+          <div class="col s12">
+            <div class="card-panel amber lighten-2 valign-wrapper" style="float:right; width: 70%; padding-top:15px; padding-bottom:15px; margin-bottom: 0px">
+              <span class="valign right-align">
+                <h5 style="margin-top:0px"><i class="material-icons">toc</i> Explore by Category</h5>
+                <h7 style="font-weight:300">Discover services by their purpose</h7>
+              </span>
+            </div>
+            <img typeof="foaf:Image" src="https://researchit.cer.auckland.ac.nz/sites/default/files/downArrow.png" alt="" height="100px" width="100px" style="float:right; margin-right: 10px">
+          </div>
+        </div>
+        <div class="col s3">
+          <div class="card-panel amber lighten-2">
+            <h5 class="center-align">My Research Projects</h5>
+            <a class="waves-effect waves-light btn center-align"><i class="material-icons left">view_module</i>View Projects</a>
+            <br> </br>
+            <a class="waves-effect waves-light btn center-align"><i class="material-icons left">playlist_add</i>Request Services</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section> <!-- /.block -->

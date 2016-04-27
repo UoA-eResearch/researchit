@@ -5,7 +5,7 @@
 }
 
 .view-research-lifecycle .row {
-	margin-bottom: 0px;	
+	margin-bottom: 0px;
 }
 
 div.col.research_lifecycle_stage {
@@ -36,6 +36,57 @@ section.main.container {
   padding-right: 15%;
 }
 
+/* Styling for each section on Homepage*/
+.region-content section#block-views-research-lifecycle-block-1{
+  padding-bottom: 20px;
+}
+
+.region-content section#block-block-1 {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.region-content section#block-views-category-taxonomy-block-1 {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-color: rgba(31, 93, 141, 0.8);
+}
+
+.region-content section#block-views-category-taxonomy-block-1 a{
+  color:red;
+}
+
+
+.region-content section#block-views-education-block {
+  padding-top: 10px;
+  padding-bottom: 75px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+}
+
+.region-content section#block-views-guides-block {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgba(31, 93, 141, 0.1);
+}
+
+.region-content section#block-views-guides-block a{
+  color:purple;
+}
+
+.region-content section#block-views-policies-block {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.region-content section#block-views-policies-block a{
+  color: white;
+}
+
+
+
 .region-content section:nth-child(odd) {
   background: #f4f4f4;
 }
@@ -62,10 +113,8 @@ section.main.container {
 .triangle-down-inner {
     width: 0;
     height: 0;
-    
     margin-left:-500px;
     margin-top:-300px;
-    
     border-left: 500px solid transparent;
     border-right: 500px solid transparent;
 }
@@ -84,7 +133,7 @@ div.col.research_lifecycle_stage.Plan_Design {
 }
 
 .cards-container .card .collection {
-	overflow: visible;	
+	overflow: visible;
 }
 
 @media only screen and (max-width: 600px) {
@@ -122,5 +171,5 @@ body {
 }
 
 #block-views-research-lifecycle-block-1 .card {
-	margin-top: 0px;	
+	margin-top: 0px;
 }

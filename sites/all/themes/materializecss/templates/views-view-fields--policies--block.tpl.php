@@ -24,13 +24,11 @@
  * @ingroup views_templates
  */
 ?>
-<?php foreach ($fields as $id => $field): ?>
-  <?php if (!empty($field->separator)): ?>
-    <?php print $field->separator; ?>
-  <?php endif; ?>
 
-  <?php print $field->wrapper_prefix; ?>
-    <?php print $field->label_html; ?>
-    <?php print $field->content; ?>
-  <?php print $field->wrapper_suffix; ?>
-<?php endforeach; ?>
+<div class="col s12 m12 l3" >
+  <div class="card hoverable small valign-wrapper" style="height:100px; background-color: rgb(255,179,0);">
+    <div class="card-content center-align" style="padding-top:0px; padding-bottom:0px; color:white">
+      <span class="card-title" style="font-weight:400; line-height: 20px"><?php echo $fields['name']->content ?></span>
+    </div>
+  </div>
+</div>

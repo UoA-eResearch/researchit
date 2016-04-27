@@ -106,7 +106,7 @@
       <?php print render($page['header']); ?>
     </div>
   <?php endif; ?><!-- /.header  -->
-  
+
   <div class="row searchBox">
     <?php print drupal_render(drupal_get_form('search_block_form')); ?>
   </div>
@@ -114,18 +114,28 @@
   <div class="row page grid container">
       <!--<a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>-->
       <ul id='slide-out' class='side-nav'>
+
+        <div style="height: 75px; width:100%; background-color: #01457C">
+          <a href='/projects/' style="color:white">Project Dashboard</a>
+        </div>
+
+        <!-- Menu Bar Content-->
         <?php if (user_is_logged_in()): ?>
-          <a href='/projects/'>Project Dashboard</a><br>
-          <a href='/projects/create'>Create a new project</a><br>
-          Your projects:<br>
+          <!-- When User is Signed in-->
+
+          <a href='/projects/create' class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Create a new project</a>
           <div class='row'>
             <?php
               if (!empty($user->data['projectdb_info']->projects)) {
                 $lastStatus = '';
+
+                echo "<ul class='collection'>";
+                echo "<li class='collection-header'><h5>My Projects</h5></li>";
+
                 foreach ($user->data['projectdb_info']->projects as $i => $p) {
                   $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
                   if ($p->statusName != $lastStatus) {
-                    echo "<div class='col s12'>Projects with status: {$p->statusName}</div>";
+                    //echo "<div class='col s12'>Projects with status: {$p->statusName}</div>";
                     $lastStatus = $p->statusName;
                   }
                   if (in_array($p->statusId, array(1,2,6))) {
@@ -135,27 +145,27 @@
                   } else {
                     $color = '#1e88e5';
                   }
-                  echo "<a href='/projects/{$p->projectCode}' class='project'>
-                          <div class='col s12'>
-                            <div class='card hoverable'>
-                              <div class='header' style='height:10px;background-color:$color'>
-                              </div>
-                              <div class='card-content'>
-                                <span class='card-title'>{$p->projectCode}: {$p->name}</span>
-                                <p>$desc</p>
-                              </div>
-                            </div>
-                          </div>
-                        </a>";
+                  echo "<li class='collection-item avatar'>
+                          <i class='material-icons circle' style='background-color: $color !important'>settings</i>
+                          <span class='title'>{$p->name}</span>
+                          <p style='font-weight:300'>{$p->projectCode} </br>
+                            <span style='font-style: italic;'>$desc</span>
+                          </p>
+                          <a href='/projects/{$p->projectCode}' class='secondary-content'><i class='material-icons'>grade</i></a>
+                        </li>";
                 }
               }
+              echo "</ul>";
             ?>
           </div>
+
         <?php else: ?>
+          <!-- When User is not signed in-->
+
           You're not logged in. If you were, you'd be able to see your projects here.
         <?php endif; ?>
       </ul>
-    
+
     <?php if (!empty($page['sidebar_first'])): ?>
       <aside class="<?php print $sidebar_left; ?> sidebar-first" role="complementary">
         <?php print render($page['sidebar_first']); ?>
