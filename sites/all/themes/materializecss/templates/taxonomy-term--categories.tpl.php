@@ -132,7 +132,7 @@
               $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
               $link = url('node/'.$node->nid);
               $more_info = str_replace($node->title, 'More info', $link);
-              if (count % 2 == 0){
+              if ($count % 2 == 0){
                 $color = 'rgba(229, 57, 53, 0.1)';
               } else {
                 $color = 'rgba(229, 57, 53, 0)';
