@@ -127,7 +127,7 @@
                 $lastStatus = '';
 
                 echo "<ul class='collection'>";
-                echo "<li class='collection-header'><h6>Your projects</h6></li>"
+                echo "<li class='collection-header'><h6>Your projects</h6></li>";
 
                 foreach ($user->data['projectdb_info']->projects as $i => $p) {
                   $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
