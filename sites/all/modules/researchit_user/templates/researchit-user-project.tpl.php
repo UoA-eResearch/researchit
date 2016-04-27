@@ -42,5 +42,20 @@
       </li>
       <?php endforeach; ?>
     </ul>
+
+    <ul class="collection" style="border:0px">
+      <li class="collection-header"><h5>Research Outputs</h5></li>
+      <?php foreach ($pw->rpLinks as $r): ?>
+
+      <li class="collection-item avatar">
+        <i class="material-icons circle green">thumb_up</i>
+        <span class="title"><?php echo $r->researcher->fullName ?></span>
+        <p><?php echo $r->researcherRoleName ?></p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+
+      <?php endforeach; ?>
+    </ul>
+
   </div>
 </div>

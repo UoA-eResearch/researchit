@@ -123,6 +123,6 @@ function researchit_user_projects($projectCode = '') {
   $variables = array(
     'pw' => $project_wrapper,
   );
-  //dpm($variables);
+  dpm($variables);
   return theme('researchit_user_project', $variables);
 }
