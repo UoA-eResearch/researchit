@@ -116,7 +116,7 @@
       <ul id='slide-out' class='side-nav'>
 
         <div style="height: 75px; width:100%; background-color: #01457C">
-          <a href='/projects/'>Project Dashboard</a>
+          <a href='/projects/' style="color:white">Project Dashboard</a>
         </div>
 
         <!-- Menu Bar Content-->
