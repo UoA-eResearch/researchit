@@ -116,14 +116,13 @@
       <ul id='slide-out' class='side-nav'>
 
         <div style="height: 75px; width:100%; background-color: #01457C">
-
+          <a href='/projects/'>Project Dashboard</a>
         </div>
 
         <!-- Menu Bar Content-->
         <?php if (user_is_logged_in()): ?>
           <!-- When User is Signed in-->
 
-          <a href='/projects/'>Project Dashboard</a><br>
           <a href='/projects/create' class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Create a new project</a>
           <div class='row'>
             <?php
