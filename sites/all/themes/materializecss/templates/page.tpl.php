@@ -120,7 +120,7 @@
           <!-- When User is Signed in-->
 
           <a href='/projects/'>Project Dashboard</a><br>
-          <a href='/projects/create'>Create a new project</a><br>
+          <a href='/projects/create' class="waves-effect waves-light btn"><i class="material-icons left">library_add</i>Create a new project</a>
           <div class='row'>
             <?php
               if (!empty($user->data['projectdb_info']->projects)) {
@@ -143,7 +143,7 @@
                     $color = '#1e88e5';
                   }
                   echo "<li class='collection-item avatar'>
-                          <i class='material-icons circle' style='background-color: $color !important'>insert_chart</i>
+                          <i class='material-icons circle' style='background-color: $color !important'>settings</i>
                           <span class='title'>{$p->name}</span>
                           <p>{$p->projectCode} </br>
                             $desc
