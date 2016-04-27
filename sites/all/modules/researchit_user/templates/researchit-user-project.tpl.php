@@ -18,15 +18,16 @@
       <i class="material-icons">track_changes</i>
       <?php echo $pw->project->statusName ?>
     </div>
+    </br>
 
     <div class="chip">
       <i class="material-icons">query_builder</i>
-      <?php echo $pw->project->startDate ?>
+      Start: <?php echo $pw->project->startDate ?>
     </div>
 
     <div class="chip">
       <i class="material-icons">snooze</i>
-      <?php echo $pw->project->endDate ?>
+      End: <?php echo $pw->project->endDate ?>
     </div>
 
 
