@@ -108,9 +108,9 @@
       $vocab = taxonomy_vocabulary_machine_name_load('research_life_cycle');
       $terms = taxonomy_get_tree($vocab->vid, 0, NULL, TRUE);
 
-      echo "<div class='row'>";
+      echo "<div class='row' style='margin-bottom: 0px;'>";
       echo  "<span class='col s6' style='padding:15px'>Name</span>";
-      echo  "<span class='col s6'> <div class='row'>";
+      echo  "<span class='col s6'> <div class='row' style='margin-bottom: 0px;'>";
       foreach ($terms as $t) {
         echo "  <span class='col s2' style='color:white;padding:15px;background-color:{$t->field_color['und'][0]['rgb']}'>{$t->name}</span>";
       }
@@ -140,13 +140,13 @@
                 print ucfirst($node->type) . 's';
                 $lastType = $node->type;
               }
-              print "<div class='row'>
+              print "<div class='row' style='margin-bottom: 0px;'>
                       <a href='$link'>
                         <span class='title col s6' style='height:74px;background-color:$color;padding:15px;color:white'>
                           {$node->title}
                         </span>
                       </a>";
-              echo  "<span class='col s6'> <div class='row'>";
+              echo  "<span class='col s6'> <div class='row' style='margin-bottom: 0px;'>";
               $stages = array();
               if (!empty($node->field_research_lifecycle_stage['und'])) {
                 foreach ($node->field_research_lifecycle_stage['und'] as $tidWrapper) {
