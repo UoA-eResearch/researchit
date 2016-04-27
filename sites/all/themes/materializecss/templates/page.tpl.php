@@ -115,6 +115,10 @@
       <!--<a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>-->
       <ul id='slide-out' class='side-nav'>
 
+        <div style="height: 75px; width:100%; background-color: #01457C">
+
+        </div>
+
         <!-- Menu Bar Content-->
         <?php if (user_is_logged_in()): ?>
           <!-- When User is Signed in-->
