@@ -112,18 +112,32 @@
       }
       echo '</div>';
       
-      foreach (taxonomy_select_nodes($term->tid) as $i => $nid) {
-              $node = node_load($nid);
+      $tids = taxonomy_select_nodes($term->tid);
+      $nodes = array();
+      foreach ($tids as $tid) {
+        $nodes[] = node_load($tid);
+      }
+      usort($nodes, function($a, $b) {
+        return $a->type < $b->type;
+      });
+      
+      $lastType = '';
+      
+      foreach ($nodes as $node) {
               $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
-              $link = url('node/'.$nid);
+              $link = url('node/'.$node->nid);
               $more_info = str_replace($node->title, 'More info', $link);
               $color = '#e53935';
               if ($node->type == 'guide') {
                 $color = '#8e24aa';
               }
+              if ($lastType != $node->type) {
+                print ucfirst($node->type) . 's';
+                $lastType = $node->type;
+              }
               print "<div class='row'>
                       <a href='$link'>
-                        <span class='title col s2' style='background-color:$color;padding:15px;color:white'>
+                        <span class='title col s2' style='height:74px;background-color:$color;padding:15px;color:white'>
                           {$node->title}
                         </span>
                       </a>";
@@ -135,7 +149,7 @@
               }
               foreach ($terms as $t) {
                 if (in_array($t->tid, $stages)) {
-                  echo "<span class='col s2' style='height:52px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
+                  echo "<span class='col s2' style='height:74px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
                 } else {
                   echo "<span class='col s2' style='padding:15px;'></span>";
                 }
