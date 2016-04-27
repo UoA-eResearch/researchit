@@ -133,7 +133,7 @@
               $link = url('node/'.$node->nid);
               $more_info = str_replace($node->title, 'More info', $link);
               if ($count % 2 == 0){
-                $color = 'rgba(229, 57, 53, 0.1)';
+                $color = 'rgba(229, 57, 53, 0.5)';
               } else {
                 $color = 'rgba(229, 57, 53, 0)';
               }
@@ -163,7 +163,7 @@
                 if (in_array($t->tid, $stages)) {
                   echo "<span class='col s2' style='height:74px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
                 } else {
-                  echo "<span class='col s2' style='padding:15px;'></span>";
+                  echo "<span class='col s2' style='padding:15px; background-color:$color;'></span>";
                 }
               }
               print "</div>";
