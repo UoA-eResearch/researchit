@@ -145,8 +145,8 @@
                   echo "<li class='collection-item avatar'>
                           <i class='material-icons circle' style='background-color: $color !important'>settings</i>
                           <span class='title'>{$p->name}</span>
-                          <p>{$p->projectCode} </br>
-                            $desc
+                          <p style='font-weight:300'>{$p->projectCode} </br>
+                            <span style='font-style: italic;'>$desc</span>
                           </p>
                           <a href='#!' class='secondary-content'><i class='material-icons'>grade</i></a>
                         </li>";
