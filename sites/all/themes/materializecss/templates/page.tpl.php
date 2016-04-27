@@ -148,7 +148,7 @@
                           <p style='font-weight:300'>{$p->projectCode} </br>
                             <span style='font-style: italic;'>$desc</span>
                           </p>
-                          <a href='href='/projects/{$p->projectCode}'' class='secondary-content'><i class='material-icons'>grade</i></a>
+                          <a href='/projects/{$p->projectCode}' class='secondary-content'><i class='material-icons'>grade</i></a>
                         </li>";
                 }
               }
