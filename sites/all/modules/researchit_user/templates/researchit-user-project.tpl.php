@@ -9,24 +9,26 @@
   </div>
   <div class="col s4" style="padding-top: 15px">
 
-    <table class="project_main">
-      <tr>
-        <td>Code:</td>
-        <td><?php echo $pw->project->projectCode ?></td>
-      </tr>
-      <tr>
-        <td>Status:</td>
-        <td><?php echo $pw->project->statusName ?></td>
-      </tr>
-      <tr>
-        <td>First Day:</td>
-        <td><?php echo $pw->project->startDate ?></td>
-      </tr>
-      <tr>
-        <td>Last Day:</td>
-        <td><?php echo $pw->project->endDate ?></td>
-      </tr>
-    </table>
+    <div class="chip">
+      <i class="material-icons">receipt</i>
+      <?php echo $pw->project->projectCode ?>
+    </div>
+
+    <div class="chip">
+      <i class="material-icons">track_changes</i>
+      <?php echo $pw->project->statusName ?>
+    </div>
+
+    <div class="chip">
+      <i class="material-icons">query_builder</i>
+      <?php echo $pw->project->startDate ?>
+    </div>
+
+    <div class="chip">
+      <i class="material-icons">snooze</i>
+      <?php echo $pw->project->endDate ?>
+    </div>
+
 
     <ul class="collection" style="border:0px">
       <li class="collection-header"><h5>Researchers on project</h5></li>
