@@ -138,12 +138,12 @@
                   $color = 'rgba(142, 36, 170, 0.6)';
                   $textColour = 'white';
                 } else {
-                  $color = 'rgba(229, 57, 53, 0.6)';
-                  $textColour = 'white';
+                  $color = 'rgba(229, 57, 53, 0)';
+                  $textColour = 'rgb(229, 57, 53)';
                 }
               } else {
                 if ($node->type == 'guide') {
-                  $color = 'rgba(142, 36, 170, 0.1)';
+                  $color = 'rgba(142, 36, 170, 0)';
                   $textColour = 'rgb(229, 57, 53)';
                 } else {
                   $color = 'rgba(229, 57, 53, 0.1)';
@@ -158,8 +158,8 @@
               }
               print "<div class='row' style='border-bottom: 1px dotted black;margin-bottom: 0px;'>
                       <a href='$link'>
-                        <span class='title col s6' style='height:74px;background-color:$color;padding:15px;color:$textColour'>
-                          {$node->title} </br>
+                        <span class='title col s6' style='height:100px;background-color:$color;padding:15px;color:$textColour'>
+                          <h5>{$node->title}</h5> </br>
                           $desc
                         </span>
                       </a>";
@@ -172,9 +172,9 @@
               }
               foreach ($terms as $t) {
                 if (in_array($t->tid, $stages)) {
-                  echo "<span class='col s2' style='border-right: 1px dotted black; height:74px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
+                  echo "<span class='col s2' style='border-right: 1px dotted black; height:100px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
                 } else {
-                  echo "<span class='col s2' style='border-right: 1px dotted black; height:74px; padding:15px; background-color:$color;'></span>";
+                  echo "<span class='col s2' style='border-right: 1px dotted black; height:100px; padding:15px; background-color:$color;'></span>";
                 }
               }
               print "</div>";
