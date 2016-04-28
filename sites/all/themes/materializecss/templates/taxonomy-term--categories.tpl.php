@@ -159,7 +159,8 @@
               print "<div class='row' style='border-bottom: 1px dotted black;margin-bottom: 0px;'>
                       <a href='$link'>
                         <span class='title col s6' style='height:74px;background-color:$color;padding:15px;color:$textColour'>
-                          {$node->title}
+                          {$node->title} </br>
+                          $desc
                         </span>
                       </a>";
               echo  "<span class='col s6'> <div class='row' style='margin-bottom: 0px;'>";
