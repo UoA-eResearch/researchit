@@ -29,6 +29,7 @@
   $('.button-collapse').click(function() {
     $('body').css('overflow', 'auto');
   });
+  $('body').css('overflow', 'auto');
   $('.modal-trigger').leanModal();
   $('#request_service_form_submit').click(function( event ) {
     var email = $('#request_service_form').attr('contact');
