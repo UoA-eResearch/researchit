@@ -132,18 +132,30 @@
               $desc = !empty($node->field_summary) ? $node->field_summary['und'][0]['value'] : 'What should I know?';
               $link = url('node/'.$node->nid);
               $more_info = str_replace($node->title, 'More info', $link);
+
               if ($count % 2 == 0){
-                $color = 'rgba(229, 57, 53, 0.6)';
-                $textColour = 'white';
+                if ($node->type == 'guide') {
+                  $color = 'rgba(142, 36, 170, 0.6)';
+                  $textColour = 'white';
+                } else {
+                  $color = 'rgba(229, 57, 53, 0.6)';
+                  $textColour = 'white';
+                }
               } else {
-                $color = 'rgba(229, 57, 53, 0.1)';
-                $textColour = 'red';
+                if ($node->type == 'guide') {
+                  $color = 'rgba(142, 36, 170, 0.1)';
+                  $textColour = 'rgb(229, 57, 53)';
+                } else {
+                  $color = 'rgba(229, 57, 53, 0.1)';
+                  $textColour = 'red';
+                }
               }
               $count = $count + 1;
 
               if ($node->type == 'guide') {
                 $color = '#8e24aa';
               }
+
               if ($lastType != $node->type) {
                 print ucfirst($node->type) . 's';
                 $lastType = $node->type;
