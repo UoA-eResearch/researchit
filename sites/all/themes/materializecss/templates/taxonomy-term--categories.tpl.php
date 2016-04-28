@@ -143,7 +143,7 @@
                 }
               } else {
                 if ($node->type == 'guide') {
-                  $color = 'rgba(142, 36, 170, 0)';
+                  $color = 'rgb(142, 36, 170)';
                   $textColour = 'rgb(229, 57, 53)';
                 } else {
                   $color = 'rgba(229, 57, 53, 0)';
