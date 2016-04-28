@@ -135,7 +135,7 @@
 
               if ($count % 2 == 0){
                 if ($node->type == 'guide') {
-                  $color = 'rgba(142, 36, 170, 0.6)';
+                  $color = 'rgba(142, 36, 170, 0)';
                   $textColour = 'white';
                 } else {
                   $color = 'rgba(229, 57, 53, 0)';
