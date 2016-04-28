@@ -158,7 +158,7 @@
               }
               print "<div class='row' style='border-bottom: 1px dotted rgba(0, 0, 0, 0.1);margin-bottom: 0px;'>
                       <a href='$link'>
-                        <span class='title col s6' style='height:100px;background-color:$color;padding:15px;'>
+                        <span class='title col s6' style='height:100px;background-color:$color;padding:15px; color:black'>
                           <b style='color:$textColour'>{$node->title}</b> </br>
                           $desc
                         </span>
