@@ -18,6 +18,9 @@ function researchit_user_menu() {
 }
 
 function rest_request($endpoint, $method = 'GET', $postdata = '') {
+  //$auth_token = base64_encode("researchit:Fj27RP0741HS0N2");
+  $auth_token = base64_encode('drupal:PHPdid9/11');
+  $base = 'https://projects.test.nesi.org.nz/projectdb/rest/';
   $opts = array(
     'http'=>array(
       'method'=> $method,
@@ -26,13 +29,12 @@ function rest_request($endpoint, $method = 'GET', $postdata = '') {
       'timeout' => 15,
       'header'=>"Accept: application/json\r\n" .
                 "Content-Type: application/json\r\n" .
-                "Authorization:Basic " . base64_encode(
-                "researchit:Fj27RP0741HS0N2") . "\r\n" .
+                "Authorization:Basic $auth_token\r\n" .
                 "User-Agent: drupal\r\n"
     )
   );
   $context = stream_context_create($opts);
-  $json = file_get_contents("https://projects.nesi.org.nz/projectdb/rest/$endpoint", false, $context);
+  $json = file_get_contents($base . $endpoint, false, $context);
   $data = json_decode($json);
   return $data;
 }
@@ -107,19 +109,26 @@ function researchit_user_projects($projectCode = '') {
     drupal_goto('Shibboleth.sso/Login');
     return '';
   }
-  $found = false;
-  foreach ($user->data['projectdb_info']->projects as $p) {
-    if ($p->projectCode == $projectCode) {
-      $found = true;
-      break;
+  if (!in_array('administrator', $user->roles)) {
+    $found = false;
+    foreach ($user->data['projectdb_info']->projects as $p) {
+      if ($p->projectCode == $projectCode) {
+        $found = true;
+        break;
+      }
     }
-  }
-  if (!$found) {
-    drupal_set_message("Error: you don't seem to be listed on the project $projectCode");
-    return "";
+    if (!$found) {
+      drupal_set_message("Error: you don't seem to be listed on the project $projectCode");
+      return "";
+    }
   }
   $project_wrapper = rest_request("projects/" . $projectCode);
   $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
+  foreach ($project_wrapper->properties as $p) {
+    if ($p->propname == 'Services') {
+      $project_wrapper->services = json_decode($p->propvalue);
+    }
+  }
   drupal_set_title($project_wrapper->project->name);
   $variables = array(
     'pw' => $project_wrapper,
