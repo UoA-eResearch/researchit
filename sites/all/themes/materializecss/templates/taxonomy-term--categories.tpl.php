@@ -156,10 +156,10 @@
                 print ucfirst($node->type) . 's';
                 $lastType = $node->type;
               }
-              print "<div class='row' style='border-bottom: 1px dotted black;margin-bottom: 0px;'>
+              print "<div class='row' style='border-bottom: 1px dotted rgba(0, 0, 0, 0.1);margin-bottom: 0px;'>
                       <a href='$link'>
-                        <span class='title col s6' style='height:100px;background-color:$color;padding:15px;color:$textColour'>
-                          <b>{$node->title}</b> </br>
+                        <span class='title col s6' style='height:100px;background-color:$color;padding:15px;'>
+                          <b style='color:$textColour'>{$node->title}</b> </br>
                           $desc
                         </span>
                       </a>";
@@ -172,9 +172,9 @@
               }
               foreach ($terms as $t) {
                 if (in_array($t->tid, $stages)) {
-                  echo "<span class='col s2' style='border-right: 1px dotted black; height:100px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
+                  echo "<span class='col s2' style='border-right: 1px dotted rgba(0, 0, 0, 0.1); height:100px;background-color:{$t->field_color['und'][0]['rgb']};padding:15px;'></span>";
                 } else {
-                  echo "<span class='col s2' style='border-right: 1px dotted black; height:100px; padding:15px; background-color:$color;'></span>";
+                  echo "<span class='col s2' style='border-right: 1px dotted rgba(0, 0, 0, 0.1); height:100px; padding:15px; background-color:$color;'></span>";
                 }
               }
               print "</div>";
