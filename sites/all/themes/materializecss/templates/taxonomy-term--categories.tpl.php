@@ -152,10 +152,6 @@
               }
               $count = $count + 1;
 
-              if ($node->type == 'guide') {
-                $color = '#8e24aa';
-              }
-
               if ($lastType != $node->type) {
                 print ucfirst($node->type) . 's';
                 $lastType = $node->type;
