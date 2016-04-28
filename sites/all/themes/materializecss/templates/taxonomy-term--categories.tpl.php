@@ -146,8 +146,8 @@
                   $color = 'rgba(142, 36, 170, 0)';
                   $textColour = 'rgb(229, 57, 53)';
                 } else {
-                  $color = 'rgba(229, 57, 53, 0.1)';
-                  $textColour = 'red';
+                  $color = 'rgba(229, 57, 53, 0)';
+                  $textColour = 'rgb(229, 57, 53)';
                 }
               }
               $count = $count + 1;
@@ -159,7 +159,7 @@
               print "<div class='row' style='border-bottom: 1px dotted black;margin-bottom: 0px;'>
                       <a href='$link'>
                         <span class='title col s6' style='height:100px;background-color:$color;padding:15px;color:$textColour'>
-                          <h5>{$node->title}</h5> </br>
+                          <b>{$node->title}</b> </br>
                           $desc
                         </span>
                       </a>";
