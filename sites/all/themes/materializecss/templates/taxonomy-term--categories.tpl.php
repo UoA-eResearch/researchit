@@ -136,15 +136,15 @@
               if ($count % 2 == 0){
                 if ($node->type == 'guide') {
                   $color = 'rgba(142, 36, 170, 0)';
-                  $textColour = 'white';
+                  $textColour = 'rgb(142, 36, 170)';
                 } else {
                   $color = 'rgba(229, 57, 53, 0)';
                   $textColour = 'rgb(229, 57, 53)';
                 }
               } else {
                 if ($node->type == 'guide') {
-                  $color = 'rgb(142, 36, 170)';
-                  $textColour = 'rgb(229, 57, 53)';
+                  $color = 'rgba(142, 36, 170, 0)';
+                  $textColour = 'rgb(142, 36, 170)';
                 } else {
                   $color = 'rgba(229, 57, 53, 0)';
                   $textColour = 'rgb(229, 57, 53)';
