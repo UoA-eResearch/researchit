@@ -1,0 +1,469 @@
+<?php
+
+function researchit_user_menu() {
+  $items['user-test'] = array(
+    'title' => 'User Test',
+    'page callback' => 'researchit_user_user_login',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'management',
+    );
+  $items['projects'] = array(
+    'title' => 'Projects',
+    'page callback' => 'researchit_user_projects',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM
+    );
+  return $items;
+}
+
+function rest_request($endpoint, $method = 'GET', $postdata = '') {
+  $auth_token = variable_get('rest_credentials');
+  $base = variable_get('rest_url');
+  $u = 'nyou045@auckland.ac.nz';
+  $opts = array(
+    'http'=>array(
+      'method'=> $method,
+      'ignore_errors' => true,
+      'content' => $postdata,
+      'timeout' => 15,
+      'header'=>"Accept: application/json\r\n" .
+                "Content-Type: application/json\r\n" .
+                "RemoteUser: $u\r\n" .
+                "X-Proxy-REMOTE-USER: $u\r\n" .
+                "Authorization:Basic $auth_token\r\n" .
+                "User-Agent: drupal\r\n"
+    )
+  );
+  $context = stream_context_create($opts);
+  $json = file_get_contents($base . $endpoint, false, $context);
+  $data = json_decode($json);
+  return $data;
+}
+
+function researchit_user_get_projects() {
+  global $user;
+  if (empty($user->data['projectdb_info']->id)) {
+    return array();
+  }
+  $id = $user->data['projectdb_info']->id;
+  $projects = rest_request("researchers/$id/projects");
+  usort($projects, function($a, $b) {
+    if ($a->statusId == $b->statusId) {
+      return $a->startDate < $b->startDate;
+    } else {
+      return $a->statusId > $b->statusId;
+    }
+  });
+  return $projects;
+}
+
+function researchit_user_user_login() {
+  global $user;
+  if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
+  $token = $_SERVER['auEduPersonSharedToken'];
+  if ($token == 'G3r4cW38wpRxOH9QatN1JiOPkqw' || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
+    // Nick/Mark = Richard Easther
+    $token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
+    $_SERVER['uid'] = 'reas725';
+  }
+
+  $researcher = rest_request('researchers/tuakiri', 'POST', $token);
+  
+  $scienceDomains = rest_request('lists/science_domains');
+  $researchers = rest_request('researchers/');
+  $activeResearchers = array();
+  foreach ($researchers as $r) {
+    if ($r->statusId == 1) {
+      $activeResearchers[] = $r;
+    }
+  }
+  
+  $scienceDomainsTree = array();
+
+  foreach($scienceDomains as $d) {
+    $scienceDomainsTree[$d] = rest_request('lists/science_studies', 'POST', $d);
+  }
+
+  $cn = escapeshellarg($_SERVER['uid']);
+  
+  $ldapCredentials = variable_get('ldap_credentials');
+  $ldapInfo = `ldapsearch $ldapCredentials' '(cn=$cn)'`;
+  $ldapInfo = str_replace("\n ", "", $ldapInfo);
+  $ldapInfo = explode("\n", $ldapInfo);
+  $ldapGroups = array();
+  $ldapAttributes = array();
+
+  foreach ($ldapInfo as $line) {
+    if (strpos($line, 'memberOf: CN=') === 0) {
+      $matches = array();
+      preg_match('/^memberOf: CN=(.+?),/', $line, $matches);
+      $ldapGroups[] = $matches[1];
+    } else if (!empty($line) && $line[0] != '#') {
+      $bits = explode(': ', $line, 2);
+      $name = trim($bits[0], ':');
+      $ldapAttributes[$name] = $bits[1];
+    }
+  }
+
+  $allResearchOutputs = array();
+
+  ini_set('mssql.charset', 'UTF-8');
+  $status = mssql_connect(variable_get('symplectic_server'), variable_get('symplectic_username'), variable_get('symplectic_password'));
+  if ($status) {
+    $result = mssql_query("SELECT * FROM [elementstest-reporting].[dbo].[pub_eresearch_view] WHERE username=$cn");
+    while ($row = mssql_fetch_assoc($result)) {
+      $allResearchOutputs[] = $row;
+    }
+  }
+
+  user_save($user, array('data' => array(
+    'projectdb_info' => $researcher,
+    'ldap_groups' => $ldapGroups,
+    'ldap_attributes' => $ldapAttributes,
+    'science_domains' => $scienceDomainsTree,
+    'researchers' => $activeResearchers,
+    'research_outputs' => $allResearchOutputs
+  )));
+  dpm($_SERVER);
+  dpm($user);
+  print theme('status_messages');
+}
+
+function researchit_user_node_access($node, $op, $account) {
+  if (!empty($node->field_edit_groups['und'][0]['value']) && !empty($account->data['ldap_groups'])) {
+    $allowedGroups = explode(',', $node->field_edit_groups['und'][0]['value']);
+    if ($op == 'update' && array_intersect($account->data['ldap_groups'], $allowedGroups)) {
+      return NODE_ACCESS_ALLOW;
+    }
+  }
+}
+
+function researchit_user_theme($existing, $type, $theme, $path) {
+  $variables = array();
+  dpm('configuring themes');
+  return array(
+    'researchit_user_project' => array(
+      'variables' => $variables,
+      'template' => 'researchit-user-project',
+      'path' => drupal_get_path('module', 'researchit_user') .'/templates'
+    ),
+    'researchit_user_project_dashboard' => array(
+      'variables' => $variables,
+      'template' => 'researchit-user-project-dashboard',
+      'path' => drupal_get_path('module', 'researchit_user') .'/templates'
+    )
+  );
+}
+
+function researchit_user_create_project() {
+  global $user;
+  $p = new stdClass();
+  $p->project = new stdClass();
+  $p->project->name = $_POST['projectName'];
+  $p->project->description = $_POST['projectDescription'];
+  $p->project->startDate = $_POST['startDate'];
+  $p->project->endDate = $_POST['endDate'];
+  
+  $p->project->projectTypeId = 5;
+  $p->project->statusId = 7;
+  $p->project->projectCode = "";
+  $p->project->hostInstitution = "University of Auckland";
+  $p->project->nextReviewDate = "";
+  $p->project->nextFollowUpDate = "";
+  $p->project->requirements = "";
+  $p->project->notes = "";
+  $p->project->todo = "";
+  
+  $p->rpLinks = array();
+  if (!empty($_POST['supervisor-id'])) {
+    $p->rpLinks[] = (object) array(
+      "researcherRoleId" => 2,
+      "researcherId" => $_POST['supervisor-id'],
+      "notes" => "Added by researchit"
+    );
+  } else if (!empty($_POST['supervisor'])) {
+    $p->project->notes = "Supervisor: " . $_POST['supervisor'];
+  }
+  if (empty($user->data['projectdb_info']->id)) {
+    // No researcher profile yet - create one
+    if (strpos($_SERVER['unscoped-affiliation'], 'staff') !== FALSE) {
+      $institutionalRole = 1;
+    } else {
+      $institutionalRole = 2;
+    }
+    $department = "Department of " . $user->data['ldap_attributes']['department'];
+    $division = "?";
+    $departments = rest_request('lists/affil/inst/uoa');
+    foreach ($departments as $d) {
+      if ($d->department == $department) {
+        $division = $d->division;
+      }
+    }
+    $p->project->department = $department;
+    $p->project->division = $division;
+    if (empty($user->data['ldap_attributes']['telephoneNumber'])) {
+      $phone = '1234';
+    } else {
+      $phone = $user->data['ldap_attributes']['telephoneNumber'];
+    }
+    $r = (object) array(
+      "startDate" => date('Y-m-d'),
+      "phone" => $phone,
+      "department" => $department,
+      "division" => $division,
+      "institution" => "University of Auckland",
+      "statusId" => 1,
+      "email" => $user->mail,
+      "pictureUrl" => 'data:image/png;base64,' . $user->data['ldap_attributes']['thumbnailPhoto'],
+      "endDate" => "",
+      "institutionalRoleId" => $institutionalRole,
+      "fullName" => $_SERVER['displayName'],
+      "notes" => "Added by researchit"
+    );
+    $rid = rest_request("researchers/", "POST", json_encode($r));
+    if (!is_int($rid)) {
+      watchdog('projectdb', 'unable to create researcher profile for %user - %reason', array('%user' => $user->name, '%reason' => json_encode($rid)), WATCHDOG_ERROR);
+      $response = (object) array("status" => 'ERROR', "response" => $rid);
+      drupal_json_output($response);
+      return;
+    }
+    $r->id = $rid;
+    $user->data['projectdb_info'] = $r;
+    user_save($user);
+    watchdog('projectdb', 'created a researcher profile for %user', array('%user' => $user->name), WATCHDOG_INFO);
+    $prop = (object) array(
+      "propname" => "tuakiriSharedToken",
+      "propvalue" => $_SERVER['auEduPersonSharedToken'],
+      "researcherId" => $rid,
+      "siteId" => 1
+    );
+    $prop = rest_request("researchers/$rid/prop", "PUT", json_encode($prop));
+    watchdog('projectdb', 'bound token: %token for %user', array('%token' => $_SERVER['auEduPersonSharedToken'], '%user' => $user->name), WATCHDOG_INFO);
+  } else {
+    $rid = $user->data['projectdb_info']->id;
+    $p->project->department = $user->data['projectdb_info']->department;
+    $p->project->division =  $user->data['projectdb_info']->division;
+  }
+  $p->rpLinks[] = (object) array(
+    "researcherRoleId" => 1,
+    "researcherId" => $rid,
+    "notes" => "Added by researchit"
+  );
+  
+  if (!empty($_POST['collaborator'])) {
+    foreach ($_POST['collaborator'] as $c) {
+      $p->rpLinks[] = (object) array(
+        "researcherRoleId" => 3,
+        "researcherId" => $c,
+        "notes" => "Added by researchit"
+      );
+    }
+  }
+  
+  $pid = rest_request("projects/", "POST", json_encode($p));
+  
+  if (!is_int($pid)) {
+    drupal_json_output((object) array('status' => 'ERROR', 'reason' => $pid, 'posted' => json_encode($p)));
+    return;
+  }
+  
+  $study = $_POST['scienceStudy'];
+  $domain = '';
+  
+  foreach ($user->data['science_domains'] as $d => $studies) {
+    if (in_array($study, $studies)) {
+      $domain = $d;
+      break;
+    }
+  }
+  
+  $domain = (object) array(
+    "propname" => "science_domain",
+    "propvalue" => $domain,
+    "projectId" => $pid,
+    "facilityId" => 7
+  );
+    
+  rest_request("projects/prop", "PUT", json_encode($domain));
+  
+  $study = (object) array(
+    "propname" => "science_study",
+    "propvalue" => $study,
+    "projectId" => $pid,
+    "facilityId" => 7
+  );
+  
+  rest_request("projects/prop", "PUT", json_encode($study));
+  $p = rest_request("projects/" . $pid);
+  watchdog('projectdb', '%user created a project', array('%user' => $user->name), WATCHDOG_INFO);
+  $response = (object) array("status" => 'OK', "project" => $p);
+  drupal_json_output($response);
+  return;
+
+}
+
+function researchit_user_projects($projectCode = '', $action = '') {
+  global $user;
+  if (empty($user->data['projectdb_info'])) {
+    drupal_goto('Shibboleth.sso/Login');
+    return '';
+  }
+  if (empty($projectCode)) {
+    $variables = array(
+      'projects' => researchit_user_get_projects()
+    );
+    dpm($variables);
+    return theme('researchit_user_project_dashboard', $variables);
+  } else if ($projectCode == 'create_project') {
+    researchit_user_create_project();
+    return;
+  }
+  
+  if (!in_array('administrator', $user->roles)) {
+    $found = false;
+    foreach (researchit_user_get_projects() as $p) {
+      if ($p->projectCode == $projectCode) {
+        $found = true;
+        break;
+      }
+    }
+    if (!$found) {
+      if (!empty($action)) {
+        $response = (object) array("status" => 'ERROR', "reason" => "UNAUTHENTICATED", "edit" => $_POST);
+        watchdog('projectdb', '%user attempted to %action but was unauthenticated for %project', array('%user' => $user->name, '%action' => $action, '%project' => $projectCode), WATCHDOG_INFO);
+        drupal_json_output($response);
+        return;
+      } else {
+        drupal_set_message("Error: you don't seem to be listed on the project $projectCode");
+        return "";
+      }
+    }
+  }
+  
+  if ($action == 'edit') {
+    $edit = rest_request("projects/$projectCode/{$_POST['pk']}/{$_POST['name']}/force/", "POST", $_POST['value']);
+    $response = (object) array("status" => 'OK', "edit" => $_POST, "REST_RESPONSE" => $edit);
+    watchdog('projectdb', '%user edited %project', array('%user' => $user->name, '%project' => $projectCode), WATCHDOG_INFO);
+    drupal_json_output($response);
+    return;
+  } else if ($action == 'add_collaborators') {
+    foreach ($_POST['collaborator'] as $c) {
+      $rpLink = (object) array(
+        "researcherRoleId" => 3,
+        "researcherId" => $c,
+        "projectId" => $projectCode,
+        "notes" => "Added by researchit"
+      );
+      $response = rest_request('/projects/rp', 'PUT', json_encode($rpLink));
+    }
+    $response = (object) array("status" => 'OK', "edit" => $_POST, "REST_RESPONSE" => $response);
+    watchdog('projectdb', '%user added a collaborator to %project', array('%user' => $user->name, '%project' => $projectCode), WATCHDOG_INFO);
+    drupal_json_output($response);
+    return;
+  } else if ($action == 'rm_collaborator') {
+    $rid = $_POST['rid'];
+    $response = rest_request("/projects/$projectCode/$rid/researcher", "DELETE");
+    $response = (object) array("status" => 'OK', "edit" => $_POST, "REST_RESPONSE" => $response);
+    watchdog('projectdb', '%user removed a collaborator from %project', array('%user' => $user->name, '%project' => $projectCode), WATCHDOG_INFO);
+    drupal_json_output($response);
+    return;
+  } else if ($action == 'add_research_output') {
+    $rotype = $_POST['rotype'];
+    $rodesc = $_POST['rodesc'];
+    if (!empty($rotype) && !empty($rodesc)) {
+      $ro = (object) array(
+        "projectId" => $projectCode,
+        "researcherId" => $user->data["projectdb_info"]->id,
+        "date" => date("Y-m-d"),
+        "typeId" => $rotype,
+        "description" => $rodesc
+      );
+      $response = rest_request("/projects/ro", "PUT", json_encode($ro));
+    }
+    if (!empty($_POST['citation'])) {
+      foreach ($_POST['citation'] as $i => $c) {
+        $type = $_POST['type'][$i];
+        $rotypes = rest_request("projects/rotype");
+        foreach ($rotypes as $r) {
+          if (stristr($r->name, $type) !== FALSE) {
+            $type = $r->id;
+          }
+        }
+        $ro = (object) array(
+          "projectId" => $projectCode,
+          "researcherId" => $user->data["projectdb_info"]->id,
+          "date" => date("Y-m-d"),
+          "typeId" => $type,
+          "description" => $c
+        );
+        $response = rest_request("/projects/ro", "PUT", json_encode($ro));
+      }
+    }
+    $response = (object) array("status" => 'OK', "edit" => $_POST, "REST_RESPONSE" => $response);
+    watchdog('projectdb', '%user added a research output to %project', array('%user' => $user->name, '%project' => $projectCode), WATCHDOG_INFO);
+    drupal_json_output($response);
+    return;
+  } else if ($action == 'add_service') {
+    $properties = rest_request("projects/$projectCode/prop");
+    $services = array();
+    foreach ($properties as $p) {
+      if ($p->propname == 'Services') {
+        $services = json_decode($p->propvalue);
+      }
+    }
+    $services[] = (object) array("type" => $_POST['service']);
+    $services_property = (object) array(
+      "propname" => "Services",
+      "propvalue" => json_encode($services),
+      "projectId" => $projectCode,
+      "facilityId" => 7
+    );
+    
+    $response = rest_request("projects/prop", "PUT", json_encode($services_property));
+    $response = (object) array("status" => 'OK', "edit" => $_POST, "REST_RESPONSE" => $response);
+    watchdog('projectdb', '%user added a services to %project', array('%user' => $user->name, '%project' => $projectCode), WATCHDOG_INFO);
+    drupal_json_output($response);
+    return;
+  } else if ($action == '') {
+    $project_wrapper = rest_request("projects/" . $projectCode);
+    $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
+    $project_wrapper->services = array();
+    foreach ($project_wrapper->properties as $p) {
+      if ($p->propname == 'Services') {
+        $project_wrapper->services = json_decode($p->propvalue);
+      }
+    }
+    $rotypes = rest_request("projects/rotype");
+    drupal_set_title($project_wrapper->project->name);
+    $research_outputs = $user->data['research_outputs'];
+    foreach ($research_outputs as $i => &$r) {
+      $safe_citation = drupal_html_to_text($r['html_citation']);
+      $pos = strrpos($safe_citation, 'Retrieved');
+      if ($pos !== FALSE) {
+        $safe_citation = substr($safe_citation, 0, $pos);
+      }
+      $r['safe_citation'] = $safe_citation;
+      
+      foreach ($project_wrapper->researchOutputs as $pr) {
+        $pr = str_replace("\r", '', $pr->description);
+        if ($pr == $safe_citation) {
+          unset($research_outputs[$i]);
+          break;
+        }
+      }
+    }
+    dpm($research_outputs);
+    $variables = array(
+      'pw' => $project_wrapper,
+      'research_outputs' => $research_outputs,
+      'rotypes' => $rotypes
+    );
+    //dpm($variables);
+    drupal_add_css(drupal_get_path('module', 'researchit_user') . '/css/' . 'jqueryui-editable.css');
+    drupal_add_css(drupal_get_path('module', 'researchit_user') . '/css/' . 'project.css');
+    drupal_add_js(drupal_get_path('module', 'researchit_user') . '/js/' . 'jqueryui-editable.min.js');
+    drupal_add_js(drupal_get_path('module', 'researchit_user') . '/js/' . 'project.js');
+    return theme('researchit_user_project', $variables);
+  }
+}

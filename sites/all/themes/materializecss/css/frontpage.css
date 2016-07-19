@@ -1,0 +1,194 @@
+.lifecycle_selector {
+  /*min-height: 90px; */
+}
+
+.view-research-lifecycle .row .research_lifecycle_stage.name .card-titleXXX {
+  border-top: thick solid #546e7a;
+  padding-left: 40px;
+  margin-left: -40px;
+}
+
+.view-research-lifecycle .row {
+	margin-bottom: 0px;
+}
+
+div.col.research_lifecycle_stage {
+  padding: 0px;
+  display: none;
+}
+
+div.col.research_lifecycle_stage > .card {
+  min-height: 600px;
+}
+
+.page.container {
+  width: 100%;
+  max-width: 3000px;
+}
+
+.page .container {
+  width: 100%;
+  max-width: 3000px;
+}
+
+section.main.container {
+  padding: 0px;
+}
+
+.region-content section {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+/* Styling for each section on Homepage*/
+.region-content section#block-views-research-lifecycle-block-1{
+  padding-bottom: 20px;
+}
+
+.region-content section#block-block-1 {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.region-content section#block-views-category-taxonomy-block-1 {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-color: rgba(31, 93, 141, 1);
+}
+
+.region-content section#block-views-category-taxonomy-block-1 a{
+  color: white;
+}
+
+.region-content section#block-views-group-block {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-color: white;
+}
+
+.region-content section#block-views-education-block {
+  padding-top: 10px;
+  padding-bottom: 75px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+}
+
+.region-content section#block-views-guides-block {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgba(31, 93, 141, 0.8);
+}
+
+.region-content section#block-views-guides-block a{
+  color:white;
+}
+
+.region-content section#block-views-policies-block {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.region-content section#block-views-policies-block a{
+  color: white;
+}
+
+
+
+.region-content section:nth-child(odd) {
+  background: #f4f4f4;
+}
+
+.triangles {
+  position: absolute;
+  left: 0;
+  /*padding-left: 21.4%;
+  padding-right: 21.4%; */
+  padding-left: 15%;
+  padding-right: 15%;
+  z-index: 2;
+}
+
+.triangle-down {
+    visibility: hidden;
+    overflow: hidden;
+    display: inline-block;
+    width: 20%;
+    padding-left: 10%;
+    padding-top: 20px;
+}
+.triangle-down.Plan_Design {
+  visibility: visible;
+}
+.triangle-down-inner {
+    width: 0;
+    height: 0;
+    margin-left:-500px;
+    margin-top:-300px;
+    border-left: 500px solid transparent;
+    border-right: 500px solid transparent;
+}
+
+div.col.research_lifecycle_stage.Plan_Design {
+  display: block;
+}
+
+.category_selector {
+  background-color: #10457C;
+}
+
+.category_selector.selected {
+  background-color: #0080A7;
+}
+
+.cards-container {
+  column-break-inside: avoid;
+}
+.cards-container .card {
+  display: inline-block;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.cards-container .card .collection {
+	overflow: visible;
+}
+
+@media only screen and (max-width: 600px) {
+  .cards-container {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .cards-container {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+@media only screen and (min-width: 993px) {
+  .cards-container {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
+.text-center {
+  text-align: center;
+}
+
+
+body {
+  background: #f4f4f4;
+}
+
+#block-views-guides-block .field-content {
+	padding: 0px;
+}
+
+#block-views-research-lifecycle-block-1 .card {
+	margin-top: 0px;
+}

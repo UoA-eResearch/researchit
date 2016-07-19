@@ -1,0 +1,365 @@
+/*********** overide css ***********/
+/* line 2, ../sass/style.scss */
+
+
+footer.page-footer {
+  background-color: #01457C;
+  height: 200px;
+  position: relative;
+  z-index: 1000;
+}
+
+.page {
+  min-height: 800px;
+  position: relative;
+  width: 100%;
+}
+
+@media only screen and (max-width : 1800px) {
+  .page.container.side-nav-out {
+    padding-left: 280px;
+  }
+}
+
+.card .collection {
+	border: none;
+}
+
+.chooser .card .collection {
+  margin-top: -10px;
+}
+
+@media only screen and (min-width: 1400px) {
+    .card .card-title {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .card .card-title {
+        font-size: 14px;
+    }
+}
+
+.card .collection .collection-item.avatar {
+	min-height: 0px;
+}
+
+/* line 6, ../sass/style.scss */
+.collection-header {
+  margin: 0;
+}
+
+/* line 10, ../sass/style.scss */
+.field-type-text-long {
+  margin-bottom: 1em;
+}
+
+/* line 14, ../sass/style.scss */
+.btn {
+  margin-right: 1em;
+}
+
+/************ css for sidebar regions ***********/
+/* line 22, ../sass/style.scss */
+.region-sidebar-first li,
+.region-sidebar-last li,
+.action-links li {
+  list-style-type: none;
+}
+
+/* line 28, ../sass/style.scss */
+.field-type-taxonomy-term-reference .field-item {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+/******** for comment form ***********/
+/* line 37, ../sass/style.scss */
+.comment-form .form-type-item label {
+  position: inherit;
+  display: block;
+  margin-bottom: 12px;
+}
+/* line 42, ../sass/style.scss */
+.comment-form .form-type-item span, .comment-form .form-type-item .username {
+  padding-left: 12px;
+}
+/* line 48, ../sass/style.scss */
+.comment-form .filter-wrapper .form-type-select label {
+  position: inherit;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.card-content {
+  max-height: 100% !important;
+}
+
+.card .card-image .card-title  a{
+	color:white;
+}
+
+
+/*
+a {
+	color:white !important;
+}
+*/
+
+#edit-submit--2 {
+	background-color: #1F5D8D;
+}
+
+
+div.col > i.large.circle {
+  font-size: 4em;
+  padding: 15px;
+}
+
+.breadcrumb {
+  color: black;
+  font-size: 14px;
+}
+
+.breadcrumb:before {
+  display: none;
+}
+
+nav .brand-logo {
+  float: left;
+}
+
+.brand-logo img {
+  margin-top: 7px;
+  max-height: 55px; /* 77px; */
+}
+
+.main-nav {
+  background-color:#01457C;
+  height: 75px; /*100px;*/
+  z-index: 750;
+  position: relative;
+  box-shadow: none;
+}
+
+nav div.right {
+  height: 75px; /*100px;*/
+  margin-left: 380px;
+}
+
+nav .hide-on-med-and-down ul li, nav .hide-on-med-and-down ul li a, nav .hide-on-med-and-down ul li a i.mdi-navigation-arrow-drop-down {
+  height: 50px;
+  line-height: 50px;
+}
+
+nav ul a {
+  font-size: 1.1rem;
+}
+
+#sidebar {
+  position: fixed;
+  background: white;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  width: 14%;
+  height: 100%;
+  padding-top: 120px;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+#slide-out {
+  z-index: 500;
+}
+
+#sidenav-overlay, .drag-target {
+  display: none;
+}
+
+#create_project {
+  height: 70%;
+}
+
+.ui-autocomplete {
+  z-index: 1010;
+}
+
+.chip i.material-icons {
+  pointer-events: none;
+}
+
+.chip img.ui-datepicker-trigger {
+
+}
+
+.searchBox {
+  background: linear-gradient(#01457C, transparent);
+  display:none;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 20px;
+  text-align: right;
+}
+
+.form-item-search-block-form {
+  margin-right: 50px;
+  margin-left: auto;
+  display: inline-block !important;
+  width: 300px;
+}
+
+.form-item-search-block-form input {
+  border-bottom: 1px solid #9e9e9e !important;
+}
+
+.searchBox .btn {
+  margin-top: 15px;
+}
+
+#admin-menu-search .admin-menu-search {
+  height: 1rem;
+}
+
+/* Commonly Grouped Services Cards */
+
+.view-group .card .card-image img {
+  height: 151px;
+}
+
+.view-group .card .card-title {
+  background-color: #00467f;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5.4px 18px;
+}
+
+.view-group .card .card-action a {
+  color: rgb(0, 70, 127) !important;
+  font-weight: bold;
+}
+
+.node-form .input-field label {
+  position: static;
+}
+
+
+/* Edu Cards */
+
+.view-education .card .card-image img {
+  height: 151px;
+}
+
+.view-education .card .card-title {
+  background-color: rgb(124, 179, 66);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5.4px 18px;
+}
+
+.view-education .card .card-action a {
+  color: rgb(0, 70, 127) !important;
+  font-weight: bold;
+}
+
+/* Guides Cards */
+
+.view-guides .card .card-image img {
+  height: 151px;
+}
+
+.view-guides .card .card-title {
+  background-color: #5e35b1;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5.4px 18px;
+}
+
+.view-guides .card .card-action a {
+  color: rgb(0, 70, 127) !important;
+  font-weight: bold;
+}
+
+/* Policy Cards */
+
+.view-policies .card .card-image img {
+  height: 151px;
+}
+
+.view-policies .card .card-title {
+  background-color: rgb(255, 179, 0);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5.4px 18px;
+}
+
+.view-policies .card .card-action a {
+  color: rgb(0, 70, 127) !important;
+  font-weight: bold;
+}
+
+/* Service Categories */
+
+.view-category-taxonomy .card .card-image img {
+  height: 151px;
+}
+
+.view-category-taxonomy.view-display-id-block_1 .card .card-title {
+  background-color: #e53935;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5.4px 18px;
+}
+
+.view-category-taxonomy .card .card-action a {
+  color: rgb(0, 70, 127) !important;
+  font-weight: bold;
+}
+
+
+.uoa-brand-shape {
+  position: relative;
+  width: calc(100% - 108px);
+  left: 54px;
+  /*padding: 3em 0 2em; */
+  background-color: rgba(0, 70, 127, 0.9); }
+  .uoa-brand-shape:before, .uoa-brand-shape:after {
+    content: "";
+    position: absolute;
+    width: 54px;
+    height: 100%;
+    background-size: 54px 1000px;
+    z-index: 0; }
+  .uoa-brand-shape:before {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTQgMTAwMCI+DQoJPHBvbHlnb24gZmlsbD0iIzAwNDY3ZiIgZmlsbC1vcGFjaXR5PSIwLjkiIHBvaW50cz0iMCA1NCA1NCAwIDU0IDEwMDAgMCAxMDAwIi8+DQo8L3N2Zz4NCg==");
+    left: -54px;
+    top: 0; }
+  .uoa-brand-shape:after {
+    right: -54px;
+    bottom: 0;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTQgMTAwMCI+DQoJPHBvbHlnb24gZmlsbD0iIzAwNDY3ZiIgZmlsbC1vcGFjaXR5PSIwLjkiIHBvaW50cz0iMCAwIDU0IDAgNTQgOTQ2IDAgMTAwMCIvPg0KPC9zdmc+DQo=");
+    background-position: 100% 100%; }
+  .uoa-brand-shape__content {
+    margin: 0 -27px;
+    position: relative;
+    z-index: 1; }
+  .uoa-brand-shape h1, .uoa-brand-shape p {
+    color: #ffffff; }
+  .uoa-brand-shape__content :first-child {
+    margin-top: 0; }
+
+a.anchor {
+  display: block; position: relative; top: -100px; visibility: hidden;
+}
+
+.material-icons.arrow {
+  color: #0080A7;
+  float: right;
+  margin-right: -31px;
+  display: none;
+}
+
+.selected .material-icons.arrow {
+  display: inline-block;
+}
