@@ -318,6 +318,8 @@ function researchit_user_projects($projectCode = '', $action = '') {
   } else if ($projectCode == 'create_project') {
     researchit_user_create_project();
     return;
+  } else if ($projectCode == 'admin') {
+    return '<iframe src="https://web.ceres.auckland.ac.nz/project_centre/#/home" seamless frameborder="0" style="overflow:hidden;height:800px;width:100%"></iframe>';
   }
   
   if (!in_array('administrator', $user->roles)) {
