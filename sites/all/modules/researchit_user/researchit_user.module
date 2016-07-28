@@ -17,10 +17,16 @@ function researchit_user_menu() {
   return $items;
 }
 
-function rest_request($endpoint, $method = 'GET', $postdata = '') {
-  $auth_token = variable_get('rest_credentials');
-  $base = variable_get('rest_url');
-  $u = 'nyou045@auckland.ac.nz';
+function rest_request($endpoint, $method = 'GET', $postdata = '', $type='NESI') {
+  if ($type == 'NESI') {
+    $auth = 'Authorization:Basic ' . variable_get('rest_credentials');
+    $base = variable_get('rest_url');
+    $u = 'nyou045@auckland.ac.nz';
+  } else if ($type == 'CER') {
+    $auth = '';
+    $base = variable_get('cer_rest_url');
+    $u = $_SERVER['uid'];
+  }
   $opts = array(
     'http'=>array(
       'method'=> $method,
@@ -31,7 +37,8 @@ function rest_request($endpoint, $method = 'GET', $postdata = '') {
                 "Content-Type: application/json\r\n" .
                 "RemoteUser: $u\r\n" .
                 "X-Proxy-REMOTE-USER: $u\r\n" .
-                "Authorization:Basic $auth_token\r\n" .
+                "X-REMOTE-USER: $u\r\n" .
+                "$auth\r\n" .
                 "User-Agent: drupal\r\n"
     )
   );
@@ -61,14 +68,19 @@ function researchit_user_get_projects() {
 function researchit_user_user_login() {
   global $user;
   if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
+
+  $upi = $_SERVER['uid'];
+  
   $token = $_SERVER['auEduPersonSharedToken'];
-  if ($token == 'G3r4cW38wpRxOH9QatN1JiOPkqw' || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
+  if ($upi == 'nyou045' || $upi == 'mgah001') {
     // Nick/Mark = Richard Easther
-    $token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
-    $_SERVER['uid'] = 'reas725';
+    //$token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
+    //$upi = 'reas725';
   }
 
   $researcher = rest_request('researchers/tuakiri', 'POST', $token);
+  
+  $cer_person = rest_request("person/findByIdentity/$upi", 'GET', '', 'CER');
   
   $scienceDomains = rest_request('lists/science_domains');
   $researchers = rest_request('researchers/');
@@ -84,11 +96,9 @@ function researchit_user_user_login() {
   foreach($scienceDomains as $d) {
     $scienceDomainsTree[$d] = rest_request('lists/science_studies', 'POST', $d);
   }
-
-  $cn = escapeshellarg($_SERVER['uid']);
   
   $ldapCredentials = variable_get('ldap_credentials');
-  $ldapInfo = `ldapsearch $ldapCredentials' '(cn=$cn)'`;
+  $ldapInfo = `ldapsearch $ldapCredentials' '(cn=$upi)'`;
   $ldapInfo = str_replace("\n ", "", $ldapInfo);
   $ldapInfo = explode("\n", $ldapInfo);
   $ldapGroups = array();
@@ -111,7 +121,7 @@ function researchit_user_user_login() {
   ini_set('mssql.charset', 'UTF-8');
   $status = mssql_connect(variable_get('symplectic_server'), variable_get('symplectic_username'), variable_get('symplectic_password'));
   if ($status) {
-    $result = mssql_query("SELECT * FROM [elementstest-reporting].[dbo].[pub_eresearch_view] WHERE username=$cn");
+    $result = mssql_query("SELECT * FROM [elementstest-reporting].[dbo].[pub_eresearch_view] WHERE username='$upi'");
     while ($row = mssql_fetch_assoc($result)) {
       $allResearchOutputs[] = $row;
     }
@@ -119,6 +129,7 @@ function researchit_user_user_login() {
 
   user_save($user, array('data' => array(
     'projectdb_info' => $researcher,
+    'cer_projectdb_info' => $cer_person,
     'ldap_groups' => $ldapGroups,
     'ldap_attributes' => $ldapAttributes,
     'science_domains' => $scienceDomainsTree,
