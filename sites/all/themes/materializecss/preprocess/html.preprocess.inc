@@ -12,6 +12,11 @@
  * Implements hook_preprocess_html().
  */
 function materialize_preprocess_html(&$vars) {
+  drupal_add_css('https://cdn.auckland.ac.nz/designs/uoa-digital/clientlibs.201602222151.css', array(
+      'type' => 'external',
+      'group' => CSS_THEME,
+      'every_page' => TRUE
+    ));
   if (materialize_check_library('materialize', 'css/materialize.min.css') && materialize_check_library('materialize', 'js/materialize.min.js')) {
     drupal_add_css(libraries_get_path('materialize') . '/css/materialize.min.css', array('group' => CSS_THEME, 'every_page' => TRUE));
     drupal_add_js(libraries_get_path('materialize') . '/js/materialize.min.js',
