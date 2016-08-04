@@ -228,7 +228,7 @@
                   $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
                   if (in_array($p->statusName, array('Open', 'Reopened', 'Open-Not Public'))) {
                     $color = '#43a047';
-                  } else if (in_array($p->statusId, array('Closed', 'Rejected'))) {
+                  } else if (in_array($p->statusName, array('Closed', 'Rejected'))) {
                     $color = '#e53935';
                   } else {
                     $color = '#1e88e5';
