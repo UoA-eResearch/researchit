@@ -339,7 +339,6 @@ a.anchor {
 #links a {
   background-color: #0080a7;
   width: 100%;
-  overflow: visible;
   min-height: 0px;
   padding: 0 2rem;
 }
