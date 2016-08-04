@@ -55,12 +55,30 @@ function researchit_user_get_projects() {
   }
   $id = $user->data['projectdb_info']->id;
   $projects = rest_request("researchers/$id/projects");
-  usort($projects, function($a, $b) {
-    if ($a->statusId == $b->statusId) {
-      return $a->startDate < $b->startDate;
-    } else {
-      return $a->statusId > $b->statusId;
+  if (!empty($user->data['cer_projectdb_info']->id)) {
+    $cerid = $user->data['cer_projectdb_info']->id;
+    $cer_projects = rest_request("person/$cerid/projects", 'GET', '', 'CER');
+    foreach ($cer_projects as $c) {
+      $c->project->role = $c->role;
+      $c = $c->project;
+      $c->statusName = $c->status;
+      $c->projectCode = $c->code;
+      $c->name = $c->title;
+      $found = FALSE;
+      foreach ($projects as $p) {
+        if ($c->projectCode == $p->projectCode) {
+          $p->cer_info = $c;
+          $found = TRUE;
+          break;
+        }
+      }
+      if (!$found) {
+        $projects[] = $c;
+      }
     }
+  }
+  usort($projects, function($a, $b) {
+    return $a->statusName > $b->statusName;
   });
   return $projects;
 }
@@ -440,6 +458,13 @@ function researchit_user_projects($projectCode = '', $action = '') {
     return;
   } else if ($action == '') {
     $project_wrapper = rest_request("projects/" . $projectCode);
+    if (!empty($project_wrapper->message)) {
+      $project_wrapper = rest_request("project/wrapper/findByCode/$projectCode", 'GET', '', 'CER');
+      $project_wrapper->project->name = $project_wrapper->project->title;
+      $project_wrapper->project->statusName = $project_wrapper->project->status;
+      $project_wrapper->project->projectCode = $project_wrapper->project->code;
+      dpm($project_wrapper);
+    }
     $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
     $project_wrapper->services = array();
     foreach ($project_wrapper->properties as $p) {
@@ -466,7 +491,6 @@ function researchit_user_projects($projectCode = '', $action = '') {
         }
       }
     }
-    dpm($research_outputs);
     $variables = array(
       'pw' => $project_wrapper,
       'research_outputs' => $research_outputs,
