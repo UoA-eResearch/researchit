@@ -24,7 +24,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="col s3">
+<div class="col s12 m6 l3">
   <div class="card hoverable">
     <div class="card-image">
       <?php echo $fields['field_image']->content; ?>
