@@ -1,7 +1,7 @@
 <input id="project_id" type="hidden" value="<?php echo $pw->project->id ?>"/>
 <div class="row">
   <div class="col s8">
-    <h4 class='editable' id='project_title' data-type='text' data-pk='Project' data-name='Name' data-title='Project name'><?php echo $pw->project->name; dpm($pw); ?></h4>
+    <h4 class='editable' id='project_title' data-type='text' data-pk='Project' data-name='Name' data-title='Project name'><?php echo $pw->project->name; ?></h4>
     <div class='editable' id='project_description' data-type="textarea" data-pk="Project" data-name="Description" data-title="Description"><?php echo strip_tags($pw->project->description) ?></div>
 
     <!-- Left Column content goes here -->
@@ -46,30 +46,36 @@
           </form>
         </div>
       </div>
-      <?php foreach ($pw->services as $s):  ?>
+      <?php foreach ($pw->serviceInstances as $s):  ?>
         <li class="collection-item avatar">
           <?php
-          if (($s->type) == 'VM') {
+          if (($s->serviceName) == 'VM') {
                   echo "<i class='material-icons circle blue'>view_module</i>";
           } else {
                   echo "<i class='material-icons circle blue'>view_carousel</i>";
           };
           ?>
 
-          <span class="title"><?php echo $s->type ?></span>
+          <span class="title"><?php echo $s->serviceName ?></span>
           <p style="font-weight:300">
             <?php
-              foreach ($s as $k => $v) {
-                if ($k == 'type') continue;
-                $icons = array("VM" => "receipt", "CPUs" => "memory", "RAM" => "view_week", "Disk space" => "storage");
+              foreach ($s->instance as $k => $v) {
+                $icons = array("names" => "receipt", "cpus" => "memory", "memory" => "view_week", "storage" => "storage");
                 $icon = "info_outline";
-                if (array_key_exists($k, $icons)) {
-                  $icon = $icons[$k];
+                if ($k == 'storage') {
+                  // display disk mounts somehow
+                } else {
+                  if (array_key_exists($k, $icons)) {
+                    $icon = $icons[$k];
+                  }
+                  if ($k == 'names') {
+                    $v = $v[0];
+                  }
+                  echo "<div class='chip'>
+                          <i class='material-icons'>$icon</i>
+                          $v
+                        </div>";
                 }
-                echo "<div class='chip'>
-                        <i class='material-icons'>$icon</i>
-                        $v
-                      </div>";
               }
             ?>
           </p>
@@ -132,9 +138,14 @@
 
         <span class="title"><?php echo $r->researcher->fullName ?></span>
         <p style="font-weight:300"><?php echo $r->researcherRoleName ?></p>
-        <?php if ($r->researcherId != $user->data['projectdb_info']->id): ?>
+        <?php
+        if (!empty($user->data['projectdb_info']->researcherId) && $r->researcherId == $user->data['projectdb_info']->id) {
+          // This is your NeSI identity
+        } else if (!empty($user->data['cer_projectdb_info']->id) && $r->researcherId == $user->data['cer_projectdb_info']->id ) {
+          // This is your CER identity
+        } else { // This is not you ?>
           <a class="btn-floating waves-effect waves-light red remove" style="float:right;margin-top: -40px" rid="<?php echo $r->researcherId ?>"><i class="material-icons">delete</i></a>
-        <?php endif; ?>
+        <?php } ?>
       </li>
       <?php endforeach; ?>
     </ul>

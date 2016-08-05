@@ -170,7 +170,6 @@ function researchit_user_node_access($node, $op, $account) {
 
 function researchit_user_theme($existing, $type, $theme, $path) {
   $variables = array();
-  dpm('configuring themes');
   return array(
     'researchit_user_project' => array(
       'variables' => $variables,
@@ -463,13 +462,21 @@ function researchit_user_projects($projectCode = '', $action = '') {
       $project_wrapper->project->name = $project_wrapper->project->title;
       $project_wrapper->project->statusName = $project_wrapper->project->status;
       $project_wrapper->project->projectCode = $project_wrapper->project->code;
+      $project_wrapper->rpLinks = array();
+      foreach ($project_wrapper->members as $m) {
+        $m->researcher = $m->person;
+        $m->researcherRoleName = $m->role;
+        $m->researcherId = $m->person->id;
+        $project_wrapper->rpLinks[] = $m;
+      }
       dpm($project_wrapper);
-    }
-    $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
-    $project_wrapper->services = array();
-    foreach ($project_wrapper->properties as $p) {
-      if ($p->propname == 'Services') {
-        $project_wrapper->services = json_decode($p->propvalue);
+    } else {
+      $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
+      $project_wrapper->services = array();
+      foreach ($project_wrapper->properties as $p) {
+        if ($p->propname == 'Services') {
+          $project_wrapper->services = json_decode($p->propvalue);
+        }
       }
     }
     $rotypes = rest_request("projects/rotype");
@@ -502,5 +509,15 @@ function researchit_user_projects($projectCode = '', $action = '') {
     drupal_add_js(drupal_get_path('module', 'researchit_user') . '/js/' . 'jqueryui-editable.min.js');
     drupal_add_js(drupal_get_path('module', 'researchit_user') . '/js/' . 'project.js');
     return theme('researchit_user_project', $variables);
+  }
+}
+
+function get_colour_for_status($status) {
+  if (in_array($status, array('Open', 'Reopened', 'Open-Not Public'))) {
+    return '#43a047';
+  } else if (in_array($status, array('Closed', 'Rejected'))) {
+    return '#e53935';
+  } else {
+    return '#1e88e5';
   }
 }

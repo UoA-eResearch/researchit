@@ -226,13 +226,7 @@
               if (!empty($projects)) {
                 foreach ($projects as $i => $p) {
                   $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
-                  if (in_array($p->statusName, array('Open', 'Reopened', 'Open-Not Public'))) {
-                    $color = '#43a047';
-                  } else if (in_array($p->statusName, array('Closed', 'Rejected'))) {
-                    $color = '#e53935';
-                  } else {
-                    $color = '#1e88e5';
-                  }
+                  $color = get_colour_for_status($p->statusName);
                   echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar' style='min-height: 100px'>
                           <i class='material-icons circle' style='background-color: $color !important'>extension</i>
                           <span class='title' style='color: black; font-weight:500'>{$p->name}</span>
