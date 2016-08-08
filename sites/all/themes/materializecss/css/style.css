@@ -144,7 +144,7 @@ nav .brand-logo {
 }
 
 nav div.right {
-  height: 75px; /*100px;*/
+  height: 64px; /*100px;*/
   margin-left: 380px;
 }
 
@@ -362,4 +362,72 @@ a.anchor {
 
 .selected .material-icons.arrow {
   display: inline-block;
+}
+
+.bg-dark-grey
+{
+  background-color: #373a3c !important;
+}
+
+.bg-darker-grey
+{
+  background-color: #262626 !important;
+}
+
+.bg-light-grey
+{
+  background-color: #f2f2f2 !important;
+}
+
+.font
+{
+  font-family: NationalBold, sans-serif;
+  margin-right: 1rem;
+  padding: 1rem 1.5rem;
+  transition: all .8s;
+}
+
+.text-navy-blue
+{
+  color: #00467f!important;
+}
+
+.bg-white
+{
+  background-color: #ffffff;
+}
+
+.nav-container
+{
+  position:absolute !important;
+  left: 300px !important;
+}
+
+.brand-logo
+{
+  color: #00467f !important;
+  margin-left: 15px;
+  display: inline-block;
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.nav-link
+{
+  color: #00467f !important;
+}
+
+.secondary-header
+{
+  height: 90px;
+  box-shadow: none;
+  line-height: 90px;
+}
+
+.uni-logo
+{
+  position: absolute;
+  width: 144px;
+  margin-top: -27px;
+  left: 122px;
 }

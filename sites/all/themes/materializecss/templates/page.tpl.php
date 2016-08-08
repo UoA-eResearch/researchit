@@ -72,234 +72,276 @@
  *
  * @ingroup themeable
  */
- if (user_is_logged_in()) {
-   global $user;
-   $text = 'Logged in as ' . $user->name;
-   $href = '/projects';
-   $class = array('username', 'logged_in');
- } else {
-   $text = 'Login';
-   $href = '/Shibboleth.sso/Login';
-   $class = array('username', 'not_logged_in');
- }
- $primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title'=>$text, '#href'=>$href, '#below' => '', '#attributes' => array('class'=>$class));
- $primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title'=>'Search', '#href'=>'search', '#below' => '', '#attributes' => array('class' => 'search_button'));
+
+foreach ($primary_nav as &$l) {
+    if (!empty($l['#attributes'])) {
+        $l['#attributes']['class'] = array('test');
+    }
+}
+
+if (user_is_logged_in()) {
+    global $user;
+    $text = 'Logged in as ' . $user->name;
+    $href = '/projects';
+    $class = array('username', 'logged_in');
+} else {
+    $text = 'Login';
+    $href = '/Shibboleth.sso/Login';
+    $class = array('username', 'not_logged_in');
+}
+$primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title' => $text, '#href' => $href, '#below' => '', '#attributes' => array('class' => $class));
+$primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title' => 'Search', '#href' => 'search', '#below' => '', '#attributes' => array('class' => 'search_button'));
 ?>
-<div id="page">
-  <nav class="main-nav" id="nav" role="navigation">
-    <a href="#" data-activates="slide-out" class="button-collapse show-on-large" style='margin-left:15px'><i class="mdi-navigation-menu"></i></a>
-    <div class="nav-wrapper container">
-      <?php if ($logo): ?>
-        <a class="brand-logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
-        <div style="float:left; position:absolute; display: inline-block; margin-left: 180px; font-size: 1.1rem;">The Centre for eResearch</div>
-      <?php endif; ?>
-      <?php if (!empty($primary_nav)): ?>
-        <div class="right">
-          <?php print render($primary_nav); ?>
-        </div>
-      <?php endif; ?>
-    </div>
-  </nav>
-  <?php if (!empty($page['header'])): ?>
-    <div class="top">
-      <?php print render($page['header']); ?>
-    </div>
-  <?php endif; ?><!-- /.header  -->
 
-  <div class="row searchBox">
-    <?php print drupal_render(drupal_get_form('search_block_form')); ?>
-  </div>
+<nav class="top-nav bg-light-grey" id="nav">
+    <ul id='slide-out' class='side-nav'>
 
-  <?php if (user_is_logged_in()): ?>
-    <input type='hidden' id='researchers' value='<?php
-      $json = json_encode($user->data['researchers']);
-      $json = str_replace("'", ' ', $json);
-      echo $json;
-    ?>'/>
-
-    <div id="create_project" class="modal">
-      <div class="modal-content">
-        <h4>Create a new project</h4>
-        <div class="row">
-          <form class="col s12" method="POST" action="#">
-            <div class="row">
-              <ul class="collection">
-                <li class="collection-item avatar existing-collaborator">
-                  <img src="<?php if (!empty($user->data['projectdb_info']->pictureUrl)) {
-                    echo $user->data['projectdb_info']->pictureUrl;
-                  } else if (!empty($user->data['ldap_attributes']['thumbnailPhoto'])) {
-                    echo 'data:image/png;base64,' . $user->data['ldap_attributes']['thumbnailPhoto'];
-                  }
-                  ?>" alt="" class="circle">
-                  <span class="title"><?php echo $user->data['ldap_attributes']['displayName'] ?></span>
-                  <p style="font-weight:300">Project Owner</p>
-                </li>
-              </ul>
-              <div class="input-field col s12">
-                <input placeholder="Project Title" id="projectName" type="text" name="projectName" class="validate" required />
-                <label for="projectName">Project title</label>
-              </div>
-              <div class="input-field col s12">
-                <textarea id="projectDescription" name="projectDescription" class="materialize-textarea" required></textarea>
-                <label for="projectDescription">Project description</label>
-              </div>
-              <div class="input-field col s12">
-                <select id='scienceStudy' name="scienceStudy" required>
-                  <?php
-                    foreach ($user->data['science_domains'] as $d => $studies) {
-                      echo "<optgroup label='$d'>";
-                      foreach ($studies as $s) {
-                        $selected = '';
-                        if (!empty($user->data['ldap_attributes']['department']) && $s == $user->data['ldap_attributes']['department']) $selected = 'selected';
-                        echo "<option value='$s' $selected>$s</option>";
-                      }
-                      echo "</optgroup>";
-                    }
-                  ?>
-                </select>
-                <label for='scienceStudy'>Field of science</label>
-              </div>
-              <?php if (!empty($user->data['projectdb_info']->institutionalRoleId) && $user->data['projectdb_info']->institutionalRoleId != 1): ?>
-                <div class="input-field col s12">
-                  <input type='hidden' id='supervisor-id' name='supervisor-id' required/>
-                  <input placeholder="Supervisor" id="supervisor" name="supervisor" type="text" class="validate" autocomplete="off" required/>
-                  <label for="supervisor">Supervisor's name</label>
-                </div>
-              <?php endif; ?>
-              <div class="input-field col s12">
-                <input type="date" class="datepicker" id="startDate" name="startDate" required/>
-                <label for="startDate">First day</label>
-              </div>
-              <div class="input-field col s12">
-                <input type="date" class="datepicker" id="endDate" name="endDate" required/>
-                <label for="endDate">Last day</label>
-              </div>
-              Collaborators for this project:
-              <div class="input-field col s12">
-                <input placeholder="Collaborator" id="collaborator" type="text" class="validate" autocomplete="off" />
-                <label for="collaborator">Name</label>
-              </div>
-              <div class="col s12 right">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                  <i class="material-icons right">send</i>
-                </button>
-              </div>
-            </div> <!-- row -->
-          </form>
-        </div> <!-- row -->
-      </div> <!-- modal-content -->
-    </div> <!-- modal-->
-
-  <?php endif; ?>
-
-  <div class="row page grid container">
-      <!--<a href="#" data-activates="sidebar" class="button-collapse show-on-large" style="margin-left: 15px;"><i class="mdi-navigation-menu"></i></a>-->
-      <ul id='slide-out' class='side-nav'>
-
-        <div style="height: 75px; width:100%; background-color: #01457C">
-
-        </div>
+        <nav class="top-nav bg-light-grey"></nav>
 
         <!-- Menu Bar Content-->
         <?php if (user_is_logged_in()): ?>
-          <!-- When User is Signed in-->
-          <div class='row'>
-            <?php
-
-              echo "<div class='collection'>";
-              echo "<li class='collection-header'><h5>Manage Projects</h5></li>";
-              echo "<a href='/projects/' class='collection-item avatar' style='min-height: 100px'>
+            <!-- When User is Signed in-->
+            <div class='row'>
+                <?php
+                echo "<div class='collection'>";
+                echo "<li class='collection-header'><h5>Manage Projects</h5></li>";
+                echo "<a href='/projects/' class='collection-item avatar' style='min-height: 100px'>
                       <i class='material-icons circle' style='background-color: #ffb300 !important'>dashboard</i>
                       <span class='title' style='color: #ffb300; font-weight:500'>Open Project Dashboard</span>
                       <p style='font-weight:300; color:black'>View and manage all your research projects</p>
                     </a>";
-              echo "<a href='#create_project' class='collection-item avatar waves-effect waves-light modal-trigger' style='min-height: 100px'>
+                echo "<a href='#create_project' class='collection-item avatar waves-effect waves-light modal-trigger' style='min-height: 100px'>
                       <i class='material-icons circle' style='background-color: #ffb300 !important'>add</i>
                       <span class='title' style='color: #ffb300; font-weight:500'>Create New Project</span>
                       <p style='font-weight:300; color:black'>Create project in order to apply for research services</p>
                     </a>";
-
-              echo "<li class='collection-header'><h5>My Projects</h5></li>";
-              $projects = researchit_user_get_projects();
-              if (!empty($projects)) {
-                foreach ($projects as $i => $p) {
-                  $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
-                  if (in_array($p->statusId, array(1,2,6))) {
-                    $color = '#43a047';
-                  } else if (in_array($p->statusId, array(4,10))) {
-                    $color = '#e53935';
-                  } else {
-                    $color = '#1e88e5';
-                  }
-                  echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar' style='min-height: 100px'>
+                echo "<li class='collection-header'><h5>My Projects</h5></li>";
+                $projects = researchit_user_get_projects();
+                if (!empty($projects)) {
+                    foreach ($projects as $i => $p) {
+                        $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
+                        if (in_array($p->statusId, array(1, 2, 6))) {
+                            $color = '#43a047';
+                        } else if (in_array($p->statusId, array(4, 10))) {
+                            $color = '#e53935';
+                        } else {
+                            $color = '#1e88e5';
+                        }
+                        echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar' style='min-height: 100px'>
                           <i class='material-icons circle' style='background-color: $color !important'>extension</i>
                           <span class='title' style='color: black; font-weight:500'>{$p->name}</span>
                           <p style='font-weight:300; color:black'>{$p->projectCode} </br>
                             <span style='font-style: italic;'>$desc</span>
                           </p>
                         </a>";
+                    }
                 }
-              }
-              echo "</div>";
-            ?>
-          </div>
+                echo "</div>";
+                ?>
+            </div>
 
         <?php else: ?>
-          <!-- When User is not signed in-->
-
-          You're not logged in. If you were, you'd be able to see your projects here.
+            <!-- When User is not signed in-->
+            Login to see your projects.
         <?php endif; ?>
-      </ul>
+    </ul>
 
-    <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="<?php print $sidebar_left; ?> sidebar-first" role="complementary">
-        <?php print render($page['sidebar_first']); ?>
-      </aside>  <!-- /#sidebar-first -->
-    <?php endif; ?>
+    <a href="#" data-activates="slide-out" class="button-collapse show-on-large" style='margin-left:15px'><i
+            class="mdi-navigation-menu text-navy-blue"></i></a>
 
-    <section class="<?php if (!empty($main_grid)) print $main_grid; ?> main container" role="main">
-      <?php if (!empty($page['highlighted'])): ?>
-        <div class="highlighted"><?php print render($page['highlight']); ?></div>
-      <?php endif; ?>
-
-      <?php print render($secondary_navigation); ?>
-
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
-      <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php print render($title_suffix); ?>
-      <?php print $messages; ?>
-      <?php if (!empty($tabs['#primary'])): ?>
-        <?php print render($tabs_primary); ?>
-      <?php endif; ?>
-
-      <?php if (!empty($page['help'])): ?>
-        <?php print render($page['help']); ?>
-      <?php endif; ?>
-      <?php if (!empty($action_links)): ?>
-        <div class="action-links"><i class="mdi-action-note-add small"></i><?php print render($action_links); ?></div>
-      <?php endif; ?>
-      <?php print render($tabs_secondary); ?>
-      <?php if(drupal_is_front_page()) {
-              unset($page['content']['system_main']['default_message']);
-            }
-            print render($page['content']); ?>
-    </section>
-
-    <?php if (!empty($page['sidebar_second'])): ?>
-      <aside class="<?php print $sidebar_right; ?> sidebar-last" role="complementary">
-        <?php print render($page['sidebar_second']); ?>
-      </aside>  <!-- /#sidebar-second -->
-    <?php endif; ?>
-  </div> <!-- /main  -->
-
-  <div class="divider"></div>
-  <footer class="page-footer">
-    <div class="container">
-      <?php print render($page['footer']); ?>
+    <div class="nav-wrapper nav-container">
+        <?php if ($logo): ?>
+            <a href="#" class="brand-logo">The Centre for eResearch</a>
+        <?php endif; ?>
     </div>
-  </footer>
+</nav>
 
-</div> <!-- /#page -->
+<nav class="secondary-header bg-white">
+
+    <div class="nav-wrapper">
+        <img class="uni-logo" src="/sites/default/files/logo.png">
+        <ul id="nav-mobile" class="nav-container hide-on-med-and-down">
+            <?php
+                foreach($primary_nav as $link){
+                    if (!empty($link['#title'])) {
+                        $title = $link['#title'];
+
+                        if($title == 'Home')
+                        {
+                            $href = '/';
+                        }
+                        else if (!empty($link['#original_link']) && !empty($link['#original_link']['options']['fragment'])) {
+
+                            $href = '/#' .$link['#original_link']['options']['fragment'];
+                        }
+                        else
+                        {
+                            $href = $link['#href'];
+                        }
+
+                        echo "<li><a class='nav-link' href='$href'>$title</a></li>";
+                    }
+                }
+            ?>
+        </ul>
+    </div>
+</nav>
+
+<?php if (!empty($page['header'])): ?>
+    <div class="top">
+        <?php print render($page['header']); ?>
+    </div>
+<?php endif; ?>
+
+<div class="row searchBox">
+    <?php
+    $form = drupal_get_form('search_block_form');
+    print drupal_render($form); ?>
+</div>
+
+<?php if (user_is_logged_in()): ?>
+    <input type='hidden' id='researchers' value='<?php
+    $json = json_encode($user->data['researchers']);
+    $json = str_replace("'", ' ', $json);
+    echo $json;
+    ?>'/>
+
+    <div id="create_project" class="modal">
+        <div class="modal-content">
+            <h4>Create a new project</h4>
+            <div class="row">
+                <form class="col s12" method="POST" action="#">
+                    <div class="row">
+                        <ul class="collection">
+                            <li class="collection-item avatar existing-collaborator">
+                                <img src="<?php if (!empty($user->data['projectdb_info']->pictureUrl)) {
+                                    echo $user->data['projectdb_info']->pictureUrl;
+                                } else if (!empty($user->data['ldap_attributes']['thumbnailPhoto'])) {
+                                    echo 'data:image/png;base64,' . $user->data['ldap_attributes']['thumbnailPhoto'];
+                                }
+                                ?>" alt="" class="circle">
+                                <span class="title"><?php echo $user->data['ldap_attributes']['displayName'] ?></span>
+                                <p style="font-weight:300">Project Owner</p>
+                            </li>
+                        </ul>
+                        <div class="input-field col s12">
+                            <input placeholder="Project Title" id="projectName" type="text" name="projectName"
+                                   class="validate" required/>
+                            <label for="projectName">Project title</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="projectDescription" name="projectDescription" class="materialize-textarea"
+                                      required></textarea>
+                            <label for="projectDescription">Project description</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select id='scienceStudy' name="scienceStudy" required>
+                                <?php
+                                foreach ($user->data['science_domains'] as $d => $studies) {
+                                    echo "<optgroup label='$d'>";
+                                    foreach ($studies as $s) {
+                                        $selected = '';
+                                        if (!empty($user->data['ldap_attributes']['department']) && $s == $user->data['ldap_attributes']['department']) $selected = 'selected';
+                                        echo "<option value='$s' $selected>$s</option>";
+                                    }
+                                    echo "</optgroup>";
+                                }
+                                ?>
+                            </select>
+                            <label for='scienceStudy'>Field of science</label>
+                        </div>
+                        <?php if (!empty($user->data['projectdb_info']->institutionalRoleId) && $user->data['projectdb_info']->institutionalRoleId != 1): ?>
+                            <div class="input-field col s12">
+                                <input type='hidden' id='supervisor-id' name='supervisor-id' required/>
+                                <input placeholder="Supervisor" id="supervisor" name="supervisor" type="text"
+                                       class="validate" autocomplete="off" required/>
+                                <label for="supervisor">Supervisor's name</label>
+                            </div>
+                        <?php endif; ?>
+                        <div class="input-field col s12">
+                            <input type="date" class="datepicker" id="startDate" name="startDate" required/>
+                            <label for="startDate">First day</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="date" class="datepicker" id="endDate" name="endDate" required/>
+                            <label for="endDate">Last day</label>
+                        </div>
+                        Collaborators for this project:
+                        <div class="input-field col s12">
+                            <input placeholder="Collaborator" id="collaborator" type="text" class="validate"
+                                   autocomplete="off"/>
+                            <label for="collaborator">Name</label>
+                        </div>
+                        <div class="col s12 right">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div> <!-- row -->
+                </form>
+            </div> <!-- row -->
+        </div> <!-- modal-content -->
+    </div> <!-- modal-->
+
+<?php endif; ?>
+
+<div class="row page grid">
+    <section class="<?php if (!empty($main_grid)) print $main_grid; ?> main" role="main" style="padding: 0;">
+        <?php if (!empty($page['highlighted'])): ?>
+            <div class="highlighted"><?php print render($page['highlight']); ?></div>
+        <?php endif; ?>
+
+        <?php print render($secondary_navigation); ?>
+
+        <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
+        <a id="main-content"></a>
+        <?php print render($title_prefix); ?>
+        <?php print render($title_suffix); ?>
+        <?php print $messages; ?>
+        <?php if (!empty($tabs['#primary'])): ?>
+            <?php print render($tabs_primary); ?>
+        <?php endif; ?>
+
+        <?php if (!empty($page['help'])): ?>
+            <?php print render($page['help']); ?>
+        <?php endif; ?>
+        <?php if (!empty($action_links)): ?>
+            <div class="action-links"><i class="mdi-action-note-add small"></i><?php print render($action_links); ?>
+            </div>
+        <?php endif; ?>
+        <?php print render($tabs_secondary); ?>
+        <?php if (drupal_is_front_page()) {
+            unset($page['content']['system_main']['default_message']);
+        }
+        print render($page['content']); ?>
+    </section>
+</div>
+
+
+<footer class="page-footer bg-dark-grey" style="padding: 0;margin: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Explore</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">About the Centre for eResearch</a></li>
+                </ul>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Help & Support</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Contact us</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">AskAuckland</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Donate to the Centre for eResearch</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Provide feedback</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright bg-darker-grey">
+        <div class="container">
+            © 2016 The Centre for eResearch
+        </div>
+    </div>
+</footer>

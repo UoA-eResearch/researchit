@@ -60,9 +60,9 @@ function researchit_user_get_projects() {
 
 function researchit_user_user_login() {
   global $user;
-  if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
-  $token = $_SERVER['auEduPersonSharedToken'];
-  if ($token == 'G3r4cW38wpRxOH9QatN1JiOPkqw' || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
+  //if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
+  //$token = $_SERVER['auEduPersonSharedToken'];
+  if (true){ // || $token == 'G3r4cW38wpRxOH9QatN1JiOPkqw' || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
     // Nick/Mark = Richard Easther
     $token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
     $_SERVER['uid'] = 'reas725';
