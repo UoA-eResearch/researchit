@@ -155,14 +155,14 @@ div.col.research_lifecycle_stage.Plan_Design {
 	overflow: visible;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .cards-container {
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-count: 1;
   }
 }
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 801px) {
   .cards-container {
     -webkit-column-count: 2;
     -moz-column-count: 2;
