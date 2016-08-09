@@ -84,6 +84,7 @@ if (user_is_logged_in()) {
     $text = 'Logged in as ' . $user->name;
     $href = '/projects';
     $class = array('username', 'logged_in');
+
 } else {
     $text = 'Login';
     $href = '/Shibboleth.sso/Login';
@@ -93,96 +94,71 @@ $primary_nav[1000] = array('#theme' => 'menu_link__main_menu', '#title' => $text
 $primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title' => 'Search', '#href' => 'search', '#below' => '', '#attributes' => array('class' => 'search_button'));
 ?>
 
+
+
 <nav class="top-nav bg-light-grey" id="nav">
     <ul id='slide-out' class='side-nav'>
+        <li><div class="userView">
+                <img class="background" src="/sites/default/files/abstract-background.jpg">
+                <a href="#!user"><img class="circle" src="https://projects.nesi.org.nz/sites/default/files/nesi_avatar.png"></a>
+                <a href="#!name"><span class="white-text name">John Doe</span></a>
+                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div></li>
+        <li><a href="/"><i class="material-icons">home</i>Home</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li><a href="/"><i class="material-icons">library_books</i>Projects</a></li>
+        <li><a class="subheader">Subheader</a></li>
+<!--        <li><div class="divider"></div></li>-->
 
-        <nav class="top-nav bg-light-grey"></nav>
-
-        <!-- Menu Bar Content-->
-        <?php if (user_is_logged_in()): ?>
-            <!-- When User is Signed in-->
-            <div class='row'>
-                <?php
-                echo "<div class='collection'>";
-                echo "<li class='collection-header'><h5>Manage Projects</h5></li>";
-                echo "<a href='/projects/' class='collection-item avatar' style='min-height: 100px'>
-                      <i class='material-icons circle' style='background-color: #ffb300 !important'>dashboard</i>
-                      <span class='title' style='color: #ffb300; font-weight:500'>Open Project Dashboard</span>
-                      <p style='font-weight:300; color:black'>View and manage all your research projects</p>
-                    </a>";
-                echo "<a href='#create_project' class='collection-item avatar waves-effect waves-light modal-trigger' style='min-height: 100px'>
-                      <i class='material-icons circle' style='background-color: #ffb300 !important'>add</i>
-                      <span class='title' style='color: #ffb300; font-weight:500'>Create New Project</span>
-                      <p style='font-weight:300; color:black'>Create project in order to apply for research services</p>
-                    </a>";
-                echo "<li class='collection-header'><h5>My Projects</h5></li>";
-                $projects = researchit_user_get_projects();
-                if (!empty($projects)) {
-                    foreach ($projects as $i => $p) {
-                        $desc = truncate_utf8($p->description, 100, TRUE, TRUE);
-                        if (in_array($p->statusId, array(1, 2, 6))) {
-                            $color = '#43a047';
-                        } else if (in_array($p->statusId, array(4, 10))) {
-                            $color = '#e53935';
-                        } else {
-                            $color = '#1e88e5';
-                        }
-                        echo "<a href='/projects/{$p->projectCode}' class='collection-item avatar' style='min-height: 100px'>
-                          <i class='material-icons circle' style='background-color: $color !important'>extension</i>
-                          <span class='title' style='color: black; font-weight:500'>{$p->name}</span>
-                          <p style='font-weight:300; color:black'>{$p->projectCode} </br>
-                            <span style='font-style: italic;'>$desc</span>
-                          </p>
-                        </a>";
-                    }
-                }
-                echo "</div>";
-                ?>
-            </div>
-
-        <?php else: ?>
-            <!-- When User is not signed in-->
-            Login to see your projects.
-        <?php endif; ?>
+<!--        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>-->
     </ul>
 
-    <a href="#" data-activates="slide-out" class="button-collapse show-on-large" style='margin-left:15px'><i
-            class="mdi-navigation-menu text-navy-blue"></i></a>
+    <div class="nav-wrapper">
+        <a href="#" data-activates="slide-out" class="button-collapse brand-logo show-on-large"><i class="material-icons" style="font-size: 24px;">menu</i></a>
+        <a href="#" class="nav-left brand-logo">The Research Hub</a>
 
-    <div class="nav-wrapper nav-container">
-        <?php if ($logo): ?>
-            <a href="#" class="brand-logo">The Centre for eResearch</a>
-        <?php endif; ?>
+        <a class="waves-effect waves-circle btn-floating nav-user-btn white right dropdown-button" data-activates='user-details' data-beloworigin="true" data-constrainwidth="false">
+            <?php
+                if (user_is_logged_in()) {
+                    $pictureUrl = $user->data['projectdb_info']->pictureUrl;
+
+                    if($pictureUrl)
+                        echo "<img src='{$pictureUrl}' class='circle'>";
+                    else
+                        echo "<img src='https://projects.nesi.org.nz/sites/default/files/nesi_avatar.png' class='circle'/>";
+                } else {
+                    echo "<img src='https://projects.nesi.org.nz/sites/default/files/nesi_avatar.png' class='circle'/>";
+                };
+            ?>
+        </a>
+
+        <ul id='user-details' class='dropdown-content collection' style="width: 300px;"> 
+            <?php
+                if (user_is_logged_in()) {
+                    $pictureUrl = $user->data['projectdb_info']->pictureUrl;
+
+                    if ($pictureUrl) {
+                        echo "<li class='collection-item avatar'><img src='{$pictureUrl}' class='circle'><span class='title'>$user->name</span></li>";
+                    }
+                }
+                else
+                {
+                    echo "<li class='collection-item avatar'><img src='https://projects.nesi.org.nz/sites/default/files/nesi_avatar.png' class='circle'/><span class='title'>Not logged in</span></li><li class='collection-item' href='Shibboleth.sso/Login'>Login</li>";
+                }
+            ?>
+         </ul>
     </div>
 </nav>
 
 <nav class="secondary-header bg-white">
-
     <div class="nav-wrapper">
         <img class="uni-logo" src="/sites/default/files/logo.png">
         <ul id="nav-mobile" class="nav-container hide-on-med-and-down">
-            <?php
-                foreach($primary_nav as $link){
-                    if (!empty($link['#title'])) {
-                        $title = $link['#title'];
-
-                        if($title == 'Home')
-                        {
-                            $href = '/';
-                        }
-                        else if (!empty($link['#original_link']) && !empty($link['#original_link']['options']['fragment'])) {
-
-                            $href = '/#' .$link['#original_link']['options']['fragment'];
-                        }
-                        else
-                        {
-                            $href = $link['#href'];
-                        }
-
-                        echo "<li><a class='nav-link' href='$href'>$title</a></li>";
-                    }
-                }
-            ?>
+            <li><a class='nav-link' href='/#lifecycle'>Research Lifecycle</a></li>
+            <li><a class='nav-link' href='/#category_accordion'>Service Types</a></li>
+            <li><a class='nav-link' href='/#education'>Education</a></li>
+            <li><a class='nav-link' href='/#guides'>Guides</a></li>
+            <li><a class='nav-link' href='/#policies'>Policies</a></li>
         </ul>
     </div>
 </nav>
@@ -330,7 +306,7 @@ $primary_nav[1001] = array('#theme' => 'menu_link__main_menu', '#title' => 'Sear
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Help & Support</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Contact us</a></li>
+                    <li><a class="grey-text text-lighten-3" href="http://www.eresearch.auckland.ac.nz/en/centre-for-eresearch/contact-us.html">Contact us</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">AskAuckland</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Donate to the Centre for eResearch</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Provide feedback</a></li>
