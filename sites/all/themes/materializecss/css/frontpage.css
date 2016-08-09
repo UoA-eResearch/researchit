@@ -1,11 +1,26 @@
 .lifecycle_selector {
-  /*min-height: 90px; */
+  display:table-cell;
+  text-align:center;
+  padding:15px;
+  color:white;
+  font-size:20px;
+  font-weight:normal;
+  width:20%;
 }
 
 .view-research-lifecycle .row .research_lifecycle_stage.name .card-titleXXX {
   border-top: thick solid #546e7a;
   padding-left: 40px;
   margin-left: -40px;
+}
+
+#lifecycle_selector_menu {
+  display:table;
+  width:100%;
+}
+
+#lifecycle_selector_menu>div {
+  display:table-row;
 }
 
 .view-research-lifecycle .row {

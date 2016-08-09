@@ -37,11 +37,11 @@
 <?php endif; ?>
 
 <?php
-echo "<div style='display:table;width:100%'><div style='display:table-row'>";
+echo "<div id='lifecycle_selector_menu'><div>";
 foreach ($terms as $t) {
   $machine_name = str_replace(' &', '', $t->name);
   $machine_name = str_replace(' ', '_', $machine_name);
-  echo "<span class='lifecycle_selector $machine_name' style='display:table-cell;text-align:center;padding:15px;color:white;font-family:Roboto,sans-serif;font-size:20px;font-weight:normal;width:20%;background-color:{$t->field_color['und'][0]['rgb']}'><i class='material-icons circle {$t->field_color['und'][0]['rgb']}' style='float:left'>{$t->field_glypth['und'][0]['value']}</i>{$t->name}</span>";
+  echo "<span class='lifecycle_selector $machine_name' style='background-color:{$t->field_color['und'][0]['rgb']}'><i class='material-icons circle {$t->field_color['und'][0]['rgb']}' style='float:left'>{$t->field_glypth['und'][0]['value']}</i>{$t->name}</span>";
 }
 echo "</div></div>";
 echo "<div class='triangles'>";
