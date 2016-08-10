@@ -123,6 +123,7 @@ section.main.container {
   padding-left: 15%;
   padding-right: 15%;
   z-index: 2;
+  width: 100%;
 }
 
 .triangle-down {
