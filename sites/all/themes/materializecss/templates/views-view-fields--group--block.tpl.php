@@ -35,7 +35,7 @@
     </div>
     <div class="card-action">
       <!-- fix this - hardcoded just for demo -->
-      <a href="https://researchit.cer.auckland.ac.nz/group/data-science">Vew Research Pack Details</a>
+      <a href="https://researchit.cer.auckland.ac.nz/group/data-science">View Research Pack Details</a>
     </div>
   </div>
 </div>
