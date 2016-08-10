@@ -360,3 +360,82 @@ a.anchor {
   margin: 15px;
   font-weight: 600;
 }
+
+
+/*Taxonomy rules and @media 800 rule*/
+.page-taxonomy-term-30 .field-label{
+  font-size:1.5em;
+  padding:1%;
+    display:none;
+}
+
+.page-taxonomy-term-30 .node-teaser{
+  width:100%;
+  display:inline-block;
+  margin:1%;
+  vertical-align:top;
+  padding:0px;
+  }
+
+.page-taxonomy-term-30 img {
+  margin:3% 15%;
+  width:70%;
+  height:auto;
+}
+
+
+.page-taxonomy-term-30 h4.card-title{
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: rgb(0, 128, 167);
+  margin: 0px;
+  color: white;
+  height: 60px;
+  padding: 15px;
+  font-size: 24px;
+}
+
+.page-taxonomy-term-30 h4.card-title a{
+  color: white;
+ }
+
+.page-taxonomy-term-30 #node-38 > div:nth-child(1) > div:nth-child(4){
+ padding:2%;
+}
+
+.page-taxonomy-term-30 .taxonomy-term-description p{
+  font-size: 1.5em;
+  padding:2% 2% 0 2%;
+   text-align: center;
+}
+
+.page-taxonomy-term-30 .field-item.even {
+  font-size: 1.5em;
+  padding:0 2% 0 2%;
+}
+
+.page-taxonomy-term-30 div.field-items:nth-child(2) > div:nth-child(1){
+  font-size:2em;
+  text-align:center;
+  display: block;
+  padding: 1% 15%;
+  color:    rgba(0, 70, 127, 0.9);
+  text-transform:uppercase;
+}
+
+.page-taxonomy-term-30 h2 {
+  background-image: url("https://researchit.cer.auckland.ac.nz/sites/default/files/Data-Science-Pack-1384226433214.jpg");
+ color:#ffffff;
+ padding:5%;
+ text-align: center;
+}
+
+@media only screen and (min-width: 769px) {
+.page-taxonomy-term-30 .node-teaser{
+  width:30%;
+  display:inline-block;
+  margin:1%;
+  vertical-align:top;
+  padding:0%;
+  }
+}
