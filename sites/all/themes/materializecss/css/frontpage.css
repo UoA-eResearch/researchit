@@ -1,11 +1,26 @@
 .lifecycle_selector {
-  /*min-height: 90px; */
+  display:block;
+  text-align:center;
+  padding:15px;
+  color:white;
+  font-size:20px;
+  font-weight:normal;
+  width:100%;
 }
 
 .view-research-lifecycle .row .research_lifecycle_stage.name .card-titleXXX {
   border-top: thick solid #546e7a;
   padding-left: 40px;
   margin-left: -40px;
+}
+
+#lifecycle_selector_menu {
+  display:block;
+  width:100%;
+}
+
+#lifecycle_selector_menu>div {
+  display:block;
 }
 
 .view-research-lifecycle .row {
@@ -108,6 +123,7 @@ section.main.container {
   padding-left: 15%;
   padding-right: 15%;
   z-index: 2;
+  width: 100%;
 }
 
 .triangle-down {
@@ -155,20 +171,34 @@ div.col.research_lifecycle_stage.Plan_Design {
 	overflow: visible;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .cards-container {
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-count: 1;
   }
 }
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 801px) {
   .cards-container {
     -webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2;
   }
+  
+  .lifecycle_selector {
+  display:table-cell;
+  width:20%;
 }
+
+#lifecycle_selector_menu {
+  display:table;
+}
+
+#lifecycle_selector_menu>div {
+  display:table-row;
+}
+}
+
 @media only screen and (min-width: 993px) {
   .cards-container {
     -webkit-column-count: 3;

@@ -34,6 +34,18 @@
     }
 }
 
+@media only screen and (min-width: 1400px) {
+    .scale-text {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .scale-text {
+        font-size: 14px;
+    }
+}
+
 .card .collection .collection-item.avatar {
 	min-height: 0px;
 }
@@ -302,38 +314,6 @@ nav ul a {
   font-weight: bold;
 }
 
-
-.uoa-brand-shape {
-  position: relative;
-  width: calc(100% - 108px);
-  left: 54px;
-  /*padding: 3em 0 2em; */
-  background-color: rgba(0, 70, 127, 0.9); }
-  .uoa-brand-shape:before, .uoa-brand-shape:after {
-    content: "";
-    position: absolute;
-    width: 54px;
-    height: 100%;
-    background-size: 54px 1000px;
-    z-index: 0; }
-  .uoa-brand-shape:before {
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTQgMTAwMCI+DQoJPHBvbHlnb24gZmlsbD0iIzAwNDY3ZiIgZmlsbC1vcGFjaXR5PSIwLjkiIHBvaW50cz0iMCA1NCA1NCAwIDU0IDEwMDAgMCAxMDAwIi8+DQo8L3N2Zz4NCg==");
-    left: -54px;
-    top: 0; }
-  .uoa-brand-shape:after {
-    right: -54px;
-    bottom: 0;
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTQgMTAwMCI+DQoJPHBvbHlnb24gZmlsbD0iIzAwNDY3ZiIgZmlsbC1vcGFjaXR5PSIwLjkiIHBvaW50cz0iMCAwIDU0IDAgNTQgOTQ2IDAgMTAwMCIvPg0KPC9zdmc+DQo=");
-    background-position: 100% 100%; }
-  .uoa-brand-shape__content {
-    margin: 0 -27px;
-    position: relative;
-    z-index: 1; }
-  .uoa-brand-shape h1, .uoa-brand-shape p {
-    color: #ffffff; }
-  .uoa-brand-shape__content :first-child {
-    margin-top: 0; }
-
 a.anchor {
   display: block; position: relative; top: -100px; visibility: hidden;
 }
@@ -349,108 +329,205 @@ a.anchor {
   display: inline-block;
 }
 
+#links {
+  background-color: rgba(0, 70, 127, 0.9);
+}
+
+#links a {
+  background-color: #0080a7;
+  width: 100%;
+  min-height: 0px;
+  padding: 0 2rem;
+}
+
+#links h5 {
+  color: white;
+  margin: 15px;
+  font-weight: 600;
+}
+
+
+/*Taxonomy rules and @media 800 rule*/
+.page-taxonomy-term-30 .field-label{
+  font-size:1.5em;
+  padding:1%;
+    display:none;
+}
+
+.page-taxonomy-term-30 .node-teaser{
+  width:100%;
+  display:inline-block;
+  margin:1%;
+  vertical-align:top;
+  padding:0px;
+  }
+
+.page-taxonomy-term-30 .field-item img{
+  margin:3% 15%;
+  width:70%;
+  height:auto;
+}
+
+
+
+.page-taxonomy-term-30 h4.card-title{
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: rgb(0, 128, 167);
+  margin: 0px;
+  color: white;
+  min-height: 60px;
+  padding: 15px;
+}
+
+.page-taxonomy-term-30 h4.card-title a{
+  color: white;
+ }
+
+
+.page-taxonomy-term-30 .node-readmore {
+  padding: 1% 2% 0 2%;
+}
+
+.page-taxonomy-term-30 .taxonomy-term-description p{
+  font-size: 1.5em;
+  padding:2% 2% 0 2%;
+   text-align: center;
+}
+
+.page-taxonomy-term-30 .field-item.even {
+  font-size: 1.5em;
+  padding:2% 2% 0 2%;
+}
+
+.page-taxonomy-term-30 div.field-items:nth-child(2) > div:nth-child(1){
+  font-size:2em;
+  text-align:center;
+  display: block;
+  padding: 1% 15%;
+  color:    rgba(0, 70, 127, 0.9);
+  text-transform:uppercase;
+}
+
+.page-taxonomy-term-30 h2 {
+  background-image: url("https://researchit.cer.auckland.ac.nz/sites/default/files/Data-Science-Pack-1384226433214.jpg");
+ color:#ffffff;
+ padding:5%;
+ text-align: center;
+}
+
+@media only screen and (min-width: 769px) {
+.page-taxonomy-term-30 .node-teaser{
+  width:30%;
+  display:inline-block;
+  margin:1%;
+  vertical-align:top;
+  padding:0%;
+  }
+}
+
 .bg-dark-grey
 {
-  background-color: #373a3c !important;
+    background-color: #373a3c !important;
 }
 
 .bg-darker-grey
 {
-  background-color: #262626 !important;
+    background-color: #262626 !important;
 }
 
 .bg-light-grey
 {
-  background-color: #f2f2f2 !important;
+    background-color: #f2f2f2 !important;
 }
 
 .font
 {
-  font-family: NationalBold, sans-serif;
-  margin-right: 1rem;
-  padding: 1rem 1.5rem;
-  transition: all .8s;
+    font-family: NationalBold, sans-serif;
+    margin-right: 1rem;
+    padding: 1rem 1.5rem;
+    transition: all .8s;
 }
 
 .text-navy-blue
 {
-  color: #00467f!important;
+    color: #00467f!important;
 }
 
 .bg-white
 {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .nav-left
 {
-  position:absolute !important;
-  left: 300px !important;
+    position:absolute !important;
+    left: 300px !important;
 }
 
 .nav-container
 {
-  position:absolute !important;
-  left: 300px !important;
+    position:absolute !important;
+    left: 300px !important;
 }
 
 .brand-logo
 {
-  color: #00467f !important;
-  margin-left: 15px;
-  display: inline-block;
-  font-size: 18px !important;
-  font-weight: bold;
+    color: #00467f !important;
+    margin-left: 15px;
+    display: inline-block;
+    font-size: 18px !important;
+    font-weight: bold;
 }
 
 .nav-link
 {
-  color: #00467f !important;
+    color: #00467f !important;
 }
 
 .secondary-header
 {
-  height: 90px;
-  box-shadow: none;
-  line-height: 90px;
+    height: 90px;
+    box-shadow: none;
+    line-height: 90px;
 }
 
 .uni-logo
 {
-  position: absolute;
-  width: 144px;
-  margin-top: -27px;
-  left: 122px;
+    position: absolute;
+    width: 144px;
+    margin-top: -27px;
+    left: 122px;
 }
 
 .nav-user-btn
 {
-  top: 16px;
-  margin-right: 30px;
-  width: 32px;
-  height: 32px;
+    top: 16px;
+    margin-right: 30px;
+    width: 32px;
+    height: 32px;
 }
 
 .nav-user-btn img {
-  width: 32px;
-  height: 32px;
+    width: 32px;
+    height: 32px;
 }
 
 ul.side-nav ul.collapsible-accordion a.collapsible-header {
-  padding: 0 30px;
-  font-weight: bold;
+    padding: 0 30px;
+    font-weight: bold;
 }
 
 ul.side-nav ul.collapsible-accordion .collapsible-body li a {
-  font-weight: 400;
-  padding: 0 37.5px 0 45px;
-  text-overflow: ellipsis !important;
+    font-weight: 400;
+    padding: 0 37.5px 0 45px;
+    text-overflow: ellipsis !important;
 }
 
 ul.side-nav li a {
-  font-weight: bold;
-  font-size: 13px;
-  line-height: 44px;
-  height: 44px;
-  padding: 0 30px;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 44px;
+    height: 44px;
+    padding: 0 30px;
 }

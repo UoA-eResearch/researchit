@@ -17,10 +17,16 @@ function researchit_user_menu() {
   return $items;
 }
 
-function rest_request($endpoint, $method = 'GET', $postdata = '') {
-  $auth_token = variable_get('rest_credentials');
-  $base = variable_get('rest_url');
-  $u = 'nyou045@auckland.ac.nz';
+function rest_request($endpoint, $method = 'GET', $postdata = '', $type='NESI') {
+  if ($type == 'NESI') {
+    $auth = 'Authorization:Basic ' . variable_get('rest_credentials');
+    $base = variable_get('rest_url');
+    $u = 'nyou045@auckland.ac.nz';
+  } else if ($type == 'CER') {
+    $auth = '';
+    $base = variable_get('cer_rest_url');
+    $u = $_SERVER['uid'];
+  }
   $opts = array(
     'http'=>array(
       'method'=> $method,
@@ -31,7 +37,8 @@ function rest_request($endpoint, $method = 'GET', $postdata = '') {
                 "Content-Type: application/json\r\n" .
                 "RemoteUser: $u\r\n" .
                 "X-Proxy-REMOTE-USER: $u\r\n" .
-                "Authorization:Basic $auth_token\r\n" .
+                "X-REMOTE-USER: $u\r\n" .
+                "$auth\r\n" .
                 "User-Agent: drupal\r\n"
     )
   );
@@ -48,27 +55,50 @@ function researchit_user_get_projects() {
   }
   $id = $user->data['projectdb_info']->id;
   $projects = rest_request("researchers/$id/projects");
-  usort($projects, function($a, $b) {
-    if ($a->statusId == $b->statusId) {
-      return $a->startDate < $b->startDate;
-    } else {
-      return $a->statusId > $b->statusId;
+  if (!empty($user->data['cer_projectdb_info']->id)) {
+    $cerid = $user->data['cer_projectdb_info']->id;
+    $cer_projects = rest_request("person/$cerid/projects", 'GET', '', 'CER');
+    foreach ($cer_projects as $c) {
+      $c->project->role = $c->role;
+      $c = $c->project;
+      $c->statusName = $c->status;
+      $c->projectCode = $c->code;
+      $c->name = $c->title;
+      $found = FALSE;
+      foreach ($projects as $p) {
+        if ($c->projectCode == $p->projectCode) {
+          $p->cer_info = $c;
+          $found = TRUE;
+          break;
+        }
+      }
+      if (!$found) {
+        $projects[] = $c;
+      }
     }
+  }
+  usort($projects, function($a, $b) {
+    return $a->statusName > $b->statusName;
   });
   return $projects;
 }
 
 function researchit_user_user_login() {
   global $user;
-  //if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
-  //$token = $_SERVER['auEduPersonSharedToken'];
-  if (true){ // || $token == 'G3r4cW38wpRxOH9QatN1JiOPkqw' || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
+  if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
+
+  $upi = $_SERVER['uid'];
+  
+  $token = $_SERVER['auEduPersonSharedToken'];
+  if ($upi == 'nyou045' || $upi == 'mgah001') {
     // Nick/Mark = Richard Easther
-    $token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
-    $_SERVER['uid'] = 'reas725';
+    //$token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
+    //$upi = 'reas725';
   }
 
   $researcher = rest_request('researchers/tuakiri', 'POST', $token);
+  
+  $cer_person = rest_request("person/findByIdentity/$upi", 'GET', '', 'CER');
   
   $scienceDomains = rest_request('lists/science_domains');
   $researchers = rest_request('researchers/');
@@ -84,11 +114,9 @@ function researchit_user_user_login() {
   foreach($scienceDomains as $d) {
     $scienceDomainsTree[$d] = rest_request('lists/science_studies', 'POST', $d);
   }
-
-  $cn = escapeshellarg($_SERVER['uid']);
   
   $ldapCredentials = variable_get('ldap_credentials');
-  $ldapInfo = `ldapsearch $ldapCredentials' '(cn=$cn)'`;
+  $ldapInfo = `ldapsearch $ldapCredentials' '(cn=$upi)'`;
   $ldapInfo = str_replace("\n ", "", $ldapInfo);
   $ldapInfo = explode("\n", $ldapInfo);
   $ldapGroups = array();
@@ -111,7 +139,7 @@ function researchit_user_user_login() {
   ini_set('mssql.charset', 'UTF-8');
   $status = mssql_connect(variable_get('symplectic_server'), variable_get('symplectic_username'), variable_get('symplectic_password'));
   if ($status) {
-    $result = mssql_query("SELECT * FROM [elementstest-reporting].[dbo].[pub_eresearch_view] WHERE username=$cn");
+    $result = mssql_query("SELECT * FROM [elementstest-reporting].[dbo].[pub_eresearch_view] WHERE username='$upi'");
     while ($row = mssql_fetch_assoc($result)) {
       $allResearchOutputs[] = $row;
     }
@@ -119,6 +147,7 @@ function researchit_user_user_login() {
 
   user_save($user, array('data' => array(
     'projectdb_info' => $researcher,
+    'cer_projectdb_info' => $cer_person,
     'ldap_groups' => $ldapGroups,
     'ldap_attributes' => $ldapAttributes,
     'science_domains' => $scienceDomainsTree,
@@ -141,7 +170,6 @@ function researchit_user_node_access($node, $op, $account) {
 
 function researchit_user_theme($existing, $type, $theme, $path) {
   $variables = array();
-  dpm('configuring themes');
   return array(
     'researchit_user_project' => array(
       'variables' => $variables,
@@ -318,6 +346,8 @@ function researchit_user_projects($projectCode = '', $action = '') {
   } else if ($projectCode == 'create_project') {
     researchit_user_create_project();
     return;
+  } else if ($projectCode == 'admin') {
+    return '<iframe src="https://web.ceres.auckland.ac.nz/project_centre/#/home" seamless frameborder="0" style="overflow:hidden;height:800px;width:100%"></iframe>';
   }
   
   if (!in_array('administrator', $user->roles)) {
@@ -427,11 +457,26 @@ function researchit_user_projects($projectCode = '', $action = '') {
     return;
   } else if ($action == '') {
     $project_wrapper = rest_request("projects/" . $projectCode);
-    $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
-    $project_wrapper->services = array();
-    foreach ($project_wrapper->properties as $p) {
-      if ($p->propname == 'Services') {
-        $project_wrapper->services = json_decode($p->propvalue);
+    if (!empty($project_wrapper->message)) {
+      $project_wrapper = rest_request("project/wrapper/findByCode/$projectCode", 'GET', '', 'CER');
+      $project_wrapper->project->name = $project_wrapper->project->title;
+      $project_wrapper->project->statusName = $project_wrapper->project->status;
+      $project_wrapper->project->projectCode = $project_wrapper->project->code;
+      $project_wrapper->rpLinks = array();
+      foreach ($project_wrapper->members as $m) {
+        $m->researcher = $m->person;
+        $m->researcherRoleName = $m->role;
+        $m->researcherId = $m->person->id;
+        $project_wrapper->rpLinks[] = $m;
+      }
+      dpm($project_wrapper);
+    } else {
+      $project_wrapper->properties = rest_request("projects/{$project_wrapper->project->id}/prop");
+      $project_wrapper->services = array();
+      foreach ($project_wrapper->properties as $p) {
+        if ($p->propname == 'Services') {
+          $project_wrapper->services = json_decode($p->propvalue);
+        }
       }
     }
     $rotypes = rest_request("projects/rotype");
@@ -453,7 +498,6 @@ function researchit_user_projects($projectCode = '', $action = '') {
         }
       }
     }
-    dpm($research_outputs);
     $variables = array(
       'pw' => $project_wrapper,
       'research_outputs' => $research_outputs,
@@ -465,5 +509,15 @@ function researchit_user_projects($projectCode = '', $action = '') {
     drupal_add_js(drupal_get_path('module', 'researchit_user') . '/js/' . 'jqueryui-editable.min.js');
     drupal_add_js(drupal_get_path('module', 'researchit_user') . '/js/' . 'project.js');
     return theme('researchit_user_project', $variables);
+  }
+}
+
+function get_colour_for_status($status) {
+  if (in_array($status, array('Open', 'Reopened', 'Open-Not Public'))) {
+    return '#43a047';
+  } else if (in_array($status, array('Closed', 'Rejected'))) {
+    return '#e53935';
+  } else {
+    return '#1e88e5';
   }
 }
