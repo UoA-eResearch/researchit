@@ -60,12 +60,12 @@ function researchit_user_get_projects() {
 
 function researchit_user_user_login() {
   global $user;
-  if (empty($_SERVER['auEduPersonSharedToken']) || empty($_SERVER['uid'])) return;
-  $token = $_SERVER['auEduPersonSharedToken'];
-  if ($token == 'G3r4cW38wpRxOH9QatN1JiOPkqw' || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
+  if (empty($_SERVER['AJP_auEduPersonSharedToken']) || empty($_SERVER['AJP_uid'])) return;
+  $token = $_SERVER['AJP_auEduPersonSharedToken'];
+  if ($token == 'G3r4cW38wpRxOH9QatN1JiOPkqw') {// || $token == 'kGD3LK4S0r323WRQuiA_gKJi8zw') {
     // Nick/Mark = Richard Easther
     $token = '4YZwkQGpJNwqBl29KoN8dr_aNRQ';
-    $_SERVER['uid'] = 'reas725';
+    $_SERVER['AJP_uid'] = 'reas725';
   }
 
   $researcher = rest_request('researchers/tuakiri', 'POST', $token);
@@ -85,7 +85,7 @@ function researchit_user_user_login() {
     $scienceDomainsTree[$d] = rest_request('lists/science_studies', 'POST', $d);
   }
 
-  $cn = escapeshellarg($_SERVER['uid']);
+  $cn = escapeshellarg($_SERVER['AJP_uid']);
   
   $ldapCredentials = variable_get('ldap_credentials');
   $ldapInfo = `ldapsearch $ldapCredentials' '(cn=$cn)'`;
@@ -187,7 +187,7 @@ function researchit_user_create_project() {
   }
   if (empty($user->data['projectdb_info']->id)) {
     // No researcher profile yet - create one
-    if (strpos($_SERVER['unscoped-affiliation'], 'staff') !== FALSE) {
+    if (strpos($_SERVER['AJP_unscoped-affiliation'], 'staff') !== FALSE) {
       $institutionalRole = 1;
     } else {
       $institutionalRole = 2;
@@ -218,7 +218,7 @@ function researchit_user_create_project() {
       "pictureUrl" => 'data:image/png;base64,' . $user->data['ldap_attributes']['thumbnailPhoto'],
       "endDate" => "",
       "institutionalRoleId" => $institutionalRole,
-      "fullName" => $_SERVER['displayName'],
+      "fullName" => $_SERVER['AJP_displayName'],
       "notes" => "Added by researchit"
     );
     $rid = rest_request("researchers/", "POST", json_encode($r));
@@ -234,12 +234,12 @@ function researchit_user_create_project() {
     watchdog('projectdb', 'created a researcher profile for %user', array('%user' => $user->name), WATCHDOG_INFO);
     $prop = (object) array(
       "propname" => "tuakiriSharedToken",
-      "propvalue" => $_SERVER['auEduPersonSharedToken'],
+      "propvalue" => $_SERVER['AJP_auEduPersonSharedToken'],
       "researcherId" => $rid,
       "siteId" => 1
     );
     $prop = rest_request("researchers/$rid/prop", "PUT", json_encode($prop));
-    watchdog('projectdb', 'bound token: %token for %user', array('%token' => $_SERVER['auEduPersonSharedToken'], '%user' => $user->name), WATCHDOG_INFO);
+    watchdog('projectdb', 'bound token: %token for %user', array('%token' => $_SERVER['AJP_auEduPersonSharedToken'], '%user' => $user->name), WATCHDOG_INFO);
   } else {
     $rid = $user->data['projectdb_info']->id;
     $p->project->department = $user->data['projectdb_info']->department;
@@ -453,7 +453,6 @@ function researchit_user_projects($projectCode = '', $action = '') {
         }
       }
     }
-    dpm($research_outputs);
     $variables = array(
       'pw' => $project_wrapper,
       'research_outputs' => $research_outputs,

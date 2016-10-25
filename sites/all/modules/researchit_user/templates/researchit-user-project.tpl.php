@@ -1,7 +1,7 @@
 <input id="project_id" type="hidden" value="<?php echo $pw->project->id ?>"/>
 <div class="row">
   <div class="col s8">
-    <h4 class='editable' id='project_title' data-type='text' data-pk='Project' data-name='Name' data-title='Project name'><?php echo $pw->project->name; dpm($pw); ?></h4>
+    <h4 class='editable' id='project_title' data-type='text' data-pk='Project' data-name='Name' data-title='Project name'><?php echo $pw->project->name; ?></h4>
     <div class='editable' id='project_description' data-type="textarea" data-pk="Project" data-name="Description" data-title="Description"><?php echo strip_tags($pw->project->description) ?></div>
 
     <!-- Left Column content goes here -->

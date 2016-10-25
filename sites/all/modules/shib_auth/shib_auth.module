@@ -1431,6 +1431,11 @@ function shib_auth_getenv($var=false) {
   if (array_key_exists($var,$_SERVER))
     return $_SERVER[$var];
 
+  // AJP_foo-bar
+  $ajpvar = "AJP_" . $var;
+  if (array_key_exists($ajpvar, $_SERVER))
+      return $_SERVER[$ajpvar];
+
   // REDIRECT_foo_bar
   $var = "REDIRECT_" . str_replace('-','_',$var);
   if (array_key_exists($var,$_SERVER))
